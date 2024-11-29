@@ -85,4 +85,75 @@ internal partial class AdminMainMenu : Form {
     #endregion
 
 
+    #region GESTION DES RÔLES
+
+    private void RoleCreationButton_Click(object sender, EventArgs e) {
+        Role? roleCree = this.parentApp.RoleService.OpenUserWindowForCreation();
+        if (roleCree is not null) {
+            _ = this.roleSearchResults.Items.Add(roleCree);
+            this.roleSearchResults.SelectedItem = roleCree;
+        }
+    }
+
+    private void RoleSearchTextBox_TextChanged(object sender, EventArgs e) {
+        string criterion = this.roleSearchTextBox.Text.Trim();
+        List<Role> results = this.parentApp.RoleService.Search(criterion);
+        this.roleSearchResults.Items.Clear();
+        this.roleSearchResults.SelectedItem = null;
+        this.roleSearchResults.SelectedIndex = -1;
+        foreach (Role role in results) {
+            _ = this.roleSearchResults.Items.Add(role);
+        }
+    }
+
+    private void RoleSearchResults_SelectedIndexChanged(object sender, EventArgs e) {
+        Role? selectedRole = this.roleSearchResults.SelectedItem as Role;
+        if (selectedRole is not null) {
+            this.roleViewButton.Enabled = true;
+            this.roleModifyButton.Enabled = true;
+            this.roleDeleteButton.Enabled = true;
+        } else {
+            this.roleViewButton.Enabled = false;
+            this.roleModifyButton.Enabled = false;
+            this.roleDeleteButton.Enabled = false;
+        }
+    }
+
+    private void RoleViewButton_Click(object sender, EventArgs e) {
+        Role? selectedRole = this.roleSearchResults.SelectedItem as Role;
+        if (selectedRole is null) {
+            throw new Exception("Veuillez sélectionner un rôle.");
+        }
+        _ = this.parentApp.RoleService.OpenUserWindowForDetailsView(selectedRole);
+
+    }
+
+    private void RoleModifyButton_Click(object sender, EventArgs e) {
+        Role? selectedRole = this.roleSearchResults.SelectedItem as Role;
+        if (selectedRole is null) {
+            throw new Exception("Veuillez sélectionner un rôle.");
+        }
+        _ = this.parentApp.RoleService.OpenUserWindowForEdition(selectedRole);
+        this.roleSearchResults.Refresh();
+
+    }
+
+    private void RoleDeleteButton_Click(object sender, EventArgs e) {
+        Role? selectedRole = this.roleSearchResults.SelectedItem as Role;
+        if (selectedRole is null) {
+            throw new Exception("Veuillez sélectionner un rôle.");
+        }
+        selectedRole = this.parentApp.RoleService.OpenUserWindowForDeletion(selectedRole);
+        if (selectedRole is not null) {
+            this.roleSearchResults.Items.Remove(selectedRole);
+            this.roleSearchResults.SelectedItem = null;
+            this.roleSearchResults.SelectedIndex = -1;
+        }
+    }
+
+    #endregion
+
+
+
+
 }

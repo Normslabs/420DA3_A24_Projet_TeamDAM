@@ -47,17 +47,27 @@ partial class AdminMainMenu {
         this.roleManagementPanel = new Panel();
         this.rolePanelHeader = new Label();
         this.userManagementPanel = new Panel();
-        this.userPanelHeader = new Label();
+        this.userSearchResults = new ListBox();
+        this.userSearchTextBox = new TextBox();
+        this.tableLayoutPanel1 = new TableLayoutPanel();
+        this.panel1 = new Panel();
+        this.userDeleteButton = new Button();
+        this.userModifyButton = new Button();
+        this.userViewButton = new Button();
         this.userCreateButtonTLP = new TableLayoutPanel();
         this.userCreateButtonPanel = new Panel();
         this.userCreateButton = new Button();
-        this.tableLayoutPanel1 = new TableLayoutPanel();
-        this.panel1 = new Panel();
-        this.userViewButton = new Button();
-        this.userModifyButton = new Button();
-        this.userDeleteButton = new Button();
-        this.userSearchTextBox = new TextBox();
-        this.userSearchResults = new ListBox();
+        this.userPanelHeader = new Label();
+        this.roleSearchResults = new ListBox();
+        this.roleSearchTextBox = new TextBox();
+        this.tableLayoutPanel2 = new TableLayoutPanel();
+        this.panel2 = new Panel();
+        this.roleDeleteButton = new Button();
+        this.roleModifyButton = new Button();
+        this.roleViewButton = new Button();
+        this.tableLayoutPanel3 = new TableLayoutPanel();
+        this.panel3 = new Panel();
+        this.roleCreationButton = new Button();
         this.bottomBar.SuspendLayout();
         this.venterTLP.SuspendLayout();
         this.poManagementPanel.SuspendLayout();
@@ -70,10 +80,14 @@ partial class AdminMainMenu {
         this.productManagementPanel.SuspendLayout();
         this.roleManagementPanel.SuspendLayout();
         this.userManagementPanel.SuspendLayout();
-        this.userCreateButtonTLP.SuspendLayout();
-        this.userCreateButtonPanel.SuspendLayout();
         this.tableLayoutPanel1.SuspendLayout();
         this.panel1.SuspendLayout();
+        this.userCreateButtonTLP.SuspendLayout();
+        this.userCreateButtonPanel.SuspendLayout();
+        this.tableLayoutPanel2.SuspendLayout();
+        this.panel2.SuspendLayout();
+        this.tableLayoutPanel3.SuspendLayout();
+        this.panel3.SuspendLayout();
         this.SuspendLayout();
         // 
         // topBar
@@ -284,6 +298,10 @@ partial class AdminMainMenu {
         // 
         // roleManagementPanel
         // 
+        this.roleManagementPanel.Controls.Add(this.roleSearchResults);
+        this.roleManagementPanel.Controls.Add(this.roleSearchTextBox);
+        this.roleManagementPanel.Controls.Add(this.tableLayoutPanel2);
+        this.roleManagementPanel.Controls.Add(this.tableLayoutPanel3);
         this.roleManagementPanel.Controls.Add(this.rolePanelHeader);
         this.roleManagementPanel.Dock = DockStyle.Fill;
         this.roleManagementPanel.Location = new Point(225, 3);
@@ -315,15 +333,85 @@ partial class AdminMainMenu {
         this.userManagementPanel.Size = new Size(216, 272);
         this.userManagementPanel.TabIndex = 0;
         // 
-        // userPanelHeader
+        // userSearchResults
         // 
-        this.userPanelHeader.Dock = DockStyle.Top;
-        this.userPanelHeader.Location = new Point(3, 0);
-        this.userPanelHeader.Name = "userPanelHeader";
-        this.userPanelHeader.Size = new Size(210, 23);
-        this.userPanelHeader.TabIndex = 0;
-        this.userPanelHeader.Text = "Gestion des utilisateurs";
-        this.userPanelHeader.TextAlign = ContentAlignment.MiddleCenter;
+        this.userSearchResults.Dock = DockStyle.Fill;
+        this.userSearchResults.FormattingEnabled = true;
+        this.userSearchResults.ItemHeight = 15;
+        this.userSearchResults.Location = new Point(3, 86);
+        this.userSearchResults.Name = "userSearchResults";
+        this.userSearchResults.Size = new Size(210, 96);
+        this.userSearchResults.TabIndex = 4;
+        this.userSearchResults.SelectedIndexChanged += this.UserSearchResults_SelectedIndexChanged;
+        // 
+        // userSearchTextBox
+        // 
+        this.userSearchTextBox.Dock = DockStyle.Top;
+        this.userSearchTextBox.Location = new Point(3, 63);
+        this.userSearchTextBox.Name = "userSearchTextBox";
+        this.userSearchTextBox.PlaceholderText = "Rechercher un utilisateur";
+        this.userSearchTextBox.Size = new Size(210, 23);
+        this.userSearchTextBox.TabIndex = 3;
+        this.userSearchTextBox.TextChanged += this.UserSearchTextBox_TextChanged;
+        // 
+        // tableLayoutPanel1
+        // 
+        this.tableLayoutPanel1.ColumnCount = 3;
+        this.tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 180F));
+        this.tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 0);
+        this.tableLayoutPanel1.Dock = DockStyle.Bottom;
+        this.tableLayoutPanel1.Location = new Point(3, 182);
+        this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+        this.tableLayoutPanel1.RowCount = 1;
+        this.tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+        this.tableLayoutPanel1.Size = new Size(210, 90);
+        this.tableLayoutPanel1.TabIndex = 2;
+        // 
+        // panel1
+        // 
+        this.panel1.Controls.Add(this.userDeleteButton);
+        this.panel1.Controls.Add(this.userModifyButton);
+        this.panel1.Controls.Add(this.userViewButton);
+        this.panel1.Dock = DockStyle.Fill;
+        this.panel1.Location = new Point(18, 3);
+        this.panel1.Name = "panel1";
+        this.panel1.Size = new Size(174, 84);
+        this.panel1.TabIndex = 0;
+        // 
+        // userDeleteButton
+        // 
+        this.userDeleteButton.Enabled = false;
+        this.userDeleteButton.Location = new Point(3, 61);
+        this.userDeleteButton.Name = "userDeleteButton";
+        this.userDeleteButton.Size = new Size(168, 23);
+        this.userDeleteButton.TabIndex = 2;
+        this.userDeleteButton.Text = "Supprimer";
+        this.userDeleteButton.UseVisualStyleBackColor = true;
+        this.userDeleteButton.Click += this.UserDeleteButton_Click;
+        // 
+        // userModifyButton
+        // 
+        this.userModifyButton.Enabled = false;
+        this.userModifyButton.Location = new Point(3, 32);
+        this.userModifyButton.Name = "userModifyButton";
+        this.userModifyButton.Size = new Size(168, 23);
+        this.userModifyButton.TabIndex = 1;
+        this.userModifyButton.Text = "Modifier";
+        this.userModifyButton.UseVisualStyleBackColor = true;
+        this.userModifyButton.Click += this.UserModifyButton_Click;
+        // 
+        // userViewButton
+        // 
+        this.userViewButton.Enabled = false;
+        this.userViewButton.Location = new Point(3, 3);
+        this.userViewButton.Name = "userViewButton";
+        this.userViewButton.Size = new Size(168, 23);
+        this.userViewButton.TabIndex = 0;
+        this.userViewButton.Text = "Voir les détails";
+        this.userViewButton.UseVisualStyleBackColor = true;
+        this.userViewButton.Click += this.UserViewButton_Click;
         // 
         // userCreateButtonTLP
         // 
@@ -359,85 +447,129 @@ partial class AdminMainMenu {
         this.userCreateButton.UseVisualStyleBackColor = true;
         this.userCreateButton.Click += this.UserCreateButton_Click;
         // 
-        // tableLayoutPanel1
+        // userPanelHeader
         // 
-        this.tableLayoutPanel1.ColumnCount = 3;
-        this.tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-        this.tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 180F));
-        this.tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-        this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 0);
-        this.tableLayoutPanel1.Dock = DockStyle.Bottom;
-        this.tableLayoutPanel1.Location = new Point(3, 182);
-        this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-        this.tableLayoutPanel1.RowCount = 1;
-        this.tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-        this.tableLayoutPanel1.Size = new Size(210, 90);
-        this.tableLayoutPanel1.TabIndex = 2;
+        this.userPanelHeader.Dock = DockStyle.Top;
+        this.userPanelHeader.Location = new Point(3, 0);
+        this.userPanelHeader.Name = "userPanelHeader";
+        this.userPanelHeader.Size = new Size(210, 23);
+        this.userPanelHeader.TabIndex = 0;
+        this.userPanelHeader.Text = "Gestion des utilisateurs";
+        this.userPanelHeader.TextAlign = ContentAlignment.MiddleCenter;
         // 
-        // panel1
+        // roleSearchResults
         // 
-        this.panel1.Controls.Add(this.userDeleteButton);
-        this.panel1.Controls.Add(this.userModifyButton);
-        this.panel1.Controls.Add(this.userViewButton);
-        this.panel1.Dock = DockStyle.Fill;
-        this.panel1.Location = new Point(18, 3);
-        this.panel1.Name = "panel1";
-        this.panel1.Size = new Size(174, 84);
-        this.panel1.TabIndex = 0;
+        this.roleSearchResults.Dock = DockStyle.Fill;
+        this.roleSearchResults.FormattingEnabled = true;
+        this.roleSearchResults.ItemHeight = 15;
+        this.roleSearchResults.Location = new Point(0, 86);
+        this.roleSearchResults.Name = "roleSearchResults";
+        this.roleSearchResults.Size = new Size(216, 96);
+        this.roleSearchResults.TabIndex = 8;
+        this.roleSearchResults.SelectedIndexChanged += this.RoleSearchResults_SelectedIndexChanged;
         // 
-        // userViewButton
+        // roleSearchTextBox
         // 
-        this.userViewButton.Enabled = false;
-        this.userViewButton.Location = new Point(3, 3);
-        this.userViewButton.Name = "userViewButton";
-        this.userViewButton.Size = new Size(168, 23);
-        this.userViewButton.TabIndex = 0;
-        this.userViewButton.Text = "Voir les détails";
-        this.userViewButton.UseVisualStyleBackColor = true;
-        this.userViewButton.Click += this.UserViewButton_Click;
+        this.roleSearchTextBox.Dock = DockStyle.Top;
+        this.roleSearchTextBox.Location = new Point(0, 63);
+        this.roleSearchTextBox.Name = "roleSearchTextBox";
+        this.roleSearchTextBox.PlaceholderText = "Rechercher un rôle";
+        this.roleSearchTextBox.Size = new Size(216, 23);
+        this.roleSearchTextBox.TabIndex = 7;
+        this.roleSearchTextBox.TextChanged += this.RoleSearchTextBox_TextChanged;
         // 
-        // userModifyButton
+        // tableLayoutPanel2
         // 
-        this.userModifyButton.Enabled = false;
-        this.userModifyButton.Location = new Point(3, 32);
-        this.userModifyButton.Name = "userModifyButton";
-        this.userModifyButton.Size = new Size(168, 23);
-        this.userModifyButton.TabIndex = 1;
-        this.userModifyButton.Text = "Modifier";
-        this.userModifyButton.UseVisualStyleBackColor = true;
-        this.userModifyButton.Click += this.UserModifyButton_Click;
+        this.tableLayoutPanel2.ColumnCount = 3;
+        this.tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 180F));
+        this.tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.tableLayoutPanel2.Controls.Add(this.panel2, 1, 0);
+        this.tableLayoutPanel2.Dock = DockStyle.Bottom;
+        this.tableLayoutPanel2.Location = new Point(0, 182);
+        this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+        this.tableLayoutPanel2.RowCount = 1;
+        this.tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+        this.tableLayoutPanel2.Size = new Size(216, 90);
+        this.tableLayoutPanel2.TabIndex = 6;
         // 
-        // userDeleteButton
+        // panel2
         // 
-        this.userDeleteButton.Enabled = false;
-        this.userDeleteButton.Location = new Point(3, 61);
-        this.userDeleteButton.Name = "userDeleteButton";
-        this.userDeleteButton.Size = new Size(168, 23);
-        this.userDeleteButton.TabIndex = 2;
-        this.userDeleteButton.Text = "Supprimer";
-        this.userDeleteButton.UseVisualStyleBackColor = true;
-        this.userDeleteButton.Click += this.UserDeleteButton_Click;
+        this.panel2.Controls.Add(this.roleDeleteButton);
+        this.panel2.Controls.Add(this.roleModifyButton);
+        this.panel2.Controls.Add(this.roleViewButton);
+        this.panel2.Dock = DockStyle.Fill;
+        this.panel2.Location = new Point(21, 3);
+        this.panel2.Name = "panel2";
+        this.panel2.Size = new Size(174, 84);
+        this.panel2.TabIndex = 0;
         // 
-        // userSearchTextBox
+        // roleDeleteButton
         // 
-        this.userSearchTextBox.Dock = DockStyle.Top;
-        this.userSearchTextBox.Location = new Point(3, 63);
-        this.userSearchTextBox.Name = "userSearchTextBox";
-        this.userSearchTextBox.PlaceholderText = "Rechercher un utilisateur";
-        this.userSearchTextBox.Size = new Size(210, 23);
-        this.userSearchTextBox.TabIndex = 3;
-        this.userSearchTextBox.TextChanged += this.UserSearchTextBox_TextChanged;
+        this.roleDeleteButton.Enabled = false;
+        this.roleDeleteButton.Location = new Point(3, 61);
+        this.roleDeleteButton.Name = "roleDeleteButton";
+        this.roleDeleteButton.Size = new Size(168, 23);
+        this.roleDeleteButton.TabIndex = 2;
+        this.roleDeleteButton.Text = "Supprimer";
+        this.roleDeleteButton.UseVisualStyleBackColor = true;
+        this.roleDeleteButton.Click += this.RoleDeleteButton_Click;
         // 
-        // userSearchResults
+        // roleModifyButton
         // 
-        this.userSearchResults.Dock = DockStyle.Fill;
-        this.userSearchResults.FormattingEnabled = true;
-        this.userSearchResults.ItemHeight = 15;
-        this.userSearchResults.Location = new Point(3, 86);
-        this.userSearchResults.Name = "userSearchResults";
-        this.userSearchResults.Size = new Size(210, 96);
-        this.userSearchResults.TabIndex = 4;
-        this.userSearchResults.SelectedIndexChanged += this.UserSearchResults_SelectedIndexChanged;
+        this.roleModifyButton.Enabled = false;
+        this.roleModifyButton.Location = new Point(3, 32);
+        this.roleModifyButton.Name = "roleModifyButton";
+        this.roleModifyButton.Size = new Size(168, 23);
+        this.roleModifyButton.TabIndex = 1;
+        this.roleModifyButton.Text = "Modifier";
+        this.roleModifyButton.UseVisualStyleBackColor = true;
+        this.roleModifyButton.Click += this.RoleModifyButton_Click;
+        // 
+        // roleViewButton
+        // 
+        this.roleViewButton.Enabled = false;
+        this.roleViewButton.Location = new Point(3, 3);
+        this.roleViewButton.Name = "roleViewButton";
+        this.roleViewButton.Size = new Size(168, 23);
+        this.roleViewButton.TabIndex = 0;
+        this.roleViewButton.Text = "Voir les détails";
+        this.roleViewButton.UseVisualStyleBackColor = true;
+        this.roleViewButton.Click += this.RoleViewButton_Click;
+        // 
+        // tableLayoutPanel3
+        // 
+        this.tableLayoutPanel3.ColumnCount = 3;
+        this.tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 180F));
+        this.tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.tableLayoutPanel3.Controls.Add(this.panel3, 1, 0);
+        this.tableLayoutPanel3.Dock = DockStyle.Top;
+        this.tableLayoutPanel3.Location = new Point(0, 23);
+        this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+        this.tableLayoutPanel3.RowCount = 1;
+        this.tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+        this.tableLayoutPanel3.Size = new Size(216, 40);
+        this.tableLayoutPanel3.TabIndex = 5;
+        // 
+        // panel3
+        // 
+        this.panel3.Controls.Add(this.roleCreationButton);
+        this.panel3.Dock = DockStyle.Fill;
+        this.panel3.Location = new Point(21, 3);
+        this.panel3.Name = "panel3";
+        this.panel3.Size = new Size(174, 34);
+        this.panel3.TabIndex = 0;
+        // 
+        // roleCreationButton
+        // 
+        this.roleCreationButton.Location = new Point(3, 3);
+        this.roleCreationButton.Name = "roleCreationButton";
+        this.roleCreationButton.Size = new Size(168, 23);
+        this.roleCreationButton.TabIndex = 0;
+        this.roleCreationButton.Text = "Créer un rôle";
+        this.roleCreationButton.UseVisualStyleBackColor = true;
+        this.roleCreationButton.Click += this.RoleCreationButton_Click;
         // 
         // AdminMainMenu
         // 
@@ -462,12 +594,17 @@ partial class AdminMainMenu {
         this.supplierManagementPanel.ResumeLayout(false);
         this.productManagementPanel.ResumeLayout(false);
         this.roleManagementPanel.ResumeLayout(false);
+        this.roleManagementPanel.PerformLayout();
         this.userManagementPanel.ResumeLayout(false);
         this.userManagementPanel.PerformLayout();
-        this.userCreateButtonTLP.ResumeLayout(false);
-        this.userCreateButtonPanel.ResumeLayout(false);
         this.tableLayoutPanel1.ResumeLayout(false);
         this.panel1.ResumeLayout(false);
+        this.userCreateButtonTLP.ResumeLayout(false);
+        this.userCreateButtonPanel.ResumeLayout(false);
+        this.tableLayoutPanel2.ResumeLayout(false);
+        this.panel2.ResumeLayout(false);
+        this.tableLayoutPanel3.ResumeLayout(false);
+        this.panel3.ResumeLayout(false);
         this.ResumeLayout(false);
     }
 
@@ -507,4 +644,14 @@ partial class AdminMainMenu {
     private Button userCreateButton;
     private TextBox userSearchTextBox;
     private ListBox userSearchResults;
+    private ListBox roleSearchResults;
+    private TextBox roleSearchTextBox;
+    private TableLayoutPanel tableLayoutPanel2;
+    private Panel panel2;
+    private Button roleDeleteButton;
+    private Button roleModifyButton;
+    private Button roleViewButton;
+    private TableLayoutPanel tableLayoutPanel3;
+    private Panel panel3;
+    private Button roleCreationButton;
 }
