@@ -1,5 +1,7 @@
-﻿using _420DA3_A24_Projet.Business.Services;
+﻿using _420DA3_A24_Projet.Business.Domain;
+using _420DA3_A24_Projet.Business.Services;
 using _420DA3_A24_Projet.DataAccess.Contexts;
+using _420DA3_A24_Projet.Presentation;
 using System.Diagnostics;
 using System.Text;
 
@@ -7,6 +9,10 @@ namespace _420DA3_A24_Projet.Business;
 internal class WsysApplication {
 
     private WsysDbContext context;
+    private AdminMainMenu adminMainMenu;
+    private OfficeEmpMainMenu officeEmployeeMainMenu;
+    private WhEmpMainMenu warehouseEmployeeMainMenu;
+
     public PasswordService PasswordService { get; private set; }
     public TrackingNumberFactory TrackingNumberFactory { get; private set; }
     public UserService UserService { get; private set; }
@@ -15,11 +21,34 @@ internal class WsysApplication {
 
     public WsysApplication() {
         this.context = new WsysDbContext();
+        this.adminMainMenu = new AdminMainMenu(this);
+        this.officeEmployeeMainMenu = new OfficeEmpMainMenu(this);
+        this.warehouseEmployeeMainMenu = new WhEmpMainMenu(this);
+
         this.PasswordService = PasswordService.GetInstance();
         this.TrackingNumberFactory = TrackingNumberFactory.GetInstance();
         this.UserService = new UserService(this, this.context);
         this.RoleService = new RoleService(this, this.context);
         this.LoginService = new LoginService(this);
+    }
+
+
+    public void Start() {
+        Application.Run();
+        while (this.LoginService.RequireLoggedInUser()) {
+            if (this.LoginService.LoggedInUserRole?.Id == Role.ADMIN_ROLE_ID) {
+                _ = this.adminMainMenu.ShowDialog();
+
+            } else if (this.LoginService.LoggedInUserRole?.Id == Role.OFFICE_EMPLOYEE_ROLE_ID) {
+                _ = this.officeEmployeeMainMenu.ShowDialog();
+
+            } else if (this.LoginService.LoggedInUserRole?.Id == Role.WAREHOUSE_EMPLOYEE_ROLE_ID) {
+                _ = this.warehouseEmployeeMainMenu.ShowDialog();
+
+            } else {
+                throw new Exception("Impossible de démarrer l'application: rôle non implémenté.");
+            }
+        }
     }
 
 

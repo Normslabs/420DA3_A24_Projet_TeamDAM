@@ -22,6 +22,14 @@ internal partial class LoginWindow : Form {
     }
 
     private void ButtonConnection_Click(object sender, EventArgs e) {
+        try {
+            string username = this.usernameTextBox.Text.Trim();
+            string password = this.passwordTextBox.Text.Trim();
+            this.parentApp.LoginService.TryLogin(username, password);
+            this.DialogResult = DialogResult.OK;
 
+        } catch (Exception ex) {
+            this.parentApp.HandleException(ex);
+        }
     }
 }
