@@ -45,6 +45,16 @@ partial class AdminMainMenu {
         this.productManagementPanel = new Panel();
         this.productPanelHeader = new Label();
         this.roleManagementPanel = new Panel();
+        this.roleSearchResults = new ListBox();
+        this.roleSearchTextBox = new TextBox();
+        this.tableLayoutPanel2 = new TableLayoutPanel();
+        this.panel2 = new Panel();
+        this.roleDeleteButton = new Button();
+        this.roleModifyButton = new Button();
+        this.roleViewButton = new Button();
+        this.tableLayoutPanel3 = new TableLayoutPanel();
+        this.panel3 = new Panel();
+        this.roleCreationButton = new Button();
         this.rolePanelHeader = new Label();
         this.userManagementPanel = new Panel();
         this.userSearchResults = new ListBox();
@@ -58,16 +68,26 @@ partial class AdminMainMenu {
         this.userCreateButtonPanel = new Panel();
         this.userCreateButton = new Button();
         this.userPanelHeader = new Label();
-        this.roleSearchResults = new ListBox();
-        this.roleSearchTextBox = new TextBox();
-        this.tableLayoutPanel2 = new TableLayoutPanel();
-        this.panel2 = new Panel();
-        this.roleDeleteButton = new Button();
-        this.roleModifyButton = new Button();
-        this.roleViewButton = new Button();
-        this.tableLayoutPanel3 = new TableLayoutPanel();
-        this.panel3 = new Panel();
-        this.roleCreationButton = new Button();
+        this.tableLayoutPanel4 = new TableLayoutPanel();
+        this.panel4 = new Panel();
+        this.button1 = new Button();
+        this.textBox1 = new TextBox();
+        this.listBox1 = new ListBox();
+        this.tableLayoutPanel5 = new TableLayoutPanel();
+        this.panel5 = new Panel();
+        this.button2 = new Button();
+        this.button3 = new Button();
+        this.button4 = new Button();
+        this.tableLayoutPanel6 = new TableLayoutPanel();
+        this.panel6 = new Panel();
+        this.button5 = new Button();
+        this.textBox2 = new TextBox();
+        this.listBox2 = new ListBox();
+        this.tableLayoutPanel7 = new TableLayoutPanel();
+        this.panel7 = new Panel();
+        this.button6 = new Button();
+        this.button7 = new Button();
+        this.button8 = new Button();
         this.bottomBar.SuspendLayout();
         this.venterTLP.SuspendLayout();
         this.poManagementPanel.SuspendLayout();
@@ -79,15 +99,23 @@ partial class AdminMainMenu {
         this.supplierManagementPanel.SuspendLayout();
         this.productManagementPanel.SuspendLayout();
         this.roleManagementPanel.SuspendLayout();
+        this.tableLayoutPanel2.SuspendLayout();
+        this.panel2.SuspendLayout();
+        this.tableLayoutPanel3.SuspendLayout();
+        this.panel3.SuspendLayout();
         this.userManagementPanel.SuspendLayout();
         this.tableLayoutPanel1.SuspendLayout();
         this.panel1.SuspendLayout();
         this.userCreateButtonTLP.SuspendLayout();
         this.userCreateButtonPanel.SuspendLayout();
-        this.tableLayoutPanel2.SuspendLayout();
-        this.panel2.SuspendLayout();
-        this.tableLayoutPanel3.SuspendLayout();
-        this.panel3.SuspendLayout();
+        this.tableLayoutPanel4.SuspendLayout();
+        this.panel4.SuspendLayout();
+        this.tableLayoutPanel5.SuspendLayout();
+        this.panel5.SuspendLayout();
+        this.tableLayoutPanel6.SuspendLayout();
+        this.panel6.SuspendLayout();
+        this.tableLayoutPanel7.SuspendLayout();
+        this.panel7.SuspendLayout();
         this.SuspendLayout();
         // 
         // topBar
@@ -241,6 +269,10 @@ partial class AdminMainMenu {
         // 
         // warehouseManagementPanel
         // 
+        this.warehouseManagementPanel.Controls.Add(this.tableLayoutPanel7);
+        this.warehouseManagementPanel.Controls.Add(this.listBox2);
+        this.warehouseManagementPanel.Controls.Add(this.textBox2);
+        this.warehouseManagementPanel.Controls.Add(this.tableLayoutPanel6);
         this.warehouseManagementPanel.Controls.Add(this.warehousePanelHeader);
         this.warehouseManagementPanel.Dock = DockStyle.Fill;
         this.warehouseManagementPanel.Location = new Point(891, 3);
@@ -279,6 +311,10 @@ partial class AdminMainMenu {
         // 
         // productManagementPanel
         // 
+        this.productManagementPanel.Controls.Add(this.tableLayoutPanel5);
+        this.productManagementPanel.Controls.Add(this.listBox1);
+        this.productManagementPanel.Controls.Add(this.textBox1);
+        this.productManagementPanel.Controls.Add(this.tableLayoutPanel4);
         this.productManagementPanel.Controls.Add(this.productPanelHeader);
         this.productManagementPanel.Dock = DockStyle.Fill;
         this.productManagementPanel.Location = new Point(447, 3);
@@ -308,6 +344,120 @@ partial class AdminMainMenu {
         this.roleManagementPanel.Name = "roleManagementPanel";
         this.roleManagementPanel.Size = new Size(216, 272);
         this.roleManagementPanel.TabIndex = 1;
+        // 
+        // roleSearchResults
+        // 
+        this.roleSearchResults.Dock = DockStyle.Fill;
+        this.roleSearchResults.FormattingEnabled = true;
+        this.roleSearchResults.ItemHeight = 15;
+        this.roleSearchResults.Location = new Point(0, 86);
+        this.roleSearchResults.Name = "roleSearchResults";
+        this.roleSearchResults.Size = new Size(216, 96);
+        this.roleSearchResults.TabIndex = 8;
+        this.roleSearchResults.SelectedIndexChanged += this.RoleSearchResults_SelectedIndexChanged;
+        // 
+        // roleSearchTextBox
+        // 
+        this.roleSearchTextBox.Dock = DockStyle.Top;
+        this.roleSearchTextBox.Location = new Point(0, 63);
+        this.roleSearchTextBox.Name = "roleSearchTextBox";
+        this.roleSearchTextBox.PlaceholderText = "Rechercher un rôle";
+        this.roleSearchTextBox.Size = new Size(216, 23);
+        this.roleSearchTextBox.TabIndex = 7;
+        this.roleSearchTextBox.TextChanged += this.RoleSearchTextBox_TextChanged;
+        // 
+        // tableLayoutPanel2
+        // 
+        this.tableLayoutPanel2.ColumnCount = 3;
+        this.tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 180F));
+        this.tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.tableLayoutPanel2.Controls.Add(this.panel2, 1, 0);
+        this.tableLayoutPanel2.Dock = DockStyle.Bottom;
+        this.tableLayoutPanel2.Location = new Point(0, 182);
+        this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+        this.tableLayoutPanel2.RowCount = 1;
+        this.tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+        this.tableLayoutPanel2.Size = new Size(216, 90);
+        this.tableLayoutPanel2.TabIndex = 6;
+        // 
+        // panel2
+        // 
+        this.panel2.Controls.Add(this.roleDeleteButton);
+        this.panel2.Controls.Add(this.roleModifyButton);
+        this.panel2.Controls.Add(this.roleViewButton);
+        this.panel2.Dock = DockStyle.Fill;
+        this.panel2.Location = new Point(21, 3);
+        this.panel2.Name = "panel2";
+        this.panel2.Size = new Size(174, 84);
+        this.panel2.TabIndex = 0;
+        // 
+        // roleDeleteButton
+        // 
+        this.roleDeleteButton.Enabled = false;
+        this.roleDeleteButton.Location = new Point(3, 61);
+        this.roleDeleteButton.Name = "roleDeleteButton";
+        this.roleDeleteButton.Size = new Size(168, 23);
+        this.roleDeleteButton.TabIndex = 2;
+        this.roleDeleteButton.Text = "Supprimer";
+        this.roleDeleteButton.UseVisualStyleBackColor = true;
+        this.roleDeleteButton.Click += this.RoleDeleteButton_Click;
+        // 
+        // roleModifyButton
+        // 
+        this.roleModifyButton.Enabled = false;
+        this.roleModifyButton.Location = new Point(3, 32);
+        this.roleModifyButton.Name = "roleModifyButton";
+        this.roleModifyButton.Size = new Size(168, 23);
+        this.roleModifyButton.TabIndex = 1;
+        this.roleModifyButton.Text = "Modifier";
+        this.roleModifyButton.UseVisualStyleBackColor = true;
+        this.roleModifyButton.Click += this.RoleModifyButton_Click;
+        // 
+        // roleViewButton
+        // 
+        this.roleViewButton.Enabled = false;
+        this.roleViewButton.Location = new Point(3, 3);
+        this.roleViewButton.Name = "roleViewButton";
+        this.roleViewButton.Size = new Size(168, 23);
+        this.roleViewButton.TabIndex = 0;
+        this.roleViewButton.Text = "Voir les détails";
+        this.roleViewButton.UseVisualStyleBackColor = true;
+        this.roleViewButton.Click += this.RoleViewButton_Click;
+        // 
+        // tableLayoutPanel3
+        // 
+        this.tableLayoutPanel3.ColumnCount = 3;
+        this.tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 180F));
+        this.tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.tableLayoutPanel3.Controls.Add(this.panel3, 1, 0);
+        this.tableLayoutPanel3.Dock = DockStyle.Top;
+        this.tableLayoutPanel3.Location = new Point(0, 23);
+        this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+        this.tableLayoutPanel3.RowCount = 1;
+        this.tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+        this.tableLayoutPanel3.Size = new Size(216, 40);
+        this.tableLayoutPanel3.TabIndex = 5;
+        // 
+        // panel3
+        // 
+        this.panel3.Controls.Add(this.roleCreationButton);
+        this.panel3.Dock = DockStyle.Fill;
+        this.panel3.Location = new Point(21, 3);
+        this.panel3.Name = "panel3";
+        this.panel3.Size = new Size(174, 34);
+        this.panel3.TabIndex = 0;
+        // 
+        // roleCreationButton
+        // 
+        this.roleCreationButton.Location = new Point(3, 3);
+        this.roleCreationButton.Name = "roleCreationButton";
+        this.roleCreationButton.Size = new Size(168, 23);
+        this.roleCreationButton.TabIndex = 0;
+        this.roleCreationButton.Text = "Créer un rôle";
+        this.roleCreationButton.UseVisualStyleBackColor = true;
+        this.roleCreationButton.Click += this.RoleCreationButton_Click;
         // 
         // rolePanelHeader
         // 
@@ -457,119 +607,221 @@ partial class AdminMainMenu {
         this.userPanelHeader.Text = "Gestion des utilisateurs";
         this.userPanelHeader.TextAlign = ContentAlignment.MiddleCenter;
         // 
-        // roleSearchResults
+        // tableLayoutPanel4
         // 
-        this.roleSearchResults.Dock = DockStyle.Fill;
-        this.roleSearchResults.FormattingEnabled = true;
-        this.roleSearchResults.ItemHeight = 15;
-        this.roleSearchResults.Location = new Point(0, 86);
-        this.roleSearchResults.Name = "roleSearchResults";
-        this.roleSearchResults.Size = new Size(216, 96);
-        this.roleSearchResults.TabIndex = 8;
-        this.roleSearchResults.SelectedIndexChanged += this.RoleSearchResults_SelectedIndexChanged;
+        this.tableLayoutPanel4.ColumnCount = 3;
+        this.tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 180F));
+        this.tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.tableLayoutPanel4.Controls.Add(this.panel4, 1, 0);
+        this.tableLayoutPanel4.Dock = DockStyle.Top;
+        this.tableLayoutPanel4.Location = new Point(0, 23);
+        this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+        this.tableLayoutPanel4.RowCount = 1;
+        this.tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+        this.tableLayoutPanel4.Size = new Size(216, 40);
+        this.tableLayoutPanel4.TabIndex = 6;
         // 
-        // roleSearchTextBox
+        // panel4
         // 
-        this.roleSearchTextBox.Dock = DockStyle.Top;
-        this.roleSearchTextBox.Location = new Point(0, 63);
-        this.roleSearchTextBox.Name = "roleSearchTextBox";
-        this.roleSearchTextBox.PlaceholderText = "Rechercher un rôle";
-        this.roleSearchTextBox.Size = new Size(216, 23);
-        this.roleSearchTextBox.TabIndex = 7;
-        this.roleSearchTextBox.TextChanged += this.RoleSearchTextBox_TextChanged;
+        this.panel4.Controls.Add(this.button1);
+        this.panel4.Dock = DockStyle.Fill;
+        this.panel4.Location = new Point(21, 3);
+        this.panel4.Name = "panel4";
+        this.panel4.Size = new Size(174, 34);
+        this.panel4.TabIndex = 0;
         // 
-        // tableLayoutPanel2
+        // button1
         // 
-        this.tableLayoutPanel2.ColumnCount = 3;
-        this.tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-        this.tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 180F));
-        this.tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-        this.tableLayoutPanel2.Controls.Add(this.panel2, 1, 0);
-        this.tableLayoutPanel2.Dock = DockStyle.Bottom;
-        this.tableLayoutPanel2.Location = new Point(0, 182);
-        this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-        this.tableLayoutPanel2.RowCount = 1;
-        this.tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-        this.tableLayoutPanel2.Size = new Size(216, 90);
-        this.tableLayoutPanel2.TabIndex = 6;
+        this.button1.Location = new Point(3, 3);
+        this.button1.Name = "button1";
+        this.button1.Size = new Size(168, 23);
+        this.button1.TabIndex = 0;
+        this.button1.Text = "Créer un rôle";
+        this.button1.UseVisualStyleBackColor = true;
         // 
-        // panel2
+        // textBox1
         // 
-        this.panel2.Controls.Add(this.roleDeleteButton);
-        this.panel2.Controls.Add(this.roleModifyButton);
-        this.panel2.Controls.Add(this.roleViewButton);
-        this.panel2.Dock = DockStyle.Fill;
-        this.panel2.Location = new Point(21, 3);
-        this.panel2.Name = "panel2";
-        this.panel2.Size = new Size(174, 84);
-        this.panel2.TabIndex = 0;
+        this.textBox1.Dock = DockStyle.Top;
+        this.textBox1.Location = new Point(0, 63);
+        this.textBox1.Name = "textBox1";
+        this.textBox1.PlaceholderText = "Rechercher un rôle";
+        this.textBox1.Size = new Size(216, 23);
+        this.textBox1.TabIndex = 8;
         // 
-        // roleDeleteButton
+        // listBox1
         // 
-        this.roleDeleteButton.Enabled = false;
-        this.roleDeleteButton.Location = new Point(3, 61);
-        this.roleDeleteButton.Name = "roleDeleteButton";
-        this.roleDeleteButton.Size = new Size(168, 23);
-        this.roleDeleteButton.TabIndex = 2;
-        this.roleDeleteButton.Text = "Supprimer";
-        this.roleDeleteButton.UseVisualStyleBackColor = true;
-        this.roleDeleteButton.Click += this.RoleDeleteButton_Click;
+        this.listBox1.Dock = DockStyle.Fill;
+        this.listBox1.FormattingEnabled = true;
+        this.listBox1.ItemHeight = 15;
+        this.listBox1.Location = new Point(0, 86);
+        this.listBox1.Name = "listBox1";
+        this.listBox1.Size = new Size(216, 186);
+        this.listBox1.TabIndex = 9;
         // 
-        // roleModifyButton
+        // tableLayoutPanel5
         // 
-        this.roleModifyButton.Enabled = false;
-        this.roleModifyButton.Location = new Point(3, 32);
-        this.roleModifyButton.Name = "roleModifyButton";
-        this.roleModifyButton.Size = new Size(168, 23);
-        this.roleModifyButton.TabIndex = 1;
-        this.roleModifyButton.Text = "Modifier";
-        this.roleModifyButton.UseVisualStyleBackColor = true;
-        this.roleModifyButton.Click += this.RoleModifyButton_Click;
+        this.tableLayoutPanel5.ColumnCount = 3;
+        this.tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 180F));
+        this.tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.tableLayoutPanel5.Controls.Add(this.panel5, 1, 0);
+        this.tableLayoutPanel5.Dock = DockStyle.Bottom;
+        this.tableLayoutPanel5.Location = new Point(0, 182);
+        this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+        this.tableLayoutPanel5.RowCount = 1;
+        this.tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+        this.tableLayoutPanel5.Size = new Size(216, 90);
+        this.tableLayoutPanel5.TabIndex = 10;
         // 
-        // roleViewButton
+        // panel5
         // 
-        this.roleViewButton.Enabled = false;
-        this.roleViewButton.Location = new Point(3, 3);
-        this.roleViewButton.Name = "roleViewButton";
-        this.roleViewButton.Size = new Size(168, 23);
-        this.roleViewButton.TabIndex = 0;
-        this.roleViewButton.Text = "Voir les détails";
-        this.roleViewButton.UseVisualStyleBackColor = true;
-        this.roleViewButton.Click += this.RoleViewButton_Click;
+        this.panel5.Controls.Add(this.button2);
+        this.panel5.Controls.Add(this.button3);
+        this.panel5.Controls.Add(this.button4);
+        this.panel5.Dock = DockStyle.Fill;
+        this.panel5.Location = new Point(21, 3);
+        this.panel5.Name = "panel5";
+        this.panel5.Size = new Size(174, 84);
+        this.panel5.TabIndex = 0;
         // 
-        // tableLayoutPanel3
+        // button2
         // 
-        this.tableLayoutPanel3.ColumnCount = 3;
-        this.tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-        this.tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 180F));
-        this.tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-        this.tableLayoutPanel3.Controls.Add(this.panel3, 1, 0);
-        this.tableLayoutPanel3.Dock = DockStyle.Top;
-        this.tableLayoutPanel3.Location = new Point(0, 23);
-        this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-        this.tableLayoutPanel3.RowCount = 1;
-        this.tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-        this.tableLayoutPanel3.Size = new Size(216, 40);
-        this.tableLayoutPanel3.TabIndex = 5;
+        this.button2.Enabled = false;
+        this.button2.Location = new Point(3, 61);
+        this.button2.Name = "button2";
+        this.button2.Size = new Size(168, 23);
+        this.button2.TabIndex = 2;
+        this.button2.Text = "Supprimer";
+        this.button2.UseVisualStyleBackColor = true;
         // 
-        // panel3
+        // button3
         // 
-        this.panel3.Controls.Add(this.roleCreationButton);
-        this.panel3.Dock = DockStyle.Fill;
-        this.panel3.Location = new Point(21, 3);
-        this.panel3.Name = "panel3";
-        this.panel3.Size = new Size(174, 34);
-        this.panel3.TabIndex = 0;
+        this.button3.Enabled = false;
+        this.button3.Location = new Point(3, 32);
+        this.button3.Name = "button3";
+        this.button3.Size = new Size(168, 23);
+        this.button3.TabIndex = 1;
+        this.button3.Text = "Modifier";
+        this.button3.UseVisualStyleBackColor = true;
         // 
-        // roleCreationButton
+        // button4
         // 
-        this.roleCreationButton.Location = new Point(3, 3);
-        this.roleCreationButton.Name = "roleCreationButton";
-        this.roleCreationButton.Size = new Size(168, 23);
-        this.roleCreationButton.TabIndex = 0;
-        this.roleCreationButton.Text = "Créer un rôle";
-        this.roleCreationButton.UseVisualStyleBackColor = true;
-        this.roleCreationButton.Click += this.RoleCreationButton_Click;
+        this.button4.Enabled = false;
+        this.button4.Location = new Point(3, 3);
+        this.button4.Name = "button4";
+        this.button4.Size = new Size(168, 23);
+        this.button4.TabIndex = 0;
+        this.button4.Text = "Voir les détails";
+        this.button4.UseVisualStyleBackColor = true;
+        // 
+        // tableLayoutPanel6
+        // 
+        this.tableLayoutPanel6.ColumnCount = 3;
+        this.tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 180F));
+        this.tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.tableLayoutPanel6.Controls.Add(this.panel6, 1, 0);
+        this.tableLayoutPanel6.Dock = DockStyle.Top;
+        this.tableLayoutPanel6.Location = new Point(0, 23);
+        this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+        this.tableLayoutPanel6.RowCount = 1;
+        this.tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+        this.tableLayoutPanel6.Size = new Size(219, 40);
+        this.tableLayoutPanel6.TabIndex = 7;
+        // 
+        // panel6
+        // 
+        this.panel6.Controls.Add(this.button5);
+        this.panel6.Dock = DockStyle.Fill;
+        this.panel6.Location = new Point(22, 3);
+        this.panel6.Name = "panel6";
+        this.panel6.Size = new Size(174, 34);
+        this.panel6.TabIndex = 0;
+        // 
+        // button5
+        // 
+        this.button5.Location = new Point(3, 3);
+        this.button5.Name = "button5";
+        this.button5.Size = new Size(168, 23);
+        this.button5.TabIndex = 0;
+        this.button5.Text = "Créer un rôle";
+        this.button5.UseVisualStyleBackColor = true;
+        // 
+        // textBox2
+        // 
+        this.textBox2.Dock = DockStyle.Top;
+        this.textBox2.Location = new Point(0, 63);
+        this.textBox2.Name = "textBox2";
+        this.textBox2.PlaceholderText = "Rechercher un rôle";
+        this.textBox2.Size = new Size(219, 23);
+        this.textBox2.TabIndex = 9;
+        // 
+        // listBox2
+        // 
+        this.listBox2.Dock = DockStyle.Fill;
+        this.listBox2.FormattingEnabled = true;
+        this.listBox2.ItemHeight = 15;
+        this.listBox2.Location = new Point(0, 86);
+        this.listBox2.Name = "listBox2";
+        this.listBox2.Size = new Size(219, 186);
+        this.listBox2.TabIndex = 10;
+        // 
+        // tableLayoutPanel7
+        // 
+        this.tableLayoutPanel7.ColumnCount = 3;
+        this.tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 180F));
+        this.tableLayoutPanel7.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+        this.tableLayoutPanel7.Controls.Add(this.panel7, 1, 0);
+        this.tableLayoutPanel7.Dock = DockStyle.Bottom;
+        this.tableLayoutPanel7.Location = new Point(0, 182);
+        this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+        this.tableLayoutPanel7.RowCount = 1;
+        this.tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+        this.tableLayoutPanel7.Size = new Size(219, 90);
+        this.tableLayoutPanel7.TabIndex = 11;
+        // 
+        // panel7
+        // 
+        this.panel7.Controls.Add(this.button6);
+        this.panel7.Controls.Add(this.button7);
+        this.panel7.Controls.Add(this.button8);
+        this.panel7.Dock = DockStyle.Fill;
+        this.panel7.Location = new Point(22, 3);
+        this.panel7.Name = "panel7";
+        this.panel7.Size = new Size(174, 84);
+        this.panel7.TabIndex = 0;
+        // 
+        // button6
+        // 
+        this.button6.Enabled = false;
+        this.button6.Location = new Point(3, 61);
+        this.button6.Name = "button6";
+        this.button6.Size = new Size(168, 23);
+        this.button6.TabIndex = 2;
+        this.button6.Text = "Supprimer";
+        this.button6.UseVisualStyleBackColor = true;
+        // 
+        // button7
+        // 
+        this.button7.Enabled = false;
+        this.button7.Location = new Point(3, 32);
+        this.button7.Name = "button7";
+        this.button7.Size = new Size(168, 23);
+        this.button7.TabIndex = 1;
+        this.button7.Text = "Modifier";
+        this.button7.UseVisualStyleBackColor = true;
+        // 
+        // button8
+        // 
+        this.button8.Enabled = false;
+        this.button8.Location = new Point(3, 3);
+        this.button8.Name = "button8";
+        this.button8.Size = new Size(168, 23);
+        this.button8.TabIndex = 0;
+        this.button8.Text = "Voir les détails";
+        this.button8.UseVisualStyleBackColor = true;
         // 
         // AdminMainMenu
         // 
@@ -591,20 +843,30 @@ partial class AdminMainMenu {
         this.clientManagementPanel.ResumeLayout(false);
         this.addressManagementPanel.ResumeLayout(false);
         this.warehouseManagementPanel.ResumeLayout(false);
+        this.warehouseManagementPanel.PerformLayout();
         this.supplierManagementPanel.ResumeLayout(false);
         this.productManagementPanel.ResumeLayout(false);
+        this.productManagementPanel.PerformLayout();
         this.roleManagementPanel.ResumeLayout(false);
         this.roleManagementPanel.PerformLayout();
+        this.tableLayoutPanel2.ResumeLayout(false);
+        this.panel2.ResumeLayout(false);
+        this.tableLayoutPanel3.ResumeLayout(false);
+        this.panel3.ResumeLayout(false);
         this.userManagementPanel.ResumeLayout(false);
         this.userManagementPanel.PerformLayout();
         this.tableLayoutPanel1.ResumeLayout(false);
         this.panel1.ResumeLayout(false);
         this.userCreateButtonTLP.ResumeLayout(false);
         this.userCreateButtonPanel.ResumeLayout(false);
-        this.tableLayoutPanel2.ResumeLayout(false);
-        this.panel2.ResumeLayout(false);
-        this.tableLayoutPanel3.ResumeLayout(false);
-        this.panel3.ResumeLayout(false);
+        this.tableLayoutPanel4.ResumeLayout(false);
+        this.panel4.ResumeLayout(false);
+        this.tableLayoutPanel5.ResumeLayout(false);
+        this.panel5.ResumeLayout(false);
+        this.tableLayoutPanel6.ResumeLayout(false);
+        this.panel6.ResumeLayout(false);
+        this.tableLayoutPanel7.ResumeLayout(false);
+        this.panel7.ResumeLayout(false);
         this.ResumeLayout(false);
     }
 
@@ -654,4 +916,24 @@ partial class AdminMainMenu {
     private TableLayoutPanel tableLayoutPanel3;
     private Panel panel3;
     private Button roleCreationButton;
+    private TableLayoutPanel tableLayoutPanel4;
+    private Panel panel4;
+    private Button button1;
+    private TableLayoutPanel tableLayoutPanel7;
+    private Panel panel7;
+    private Button button6;
+    private Button button7;
+    private Button button8;
+    private ListBox listBox2;
+    private TextBox textBox2;
+    private TableLayoutPanel tableLayoutPanel6;
+    private Panel panel6;
+    private Button button5;
+    private TableLayoutPanel tableLayoutPanel5;
+    private Panel panel5;
+    private Button button2;
+    private Button button3;
+    private Button button4;
+    private ListBox listBox1;
+    private TextBox textBox1;
 }
