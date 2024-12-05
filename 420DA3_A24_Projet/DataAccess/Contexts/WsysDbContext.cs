@@ -7,6 +7,8 @@ internal class WsysDbContext : DbContext {
 
     public DbSet<User> Users { get; set; }
     public DbSet<Role> Roles { get; set; }
+    public DbSet<Client> Clients { get; set; }
+    public DbSet<Adresse> Adresses { get; set; }
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
@@ -167,6 +169,193 @@ internal class WsysDbContext : DbContext {
 
         #endregion
 
+        #region CLIENT
+
+        _ = modelBuilder.Entity<Client>()
+            .ToTable(nameof(this.Clients))
+            .HasKey(client => client.Id);
+
+        _ = modelBuilder.Entity<Client>()
+            .Property(client => client.Id)
+            .HasColumnName("Id")
+            .HasColumnOrder(0)
+            .HasColumnType("int")
+            .UseIdentityColumn(1, 1);
+
+        _ = modelBuilder.Entity<Client>()
+            .Property(client => client.NomCompagnie)
+            .HasColumnName("NomCompagnie")
+            .HasColumnOrder(1)
+            .HasColumnType($"nvarchar({Client.NOM_COMPAGNIE_MAX_LENGTH})")
+            .HasMaxLength(Client.NOM_COMPAGNIE_MAX_LENGTH)
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Client>()
+            .Property(client => client.NomContact)
+            .HasColumnName("NomContact")
+            .HasColumnOrder(2)
+            .HasColumnType($"nvarchar({Client.NOM_PERSONNE_MAX_LENGTH})")
+            .HasMaxLength(Client.NOM_PERSONNE_MAX_LENGTH)
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Client>()
+            .Property(client => client.PrenomContact)
+            .HasColumnName("PrenomContact")
+            .HasColumnOrder(3)
+            .HasColumnType($"nvarchar({Client.PRENOM_PERSONNE_MAX_LENGTH})")
+            .HasMaxLength(Client.PRENOM_PERSONNE_MAX_LENGTH)
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Client>()
+            .Property(client => client.CourrielContact)
+            .HasColumnName("CourrielContact")
+            .HasColumnOrder(4)
+            .HasColumnType($"nvarchar({Client.COURRIEL_MAX_LENGTH})")
+            .HasMaxLength(Client.COURRIEL_MAX_LENGTH)
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Client>()
+            .Property(client => client.TelephoneContact)
+            .HasColumnName("TelephoneContact")
+            .HasColumnOrder(5)
+            .HasColumnType($"nvarchar({Client.TELEPHONE_MAX_LENGTH})")
+            .HasMaxLength(Client.TELEPHONE_MAX_LENGTH)
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Client>()
+            .Property(client => client.DateCreation)
+            .HasColumnName("DateCreation")
+            .HasColumnOrder(6)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .HasDefaultValueSql("GETDATE()")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Client>()
+            .Property(client => client.DateModification)
+            .HasColumnName("DateModification")
+            .HasColumnOrder(7)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<Client>()
+            .Property(client => client.DateSuppression)
+            .HasColumnName("DateSuppression")
+            .HasColumnOrder(8)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .IsRequired(false);
+
+        #endregion
+
+        #region ADRESSE
+
+        _ = modelBuilder.Entity<Adresse>()
+            .ToTable(nameof(this.Adresses))
+            .HasKey(adresse => adresse.Id);
+
+        _ = modelBuilder.Entity<Adresse>()
+            .Property(adresse => adresse.Id)
+            .HasColumnName("Id")
+            .HasColumnOrder(0)
+            .HasColumnType("int")
+            .UseIdentityColumn(1, 1);
+
+        _ = modelBuilder.Entity<Adresse>()
+            .Property(adresse => adresse.TypeAdresse)
+            .HasColumnName("TypeAdresse")
+            .HasColumnOrder(1)
+            .HasColumnType("nvarchar(20)")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Adresse>()
+            .Property(adresse => adresse.Destinataire)
+            .HasColumnName("Destinataire")
+            .HasColumnOrder(2)
+            .HasColumnType($"nvarchar({Adresse.DESTINATAIRE_MAX_LENGTH})")
+            .HasMaxLength(Adresse.DESTINATAIRE_MAX_LENGTH)
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Adresse>()
+            .Property(adresse => adresse.NumeroCivique)
+            .HasColumnName("NumeroCivique")
+            .HasColumnOrder(3)
+            .HasColumnType("nvarchar(20)")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Adresse>()
+            .Property(adresse => adresse.Rue)
+            .HasColumnName("Rue")
+            .HasColumnOrder(4)
+            .HasColumnType($"nvarchar({Adresse.RUE_MAX_LENGTH})")
+            .HasMaxLength(Adresse.RUE_MAX_LENGTH)
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Adresse>()
+            .Property(adresse => adresse.Ville)
+            .HasColumnName("Ville")
+            .HasColumnOrder(5)
+            .HasColumnType($"nvarchar({Adresse.VILLE_MAX_LENGTH})")
+            .HasMaxLength(Adresse.VILLE_MAX_LENGTH)
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Adresse>()
+            .Property(adresse => adresse.Province)
+            .HasColumnName("Province")
+            .HasColumnOrder(6)
+            .HasColumnType($"nvarchar({Adresse.PROVINCE_MAX_LENGTH})")
+            .HasMaxLength(Adresse.PROVINCE_MAX_LENGTH)
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Adresse>()
+            .Property(adresse => adresse.Pays)
+            .HasColumnName("Pays")
+            .HasColumnOrder(7)
+            .HasColumnType($"nvarchar({Adresse.PAYS_MAX_LENGTH})")
+            .HasMaxLength(Adresse.PAYS_MAX_LENGTH)
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Adresse>()
+            .Property(adresse => adresse.CodePostal)
+            .HasColumnName("CodePostal")
+            .HasColumnOrder(8)
+            .HasColumnType("nvarchar(10)")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Adresse>()
+            .Property(adresse => adresse.DateCreation)
+            .HasColumnName("DateCreation")
+            .HasColumnOrder(9)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .HasDefaultValueSql("GETDATE()")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Adresse>()
+            .Property(adresse => adresse.DateModification)
+            .HasColumnName("DateModification")
+            .HasColumnOrder(10)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<Adresse>()
+            .Property(adresse => adresse.DateSuppression)
+            .HasColumnName("DateSuppression")
+            .HasColumnOrder(11)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .IsRequired(false);
+
+        #endregion
+
+
+
+
+
+
+
 
         // TODO: @TOUTE_EQUIPE Faites la configuration de vos entités et de leur relations ici
 
@@ -178,6 +367,7 @@ internal class WsysDbContext : DbContext {
         #region RELATIONS RE DONNÉES DE TEST
 
         // Warehouse ici
+
 
 
         // NOTE: le mot de passe des user est "testpasswd".
@@ -241,6 +431,9 @@ internal class WsysDbContext : DbContext {
         */
 
         #endregion
+
+
+
 
     }
 }
