@@ -1,4 +1,7 @@
-﻿namespace _420DA3_A24_Projet.Business.Domain;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace _420DA3_A24_Projet.Business.Domain;
+
 /// <summary>
 /// Classe représentant un produit stocké dans les entrepôts.
 /// </summary>
@@ -12,99 +15,56 @@ public class Produits {
 
     #region Propriétés de données
 
-    /// <summary>
-    /// Identifiant unique du produit.
-    /// </summary>
+    [Key]
     public int Id { get; set; }
 
-    /// <summary>
-    /// Nom du produit.
-    /// </summary>
+    [Required, MaxLength(PRODUCT_NAME_MAX_LENGTH)]
     public string ProductName { get; set; } = null!;
 
-    /// <summary>
-    /// Description du produit.
-    /// </summary>
+    [MaxLength(PRODUCT_DESCRIPTION_MAX_LENGTH)]
     public string ProductDescription { get; set; } = null!;
 
-    /// <summary>
-    /// Code UPC du produit.
-    /// </summary>
+    [Required, StringLength(UPC_CODE_LENGTH)]
     public string UpcCode { get; set; } = null!;
 
-    /// <summary>
-    /// Nom de fichier de l'image du produit.
-    /// Peut être null si aucune image n'est associée.
-    /// </summary>
+    [MaxLength(IMAGE_FILE_NAME_MAX_LENGTH)]
     public string? ImageFileName { get; set; }
 
-    /// <summary>
-    /// Identifiant du client propriétaire du produit.
-    /// </summary>
+    [Required]
     public int ClientId { get; set; }
 
-    /// <summary>
-    /// Client propriétaire du produit.
-    /// </summary>
     public virtual Client Client { get; set; } = null!;
 
-    /// <summary>
-    /// Nom du fournisseur.
-    /// </summary>
+    [Required, MaxLength(SUPPLIER_CODE_MAX_LENGTH)]
     public string SupplierName { get; set; } = null!;
 
-    /// <summary>
-    /// Code produit attribué par le fournisseur.
-    /// </summary>
+    [MaxLength(SUPPLIER_CODE_MAX_LENGTH)]
     public string SupplierCode { get; set; } = null!;
 
-    /// <summary>
-    /// Quantité actuelle en stock.
-    /// </summary>
+    [Required]
     public int StockQuantity { get; set; }
 
-    /// <summary>
-    /// Quantité visée en stock.
-    /// </summary>
+    [Required]
     public int TargetStockQuantity { get; set; }
 
-    /// <summary>
-    /// Poids du produit en kilogrammes.
-    /// </summary>
+    [Required]
     public decimal WeightKg { get; set; }
 
-    /// <summary>
-    /// Date de création automatique.
-    /// </summary>
     public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
-    /// <summary>
-    /// Date de modification automatique.
-    /// </summary>
     public DateTime? DateModified { get; set; }
 
-    /// <summary>
-    /// Date de suppression automatique.
-    /// </summary>
     public DateTime? DateDeleted { get; set; }
 
-    /// <summary>
-    /// Version de la ligne pour la gestion des conflits.
-    /// </summary>
-    public byte[] RowVersion { get; set; } = null!;
+    [Timestamp]
+    public byte[] RowVersion { get; set; } = Array.Empty<byte>();
 
     #endregion
 
     #region Propriétés de navigation
 
-    /// <summary>
-    /// Entrepôt où est stocké le produit.
-    /// </summary>
+    [Required]
     public int EntrepotId { get; set; }
-
-    /// <summary>
-    /// Entrepôt associé au produit.
-    /// </summary>
 
     public virtual Entrepot Entrepot { get; set; } = null!;
 
@@ -112,10 +72,23 @@ public class Produits {
 
     #region Constructeurs
 
-    /// <summary>
-    /// Constructeur principal.
-    /// </summary>
-    public Produits(string productName, string productDescription, string upcCode, string? imageFileName, int clientId, string supplierName, string supplierCode, int stockQuantity, int targetStockQuantity, decimal weightKg, int entrepotId) {
+    public Produits() {
+        // Default constructor for EF
+    }
+
+    public Produits(
+        string productName,
+        string productDescription,
+        string upcCode,
+        string? imageFileName,
+        int clientId,
+        string supplierName,
+        string supplierCode,
+        int stockQuantity,
+        int targetStockQuantity,
+        decimal weightKg,
+        int entrepotId) {
+       
         ProductName = productName;
         ProductDescription = productDescription;
         UpcCode = upcCode;
@@ -129,11 +102,25 @@ public class Produits {
         EntrepotId = entrepotId;
     }
 
-    /// <summary>
-    /// Constructeur pour Entity Framework.
-    /// </summary>
-    protected Produits(int id, string productName, string productDescription, string upcCode, string? imageFileName, int clientId, string supplierName, string supplierCode, int stockQuantity, int targetStockQuantity, decimal weightKg, int entrepotId, DateTime dateCreated, DateTime? dateModified, DateTime? dateDeleted, byte[] rowVersion)
-        : this(productName, productDescription, upcCode, imageFileName, clientId, supplierName, supplierCode, stockQuantity, targetStockQuantity, weightKg, entrepotId) {
+    protected Produits(
+        int id,
+        string productName,
+        string productDescription,
+        string upcCode,
+        string? imageFileName,
+        int clientId,
+        string supplierName,
+        string supplierCode,
+        int stockQuantity,
+        int targetStockQuantity,
+        decimal weightKg,
+        int entrepotId,
+
+        DateTime dateCreated,
+        DateTime? dateModified,
+        DateTime? dateDeleted,
+        byte[] rowVersion): this(productName, productDescription, upcCode, imageFileName, clientId, supplierName, supplierCode, stockQuantity, targetStockQuantity, weightKg, entrepotId) {
+        
         Id = id;
         DateCreated = dateCreated;
         DateModified = dateModified;

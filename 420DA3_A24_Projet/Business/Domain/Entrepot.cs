@@ -22,42 +22,27 @@ public class Entrepot {
     [Required]
     public int AdresseId { get; set; }
 
-    // TODO @JEREMY: voir commentaires ci-dessous
-    // propriétés de données:
-    // - AddresseId de type int, pour la clé étrangère de l'adresse de l'entrepôt
-    
 
     // Dates de gestion (création, modification, suppression)
     public DateTime DateCreation { get; set; } = DateTime.Now;
     public DateTime? DateModification { get; set; }
     public DateTime? DateSuppression { get; set; }
-    public byte[] RowVersion { get; }
+    public byte[] RowVersion { get; set; } = null;
 
-    // Problèmes avec RowVersion
-    public byte[] RowVersion { get; set; } = Array.Empty<byte>();
     // Propriété de navigation pour l'adresse (avec modificateur 'virtual')
     public virtual Adresse Adresse { get; set; }
 
 
-    // TODO @JEREMY: voir commentaires ci-dessous
-    // propriétés de navigation (avec modificateur 'virtual'):
-    // - Clients de type List<Client>
-    // - OrdresRestockage de type List<OrdreRestockage>
-    // - EmployesEntrepot de type List<User>
-    // Propriétés de navigation (avec modificateur 'virtual')
     public virtual List<Client> Clients { get; set; } = new List<Client>();
     public virtual List<OrdreRestockage> OrdreRestockage { get; set; } = new List<OrdreRestockage>();
     public virtual List<User> EmployesEntrepot { get; set; } = new List<User>();
+    public object Capacite { get; internal set; }
 
 
     // Constructeur par défaut
     public Entrepot() {
         // La DateCreation doit être définie par la base de données via GETDATE()
     }
-
-    // TODO @JEREMY: le second constructeur doit avoir des paramètres pour
-    // TOUTES les propriétés de données (mais pas celles de navigation) de la classe:
-    // - dateCreation
 
     // Constructeur avec des paramètres pour toutes les propriétés de données
     public Entrepot(int id, string nom, int adresseId, DateTime? dateModification = null, DateTime? dateSuppression = null, byte[]? rowVersion = null) {
@@ -66,9 +51,8 @@ public class Entrepot {
         AdresseId = adresseId;
         DateModification = dateModification;
         DateSuppression = dateSuppression;
-        // Problèmes avec RowVersion
-        RowVersion = rowVersion ?? Array.Empty<byte>();// Assigner un tableau vide par défaut si la valeur est null
-
+        RowVersion = rowVersion ?? Array.Empty<byte>();
+       
     }
 }
 

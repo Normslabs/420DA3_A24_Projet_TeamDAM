@@ -364,9 +364,64 @@ internal class WsysDbContext : DbContext {
 
 
 
-        #region RELATIONS RE DONNÉES DE TEST
+        #region Entrepot
 
-        // Warehouse ici
+        _ = modelBuilder.Entity<Entrepot>()
+    .ToTable(nameof(this.Entrepots))
+    .HasKey(entrepot => entrepot.Id);
+
+        _ = modelBuilder.Entity<Entrepot>()
+            .Property(entrepot => entrepot.Id)
+            .HasColumnName("Id")
+            .HasColumnOrder(0)
+            .HasColumnType("int")
+            .UseIdentityColumn(1, 1);
+
+        _ = modelBuilder.Entity<Entrepot>()
+            .Property(entrepot => entrepot.Nom)
+            .HasColumnName("Nom")
+            .HasColumnOrder(1)
+            .HasColumnType("nvarchar(100)")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Entrepot>()
+            .Property(entrepot => entrepot.Adresse)
+            .HasColumnName("Adresse")
+            .HasColumnOrder(2)
+            .HasColumnType("nvarchar(255)")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Entrepot>()
+            .Property(entrepot => entrepot.Capacite)
+            .HasColumnName("Capacite")
+            .HasColumnOrder(3)
+            .HasColumnType("int")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Entrepot>()
+            .Property(entrepot => entrepot.DateCreation)
+            .HasColumnName("DateCreation")
+            .HasColumnOrder(4)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .HasDefaultValueSql("GETDATE()")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Entrepot>()
+            .Property(entrepot => entrepot.DateModification)
+            .HasColumnName("DateModification")
+            .HasColumnOrder(5)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<Entrepot>()
+            .Property(entrepot => entrepot.DateSuppression)
+            .HasColumnName("DateSuppression")
+            .HasColumnOrder(6)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .IsRequired(false);
 
 
 
@@ -435,5 +490,9 @@ internal class WsysDbContext : DbContext {
 
 
 
+    }
+
+    private object Entrepots() {
+        throw new NotImplementedException();
     }
 }
