@@ -3,7 +3,7 @@
 /// <summary>
 /// Classe représentant un fournisseur.
 /// </summary>
-public class Fournisseurs {
+public class Supplier {
     /// <summary>
     /// Longueur maximum du nom du fournisseur, en caractères
     /// </summary>
@@ -100,7 +100,7 @@ public class Fournisseurs {
     /// <param name="contactLastName">Nom de la personne-contact</param>
     /// <param name="contactEmail">Courriel de la personne-contact</param>
     /// <param name="contactPhone">Téléphone de la personne-contact</param>
-    public Fournisseurs(string name, string contactFirstName, string contactLastName, string contactEmail, string contactPhone) {
+    public Supplier(string name, string contactFirstName, string contactLastName, string contactEmail, string contactPhone) {
         this.Name = name;
         this.ContactFirstName = contactFirstName;
         this.ContactLastName = contactLastName;
@@ -111,7 +111,7 @@ public class Fournisseurs {
     /// <summary>
     /// Constructeur orienté Entity Framework
     /// </summary>
-    protected Fournisseurs(int id, string name, string contactFirstName, string contactLastName, string contactEmail, string contactPhone, DateTime dateCreated, DateTime? dateModified, DateTime? dateDeleted, byte[] rowVersion)
+    protected Supplier(int id, string name, string contactFirstName, string contactLastName, string contactEmail, string contactPhone, DateTime dateCreated, DateTime? dateModified, DateTime? dateDeleted, byte[] rowVersion)
         : this(name, contactFirstName, contactLastName, contactEmail, contactPhone) {
 
         this.Id = id;
