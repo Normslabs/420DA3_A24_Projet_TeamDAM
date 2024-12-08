@@ -3,7 +3,7 @@
 /// <summary>
 /// Classe représentant un ordre de restockage.
 /// </summary>
-public class RestockOrder {
+public class PurchaseOrder {
     /// <summary>
     /// Statuts possibles pour un ordre de restockage.
     /// </summary>
@@ -95,7 +95,7 @@ public class RestockOrder {
     /// <param name="productId">Identifiant du produit à restocker.</param>
     /// <param name="warehouseId">Identifiant de l'entrepôt où le produit est stocké.</param>
     /// <param name="quantity">Quantité à commander.</param>
-    public RestockOrder(int productId, int warehouseId, int quantity) {
+    public PurchaseOrder(int productId, int warehouseId, int quantity) {
         this.ProductId = productId;
         this.WarehouseId = warehouseId;
         this.Quantity = quantity;
@@ -105,7 +105,7 @@ public class RestockOrder {
     /// <summary>
     /// Constructeur orienté Entity Framework.
     /// </summary>
-    protected RestockOrder(int id, OrderStatus status, int productId, int warehouseId, int quantity, DateTime? dateCompleted, DateTime dateCreated, DateTime? dateModified, DateTime? dateDeleted, byte[] rowVersion)
+    protected PurchaseOrder(int id, OrderStatus status, int productId, int warehouseId, int quantity, DateTime? dateCompleted, DateTime dateCreated, DateTime? dateModified, DateTime? dateDeleted, byte[] rowVersion)
         : this(productId, warehouseId, quantity) {
         this.Id = id;
         this.Status = status;
