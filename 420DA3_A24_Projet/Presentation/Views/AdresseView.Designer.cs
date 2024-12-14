@@ -258,9 +258,9 @@ partial class AdresseView {
         this.label12.AutoSize = true;
         this.label12.Location = new Point(38, 101);
         this.label12.Name = "label12";
-        this.label12.Size = new Size(93, 20);
+        this.label12.Size = new Size(115, 20);
         this.label12.TabIndex = 23;
-        this.label12.Text = "NumCivique:";
+        this.label12.Text = "NumeroCivique:";
         // 
         // label13
         // 
