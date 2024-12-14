@@ -1,181 +1,179 @@
 ﻿using _420DA3_A24_Projet.Business;
 using _420DA3_A24_Projet.Business.Domain;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Project_Utilities.Enums;
 
 namespace _420DA3_A24_Projet.Presentation.Views;
+
+/// <summary>
+/// Management window for <see cref="Role"/> entities.
+/// </summary>
 internal partial class RoleView : Form {
 
     private readonly WsysApplication parentApp;
 
     /// <summary>
-    /// TODO @PROF: documenter
-    /// </summary>
-    public Role CurrentInstance { get; private set; } = null!;
-    /// <summary>
-    /// TODO @PROF: documenter
+    /// The <see cref="ViewActionsEnum"/> value indicating the intent for which the window
+    /// is currently opened or was opened last.
     /// </summary>
     public ViewActionsEnum CurrentAction { get; private set; }
+    /// <summary>
+    /// The working <see cref="Role"/> value with which the window is currently
+    /// opened or was opened last.
+    /// </summary>
+    public Role CurrentEntityInstance { get; private set; } = null!;
 
-    public RoleView(WsysApplication parentApp) {
-        this.parentApp = parentApp;
+    /// <summary>
+    /// <see cref="RoleView"/> constructor.
+    /// </summary>
+    /// <param name="application"></param>
+    public RoleView(WsysApplication application) {
+        this.parentApp = application;
         this.InitializeComponent();
-    }
-
-    /// <summary>
-    /// TODO @PROF: documenter
-    /// </summary>
-    /// <param name="emptyUser"></param>
-    /// <returns></returns>
-    public DialogResult OpenForCreation(Role emptyRole) {
-        this.PreOpenSetup(ViewActionsEnum.Creation, emptyRole, "Création d'un rôle", "CRÉER");
-        return this.ShowDialog();
-    }
-
-    /// <summary>
-    /// TODO @PROF: documenter
-    /// </summary>
-    /// <param name="user"></param>
-    /// <returns></returns>
-    public DialogResult OpenForDetailsView(Role role) {
-        this.PreOpenSetup(ViewActionsEnum.Visualization, role, "Détails d'un rôle", "OK");
-        return this.ShowDialog();
-    }
-
-    /// <summary>
-    /// TODO @PROF: documenter
-    /// </summary>
-    /// <param name="user"></param>
-    /// <returns></returns>
-    public DialogResult OpenForEdition(Role role) {
-        this.PreOpenSetup(ViewActionsEnum.Edition, role, "Modification d'un rôle", "ENREGISTRER");
-        return this.ShowDialog();
-    }
-
-    /// <summary>
-    /// TODO @PROF: documenter
-    /// </summary>
-    /// <param name="user"></param>
-    /// <returns></returns>
-    public DialogResult OpenForDeletion(Role role) {
-        this.PreOpenSetup(ViewActionsEnum.Deletion, role, "Suppression d'un rôle", "SUPPRIMER");
-        return this.ShowDialog();
+        this.nameValue.MaxLength = Role.NAME_MAX_LENGTH;
+        this.descriptionValue.MaxLength = Role.DESCRIPTION_MAX_LENGTH;
     }
 
 
     /// <summary>
-    /// TODO @PROF: documenter
+    /// Opens a <see cref="RoleView"/> modal window in entity creation mode.
     /// </summary>
-    /// <param name="action"></param>
     /// <param name="instance"></param>
+    /// <returns></returns>
+    public DialogResult OpenForCreation(Role instance) {
+        this.PreOpenSetup(instance, ViewActionsEnum.Creation, "Création d'un rôle", "Créer");
+        return this.ShowDialog();
+    }
+
+    /// <summary>
+    /// Opens a <see cref="RoleView"/> modal window in entity visualization mode.
+    /// </summary>
+    /// <param name="instance"></param>
+    /// <returns></returns>
+    public DialogResult OpenForDetailsView(Role instance) {
+        this.PreOpenSetup(instance, ViewActionsEnum.Visualization, "Détails d'un rôle", "OK");
+        return this.ShowDialog();
+    }
+
+    /// <summary>
+    /// Opens a <see cref="RoleView"/> modal window in entity edition mode.
+    /// </summary>
+    /// <param name="instance"></param>
+    /// <returns></returns>
+    public DialogResult OpenForModification(Role instance) {
+        this.PreOpenSetup(instance, ViewActionsEnum.Edition, "Modifier un rôle", "Enregistrer");
+        return this.ShowDialog();
+    }
+
+    /// <summary>
+    /// Opens a <see cref="RoleView"/> modal window in entity deletion mode.
+    /// </summary>
+    /// <param name="instance"></param>
+    /// <returns></returns>
+    public DialogResult OpenForDeletion(Role instance) {
+        this.PreOpenSetup(instance, ViewActionsEnum.Deletion, "Supprimer un rôle", "Supprimer");
+        return this.ShowDialog();
+    }
+
+    /// <summary>
+    /// Performs pre-opening initialization, clean-up and preparation for the <see cref="RoleView"/> window.
+    /// </summary>
+    /// <param name="instance"></param>
+    /// <param name="action"></param>
     /// <param name="windowTitle"></param>
     /// <param name="actionButtonText"></param>
-    private void PreOpenSetup(ViewActionsEnum action, Role instance, string windowTitle, string actionButtonText) {
+    private void PreOpenSetup(Role instance, ViewActionsEnum action, string windowTitle, string actionButtonText) {
+        // remember what the current action is
         this.CurrentAction = action;
-        this.CurrentInstance = instance;
+        // remember which instance we are currently working with
+        this.CurrentEntityInstance = instance;
+        // Change window title
         this.Text = windowTitle;
-        this.modeFenetreValue.Text = action.ToString();
-        this.btnAction.Text = actionButtonText;
-        this.LoadDataInControls(instance);
+        // change action button text
+        this.actionButton.Text = actionButtonText;
+        // display the current action in the top bar
+        this.openedModeValue.Text = Enum.GetName(action);
+        // load data from the current instance in the controls
+        _ = this.LoadDataInControls(instance);
+        // activate or deactivate the editable controls depending on the action
         if (action == ViewActionsEnum.Creation || action == ViewActionsEnum.Edition) {
-            this.ActivateEditableControls();
+            this.ActivateControls();
         } else {
-            this.DeactivateEditableControls();
+            this.DeactivateControls();
         }
     }
 
     /// <summary>
-    /// TODO @PROF: documenter
+    /// Enables the <see cref="RoleView"/> window's controls for creation and edition modes.
     /// </summary>
-    /// <param name="role"></param>
-    private void LoadDataInControls(Role role) {
-        this.idValue.Value = role.Id;
-        this.nameValue.Text = role.Name;
-        this.descriptionValue.Text = role.Description;
-        this.dateCreatedValue.Value = role.DateCreated;
-        this.dateModifiedValue.Value = role.DateModified ?? DateTime.Now;
-        this.dateDeletedValue.Value = role.DateDeleted ?? DateTime.Now;
-    }
-
-    /// <summary>
-    /// TODO @PROF: documenter
-    /// </summary>
-    /// <param name="role"></param>
-    private void UpdateInstanceFromControls(Role role) {
-        try {
-            this.ValidateControlValues();
-            role.Name = this.nameValue.Text.Trim();
-            role.Description = this.descriptionValue.Text.Trim();
-
-        } catch (Exception ex) {
-            this.parentApp.HandleException(ex);
-            return;
-        }
-    }
-
-    /// <summary>
-    /// TODO @PROF: documenter
-    /// </summary>
-    /// <exception cref="Exception"></exception>
-    private void ValidateControlValues() {
-        if (this.nameValue.Text.Length > Role.NAME_MAX_LENGTH) {
-            throw new Exception($"Le nom du rôle ne doit pas contenir plus de {Role.NAME_MAX_LENGTH} caractères.");
-        }
-        if (this.descriptionValue.Text.Length > Role.DESCRIPTION_MAX_LENGTH) {
-            throw new Exception($"La description du rôle ne doit pas contenir plus {Role.DESCRIPTION_MAX_LENGTH} caractères.");
-        }
-    }
-
-    /// <summary>
-    /// TODO @PROF: documenter
-    /// </summary>
-    private void ActivateEditableControls() {
+    private void ActivateControls() {
         this.nameValue.Enabled = true;
         this.descriptionValue.Enabled = true;
     }
 
     /// <summary>
-    /// TODO @PROF: documenter
+    /// Disables the <see cref="RoleView"/> window's controls for visualization and deletion modes.
     /// </summary>
-    private void DeactivateEditableControls() {
+    private void DeactivateControls() {
         this.nameValue.Enabled = false;
         this.descriptionValue.Enabled = false;
     }
 
-
-    private void ButtonCancel_Click(object sender, EventArgs e) {
-        this.DialogResult = DialogResult.Cancel;
+    /// <summary>
+    /// Loads the data of a given <paramref name="role"/> in the <see cref="RoleView"/>
+    /// window's controls.
+    /// </summary>
+    /// <param name="role"></param>
+    /// <returns></returns>
+    private Role LoadDataInControls(Role role) {
+        this.idValue.Text = role.Id.ToString();
+        this.nameValue.Text = role.Name;
+        this.descriptionValue.Text = role.Description;
+        this.dateCreatedValue.Text = role.DateCreated.ToString();
+        return role;
     }
 
-    private void ButtonAction_Click(object sender, EventArgs e) {
+    /// <summary>
+    /// Takes data from the basic <see cref="RoleView"/>'s controls and assigns
+    /// it to the given <paramref name="role"/>.
+    /// </summary>
+    /// <param name="role"></param>
+    /// <returns></returns>
+    private Role SaveDataFromControls(Role role) {
+        role.Name = this.nameValue.Text.Trim();
+        role.Description = this.descriptionValue.Text.Trim();
+        return role;
+    }
+
+    private void ActionButton_Click(object sender, EventArgs e) {
         try {
-            this.ProcessAction();
+
+            switch (this.CurrentAction) {
+                case ViewActionsEnum.Creation:
+                    _ = this.SaveDataFromControls(this.CurrentEntityInstance);
+                    this.CurrentEntityInstance = this.parentApp.RoleService.CreateRole(this.CurrentEntityInstance);
+                    break;
+                case ViewActionsEnum.Edition:
+                    _ = this.SaveDataFromControls(this.CurrentEntityInstance);
+                    this.CurrentEntityInstance = this.parentApp.RoleService.UpdateRole(this.CurrentEntityInstance);
+                    break;
+                case ViewActionsEnum.Deletion:
+                    this.CurrentEntityInstance = this.parentApp.RoleService.DeleteRole(this.CurrentEntityInstance);
+                    break;
+                case ViewActionsEnum.Visualization:
+                    // nothing to do
+                    break;
+                default:
+                    throw new NotImplementedException($"The view action [{Enum.GetName(this.CurrentAction)}] is not implemented in [{this.GetType().ShortDisplayName}].");
+            }
             this.DialogResult = DialogResult.OK;
-        } catch (Exception ex) {
+
+        } catch (Exception ex) { 
             this.parentApp.HandleException(ex);
         }
     }
 
-    /// <summary>
-    /// TODO @PROF: documenter
-    /// </summary>
-    /// <exception cref="Exception"></exception>
-    private void ProcessAction() {
-        switch (this.CurrentAction) {
-            case ViewActionsEnum.Creation:
-                this.UpdateInstanceFromControls(this.CurrentInstance);
-                this.CurrentInstance = this.parentApp.RoleService.Create(this.CurrentInstance);
-                break;
-            case ViewActionsEnum.Edition:
-                this.UpdateInstanceFromControls(this.CurrentInstance);
-                this.CurrentInstance = this.parentApp.RoleService.Update(this.CurrentInstance);
-                break;
-            case ViewActionsEnum.Deletion:
-                this.CurrentInstance = this.parentApp.RoleService.Delete(this.CurrentInstance);
-                break;
-            case ViewActionsEnum.Visualization:
-                break;
-            default:
-                throw new Exception($"Action [{Enum.GetName<ViewActionsEnum>(this.CurrentAction)}] non reconnue.");
-        }
+    private void CancelButton_Click(object sender, EventArgs e) {
+        this.DialogResult = DialogResult.Cancel;
     }
 }
