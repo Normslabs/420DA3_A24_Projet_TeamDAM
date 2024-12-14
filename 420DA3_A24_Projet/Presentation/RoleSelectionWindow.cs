@@ -15,10 +15,9 @@ internal partial class RoleSelectionWindow : Form {
     public Role OpenRoleSelectionWindowForUser(User utilisateur) {
         this.ReloadUserRolesList(utilisateur.Roles);
         DialogResult result = this.ShowDialog();
-        if (result != DialogResult.OK) {
-            throw new Exception("Impossible de compléter le login: aucun rôle sélectionné.");
-        }
-        return this.SelectedRole;
+        return result != DialogResult.OK
+            ? throw new Exception("Impossible de compléter le login: aucun rôle sélectionné.")
+            : this.SelectedRole;
     }
 
     private void ReloadUserRolesList(List<Role> roles) {
