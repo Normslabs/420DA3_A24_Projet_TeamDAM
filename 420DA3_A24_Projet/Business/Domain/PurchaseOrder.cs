@@ -73,7 +73,7 @@ public class PurchaseOrder {
     #region Propriétés de navigation
 
 
-    public virtual Produits Product { get; set; } = null!;
+    public virtual Produits orderedProduct { get; set; } = null!;
 
     public virtual Entrepot Warehouse { get; set; } = null!;
 
@@ -108,6 +108,17 @@ public class PurchaseOrder {
 
     public static bool ValidateId(int id) {
         return id >= 0;
+    }
+
+    /// <summary>
+    /// Marque la commande comme complétée.
+    /// </summary>
+    public void Complete() {
+        if (this.Status == OrderStatus.Completed) {
+            throw new Exception("The order is already completed.");
+        }
+        this.Status = OrderStatus.Completed;
+        this.DateCompleted = DateTime.Now;
     }
 
     /// Override de <see cref="object.ToString"/> pour affichage dans une ListBox ou ComboBox.
