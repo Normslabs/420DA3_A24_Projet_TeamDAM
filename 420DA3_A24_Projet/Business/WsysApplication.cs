@@ -18,6 +18,8 @@ internal class WsysApplication {
     public UserService UserService { get; private set; }
     public RoleService RoleService { get; private set; }
     public LoginService LoginService { get; private set; }
+    public SupplierService SupplierService { get; private set; }
+    public PurchaseOrderService PurchaseOrderService { get; private set; }
 
     public WsysApplication() {
         this.context = new WsysDbContext();
@@ -29,6 +31,8 @@ internal class WsysApplication {
         this.TrackingNumberFactory = TrackingNumberFactory.GetInstance();
         this.UserService = new UserService(this, this.context);
         this.RoleService = new RoleService(this, this.context);
+        this.SupplierService = new SupplierService(this, this.context);
+        this.PurchaseOrderService = new PurchaseOrderService(this, this.context);
         this.LoginService = new LoginService(this);
     }
 
