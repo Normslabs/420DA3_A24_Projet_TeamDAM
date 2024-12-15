@@ -11,9 +11,9 @@ internal class WsysDbContext : DbContext {
     public DbSet<Adresse> Adresses { get; set; }
     public DbSet<Supplier> Suppliers { get; set; }
     public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
-
-
-
+    public DbSet<Product> Produits { get; set; }
+    public DbSet<Entrepot> Entrepots { get; set; }
+    
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         base.OnConfiguring(optionsBuilder);
@@ -555,6 +555,73 @@ internal class WsysDbContext : DbContext {
 
 
 
+        #region Produits
+
+        _ = modelBuilder.Entity<Product>()
+            .ToTable(nameof(this.Produits))
+            .HasKey(produit => produit.Id);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(produit => produit.Id)
+            .HasColumnName("Id")
+            .HasColumnOrder(0)
+            .HasColumnType("int")
+            .UseIdentityColumn(1, 1);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(produit => produit.Nom)
+            .HasColumnName("Nom")
+            .HasColumnOrder(1)
+            .HasColumnType("nvarchar(100)")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(produit => produit.Description)
+            .HasColumnName("Description")
+            .HasColumnOrder(2)
+            .HasColumnType("nvarchar(255)")
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(produit => produit.Prix)
+            .HasColumnName("Prix")
+            .HasColumnOrder(3)
+            .HasColumnType("decimal(18,2)")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(produit => produit.Stock)
+            .HasColumnName("Stock")
+            .HasColumnOrder(4)
+            .HasColumnType("int")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(produit => produit.DateCreation)
+            .HasColumnName("DateCreation")
+            .HasColumnOrder(5)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .HasDefaultValueSql("GETDATE()")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(produit => produit.DateModification)
+            .HasColumnName("DateModification")
+            .HasColumnOrder(6)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(produit => produit.DateSuppression)
+            .HasColumnName("DateSuppression")
+            .HasColumnOrder(7)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .IsRequired(false);
+
+        #endregion
 
 
 
@@ -684,9 +751,5 @@ internal class WsysDbContext : DbContext {
 
 
 
-    }
-
-    private object Entrepots() {
-        throw new NotImplementedException();
     }
 }

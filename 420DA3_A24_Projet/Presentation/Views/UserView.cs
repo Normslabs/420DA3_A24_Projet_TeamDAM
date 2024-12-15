@@ -222,7 +222,7 @@ internal partial class UserView : Form {
             this.DialogResult = DialogResult.OK;
 
         } catch (Exception ex) {
-            this.parentApp.HandleException(ex);
+            WsysApplication.HandleException(ex);
         }
     }
 

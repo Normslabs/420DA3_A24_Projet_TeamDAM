@@ -13,4 +13,16 @@ public partial class ProduitsView : Form {
     public ProduitsView() {
         InitializeComponent();
     }
+
+    private void ProduitsView_Load(object sender, EventArgs e) {
+
+    }
+
+    private void label6_Click(object sender, EventArgs e) {
+
+    }
+
+    private void button1_Click(object sender, EventArgs e) {
+
+    }
 }

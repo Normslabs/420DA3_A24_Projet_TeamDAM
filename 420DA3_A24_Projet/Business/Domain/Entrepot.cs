@@ -46,12 +46,12 @@ public class Entrepot {
 
     // Constructeur avec des paramètres pour toutes les propriétés de données
     public Entrepot(int id, string nom, int adresseId, DateTime? dateModification = null, DateTime? dateSuppression = null, byte[]? rowVersion = null) {
-        Id = id;
-        Nom = nom;
-        AdresseId = adresseId;
-        DateModification = dateModification;
-        DateSuppression = dateSuppression;
-        RowVersion = rowVersion ?? Array.Empty<byte>();
+        this.Id = id;
+        this.Nom = nom;
+        this.AdresseId = adresseId;
+        this.DateModification = dateModification;
+        this.DateSuppression = dateSuppression;
+        this.RowVersion = rowVersion ?? Array.Empty<byte>();
        
     }
 }

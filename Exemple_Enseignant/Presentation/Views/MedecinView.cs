@@ -190,4 +190,7 @@ internal partial class MedecinView : Form {
         }
     }
 
+    private void idNumericUpDown_ValueChanged(object sender, EventArgs e) {
+
+    }
 }

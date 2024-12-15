@@ -83,7 +83,7 @@ public class PurchaseOrder {
     /// <summary>
     /// Entrepôt où les produits sont stockés.
     /// </summary>
-    public virtual Warehouse Warehouse { get; set; } = null!;
+    public virtual Entrepot Warehouse { get; set; } = null!;
 
     #endregion
 
