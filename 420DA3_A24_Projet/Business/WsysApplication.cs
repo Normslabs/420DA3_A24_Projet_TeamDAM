@@ -8,10 +8,10 @@ using System.Text;
 namespace _420DA3_A24_Projet.Business;
 internal class WsysApplication {
 
-    private WsysDbContext context;
-    private AdminMainMenu adminMainMenu;
-    private OfficeEmpMainMenu officeEmployeeMainMenu;
-    private WhEmpMainMenu warehouseEmployeeMainMenu;
+    private readonly WsysDbContext context;
+    private readonly AdminMainMenu adminMainMenu;
+    private readonly OfficeEmpMainMenu officeEmployeeMainMenu;
+    private readonly WhEmpMainMenu warehouseEmployeeMainMenu;
 
     public PasswordService PasswordService { get; private set; }
     public TrackingNumberFactory TrackingNumberFactory { get; private set; }
@@ -40,18 +40,13 @@ internal class WsysApplication {
     public void Start() {
         Application.Run();
         while (this.LoginService.RequireLoggedInUser()) {
-            if (this.LoginService.LoggedInUserRole?.Id == Role.ADMIN_ROLE_ID) {
-                _ = this.adminMainMenu.ShowDialog();
-
-            } else if (this.LoginService.LoggedInUserRole?.Id == Role.OFFICE_EMPLOYEE_ROLE_ID) {
-                _ = this.officeEmployeeMainMenu.ShowDialog();
-
-            } else {
-                _ = this.LoginService.LoggedInUserRole?.Id == Role.WAREHOUSE_EMPLOYEE_ROLE_ID
-                    ? this.warehouseEmployeeMainMenu.ShowDialog()
-                    : throw new Exception("Impossible de démarrer l'application: rôle non implémenté.");
-
-            }
+            _ = this.LoginService.LoggedInUserRole?.Id == Role.ADMIN_ROLE_ID
+                ? this.adminMainMenu.ShowDialog()
+                : this.LoginService.LoggedInUserRole?.Id == Role.OFFICE_EMPLOYEE_ROLE_ID
+                    ? this.officeEmployeeMainMenu.ShowDialog()
+                    : this.LoginService.LoggedInUserRole?.Id == Role.WAREHOUSE_EMPLOYEE_ROLE_ID
+                                    ? this.warehouseEmployeeMainMenu.ShowDialog()
+                                    : throw new Exception("Impossible de démarrer l'application: rôle non implémenté.");
         }
     }
 

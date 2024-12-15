@@ -10,7 +10,6 @@ public class PurchaseOrder {
 
     // Backing fields
     private int id;
-    private OrderStatus status;
     private int productId;
     private int warehouseId;
     private int quantity;
@@ -27,10 +26,7 @@ public class PurchaseOrder {
         }
     }
 
-    public OrderStatus Status {
-        get { return this.status; }
-        set { this.status = value; }
-    }
+    public OrderStatus Status { get; set; }
 
     public int ProductId {
         get { return this.productId; }

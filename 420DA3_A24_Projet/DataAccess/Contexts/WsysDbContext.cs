@@ -13,7 +13,7 @@ internal class WsysDbContext : DbContext {
     public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
     public DbSet<Product> Produits { get; set; }
     public DbSet<Warehouse> Entrepots { get; set; }
-    
+
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         base.OnConfiguring(optionsBuilder);
@@ -357,11 +357,11 @@ internal class WsysDbContext : DbContext {
         #region SUPPLIER
 
         _ = modelBuilder.Entity<Supplier>()
-            .ToTable(nameof(this.Suppliers)) // Nom de la table
-            .HasKey(supplier => supplier.Id); // Clé primaire
+            .ToTable(nameof(this.Suppliers))
+            .HasKey(supplier => supplier.Id);
 
         _ = modelBuilder.Entity<Supplier>()
-            .HasIndex(supplier => supplier.Name) // Index unique sur le nom
+            .HasIndex(supplier => supplier.Name)
             .IsUnique();
 
         _ = modelBuilder.Entity<Supplier>()
@@ -383,32 +383,32 @@ internal class WsysDbContext : DbContext {
             .Property(supplier => supplier.ContactFirstName)
             .HasColumnName("ContactFirstName")
             .HasColumnOrder(2)
-            .HasColumnType($"nvarchar({Supplier.CONTACT_INFO_MAX_LENGTH})")
-            .HasMaxLength(Supplier.CONTACT_INFO_MAX_LENGTH)
+            .HasColumnType($"nvarchar({Supplier.CONTACT_FIRST_NAME_MAX_LENGTH})")
+            .HasMaxLength(Supplier.CONTACT_FIRST_NAME_MAX_LENGTH)
             .IsRequired(true);
 
         _ = modelBuilder.Entity<Supplier>()
             .Property(supplier => supplier.ContactLastName)
             .HasColumnName("ContactLastName")
             .HasColumnOrder(3)
-            .HasColumnType($"nvarchar({Supplier.CONTACT_INFO_MAX_LENGTH})")
-            .HasMaxLength(Supplier.CONTACT_INFO_MAX_LENGTH)
+            .HasColumnType($"nvarchar({Supplier.CONTACT_LAST_NAME_MAX_LENGTH})")
+            .HasMaxLength(Supplier.CONTACT_LAST_NAME_MAX_LENGTH)
             .IsRequired(true);
 
         _ = modelBuilder.Entity<Supplier>()
             .Property(supplier => supplier.ContactEmail)
             .HasColumnName("ContactEmail")
             .HasColumnOrder(4)
-            .HasColumnType($"nvarchar({Supplier.CONTACT_INFO_MAX_LENGTH})")
-            .HasMaxLength(Supplier.CONTACT_INFO_MAX_LENGTH)
+            .HasColumnType($"nvarchar({Supplier.CONTACT_EMAIL_MAX_LENGTH})")
+            .HasMaxLength(Supplier.CONTACT_EMAIL_MAX_LENGTH)
             .IsRequired(true);
 
         _ = modelBuilder.Entity<Supplier>()
             .Property(supplier => supplier.ContactPhone)
             .HasColumnName("ContactPhone")
             .HasColumnOrder(5)
-            .HasColumnType($"nvarchar({Supplier.CONTACT_INFO_MAX_LENGTH})")
-            .HasMaxLength(Supplier.CONTACT_INFO_MAX_LENGTH)
+            .HasColumnType($"nvarchar({Supplier.CONTACT_TELEPHONE_MAX_LENGTH})")
+            .HasMaxLength(Supplier.CONTACT_TELEPHONE_MAX_LENGTH)
             .IsRequired(true);
 
         _ = modelBuilder.Entity<Supplier>()
@@ -527,14 +527,14 @@ internal class WsysDbContext : DbContext {
         // Configuration des relations
         _ = modelBuilder.Entity<PurchaseOrder>()
             .HasOne(order => order.Product)
-            .WithMany(produit => produit.)
+            .WithMany(product => product.PurchaseOrder)
             .HasForeignKey(order => order.ProductId)
             .OnDelete(DeleteBehavior.Restrict)
             .IsRequired();
 
         _ = modelBuilder.Entity<PurchaseOrder>()
             .HasOne(order => order.Warehouse)
-            .WithMany(warehouse => warehouse.PurchaseOrders)
+            .WithMany(warehouse => warehouse.RestockOrders)
             .HasForeignKey(order => order.WarehouseId)
             .OnDelete(DeleteBehavior.Restrict)
             .IsRequired();
@@ -640,6 +640,7 @@ internal class WsysDbContext : DbContext {
 
         _ = modelBuilder.Entity<Warehouse>()
             .Property(warehouse => warehouse.WarehouseName)
+            .Property(entrepot => entrepot.WarehouseName)
             .HasColumnName("Nom")
             .HasColumnOrder(1)
             .HasColumnType("nvarchar(100)")

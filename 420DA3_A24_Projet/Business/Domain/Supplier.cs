@@ -143,10 +143,10 @@ public class Supplier {
     public static bool ValidateContactFirstName(string firstName) {
         return firstName.Length <= CONTACT_FIRST_NAME_MAX_LENGTH && firstName.Length >= CONTACT_FIRST_NAME_MAX_LENGTH;
     }/// <summary>
-    /// Méthode de validation d'ID
-    /// </summary>
-    /// <param name="lastName">Le numéro d'ID à valider</param>
-    /// <returns><see langword="true"/> si valide, <see langword="false"/> sinon.</returns>
+     /// Méthode de validation d'ID
+     /// </summary>
+     /// <param name="lastName">Le numéro d'ID à valider</param>
+     /// <returns><see langword="true"/> si valide, <see langword="false"/> sinon.</returns>
     public static bool ValidateContactLastName(string lastName) {
         return lastName.Length <= CONTACT_LAST_NAME_MAX_LENGTH && lastName.Length >= CONTACT_LAST_NAME_MAX_LENGTH;
     }

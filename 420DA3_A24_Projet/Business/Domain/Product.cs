@@ -77,7 +77,7 @@ public class Product {
     public object DateCreation { get; internal set; }
     public object DateModification { get; internal set; }
     public object DateSuppression { get; internal set; }
-   
+
 
     #endregion
 
@@ -98,7 +98,7 @@ public class Product {
                    int instockqty,
                    decimal weightKg,
                    int entrepotId) {
-       
+
         this.ProductName = productName;
         this.ProductDescription = productDescription;
         this.UpcCode = upcCode;
@@ -128,7 +128,7 @@ public class Product {
                       DateTime? dateModified,
                       DateTime? dateDeleted,
                       byte[] rowVersion) : this(productName, productDescription, upcCode, imageFileName, clientId, supplierName, supplierCode, desiredqty, instockqty, weightKg, entrepotId) {
-        
+
         this.Id = id;
         this.DateCreated = dateCreated;
         this.DateModified = dateModified;
@@ -165,7 +165,7 @@ public class Product {
     }
 
     public bool IsDueForRestocking() {
-        return InStockQty < DesiredQty;
+        return this.InStockQty < this.DesiredQty;
     }
     public override string ToString() {
         return $"{this.ProductName} (UPC: {this.UpcCode}) - Stock: {this.DesiredQty}/{this.InStockQty}, Weight: {this.WeightKg}kg, Warehouse: {this.Entrepot.Id}";
