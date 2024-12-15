@@ -1,4 +1,6 @@
-﻿using System;
+﻿using _420DA3_A24_Projet.Business.Domain;
+using _420DA3_A24_Projet.Business;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,15 +11,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace _420DA3_A24_Projet.Presentation.Views;
-public partial class ProduitsView : Form {
-    public ProduitsView() {
+public partial class ProductView : Form {
+    public ProductView() {
         InitializeComponent();
     }
 
-    private void ProduitsView_Load(object sender, EventArgs e) {
-
-    }
-
+ 
     private void label6_Click(object sender, EventArgs e) {
 
     }
@@ -25,4 +24,5 @@ public partial class ProduitsView : Form {
     private void button1_Click(object sender, EventArgs e) {
 
     }
+
 }

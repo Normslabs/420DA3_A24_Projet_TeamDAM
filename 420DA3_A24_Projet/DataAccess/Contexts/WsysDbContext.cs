@@ -12,7 +12,7 @@ internal class WsysDbContext : DbContext {
     public DbSet<Supplier> Suppliers { get; set; }
     public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
     public DbSet<Product> Produits { get; set; }
-    public DbSet<Entrepot> Entrepots { get; set; }
+    public DbSet<Warehouse> Entrepots { get; set; }
     
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
@@ -627,39 +627,39 @@ internal class WsysDbContext : DbContext {
 
         #region Entrepot
 
-        _ = modelBuilder.Entity<Entrepot>()
+        _ = modelBuilder.Entity<Warehouse>()
     .ToTable(nameof(this.Entrepots))
     .HasKey(entrepot => entrepot.Id);
 
-        _ = modelBuilder.Entity<Entrepot>()
+        _ = modelBuilder.Entity<Warehouse>()
             .Property(entrepot => entrepot.Id)
             .HasColumnName("Id")
             .HasColumnOrder(0)
             .HasColumnType("int")
             .UseIdentityColumn(1, 1);
 
-        _ = modelBuilder.Entity<Entrepot>()
+        _ = modelBuilder.Entity<Warehouse>()
             .Property(entrepot => entrepot.Nom)
             .HasColumnName("Nom")
             .HasColumnOrder(1)
             .HasColumnType("nvarchar(100)")
             .IsRequired(true);
 
-        _ = modelBuilder.Entity<Entrepot>()
+        _ = modelBuilder.Entity<Warehouse>()
             .Property(entrepot => entrepot.Adresse)
             .HasColumnName("Adresse")
             .HasColumnOrder(2)
             .HasColumnType("nvarchar(255)")
             .IsRequired(true);
 
-        _ = modelBuilder.Entity<Entrepot>()
+        _ = modelBuilder.Entity<Warehouse>()
             .Property(entrepot => entrepot.Capacite)
             .HasColumnName("Capacite")
             .HasColumnOrder(3)
             .HasColumnType("int")
             .IsRequired(true);
 
-        _ = modelBuilder.Entity<Entrepot>()
+        _ = modelBuilder.Entity<Warehouse>()
             .Property(entrepot => entrepot.DateCreation)
             .HasColumnName("DateCreation")
             .HasColumnOrder(4)
@@ -668,7 +668,7 @@ internal class WsysDbContext : DbContext {
             .HasDefaultValueSql("GETDATE()")
             .IsRequired(true);
 
-        _ = modelBuilder.Entity<Entrepot>()
+        _ = modelBuilder.Entity<Warehouse>()
             .Property(entrepot => entrepot.DateModification)
             .HasColumnName("DateModification")
             .HasColumnOrder(5)
@@ -676,7 +676,7 @@ internal class WsysDbContext : DbContext {
             .HasPrecision(7)
             .IsRequired(false);
 
-        _ = modelBuilder.Entity<Entrepot>()
+        _ = modelBuilder.Entity<Warehouse>()
             .Property(entrepot => entrepot.DateSuppression)
             .HasColumnName("DateSuppression")
             .HasColumnOrder(6)

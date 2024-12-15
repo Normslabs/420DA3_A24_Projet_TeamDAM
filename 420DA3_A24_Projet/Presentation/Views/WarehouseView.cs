@@ -9,8 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace _420DA3_A24_Projet.Presentation.Views;
-public partial class EntrepotView : Form {
-    public EntrepotView() {
+public partial class WarehouseView : Form {
+    public WarehouseView() {
         InitializeComponent();
+    }
+
+    private void EntrepotView_Load(object sender, EventArgs e) {
+
     }
 }

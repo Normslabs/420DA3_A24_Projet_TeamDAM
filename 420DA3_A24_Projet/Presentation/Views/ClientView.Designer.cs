@@ -141,7 +141,7 @@ partial class ClientView {
         this.label2.Name = "label2";
         this.label2.Size = new Size(110, 20);
         this.label2.TabIndex = 2;
-        this.label2.Text = "Entrepot Attiré:";
+        this.label2.Text = "Warehouse Attiré:";
         // 
         // label3
         // 
@@ -181,7 +181,7 @@ partial class ClientView {
         this.label5.Name = "label5";
         this.label5.Size = new Size(110, 20);
         this.label5.TabIndex = 2;
-        this.label5.Text = "Entrepot Attiré:";
+        this.label5.Text = "Warehouse Attiré:";
         // 
         // label6
         // 
@@ -230,7 +230,7 @@ partial class ClientView {
         this.label9.Name = "label9";
         this.label9.Size = new Size(110, 20);
         this.label9.TabIndex = 2;
-        this.label9.Text = "Entrepot Attiré:";
+        this.label9.Text = "Warehouse Attiré:";
         // 
         // label10
         // 
@@ -295,7 +295,7 @@ partial class ClientView {
         this.label13.Name = "label13";
         this.label13.Size = new Size(110, 20);
         this.label13.TabIndex = 2;
-        this.label13.Text = "Entrepot Attiré:";
+        this.label13.Text = "Warehouse Attiré:";
         // 
         // label14
         // 

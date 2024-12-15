@@ -5,13 +5,13 @@ namespace _420DA3_A24_Projet.Business.Domain;
 /// <summary>
 /// Classe représentant un produit stocké dans les entrepôts.
 /// </summary>
-public class Produit {
+public class Product {
     // Constantes pour les limites de validation
-    public const int PRODUCT_NAME_MAX_LENGTH = 128;
-    public const int PRODUCT_DESCRIPTION_MAX_LENGTH = 512;
-    public const int UPC_CODE_LENGTH = 12;
-    public const int SUPPLIER_CODE_MAX_LENGTH = 64;
-    public const int IMAGE_FILE_NAME_MAX_LENGTH = 256;
+    public const int PRODUCT_NAME_MAX_LENGTH = 255;
+    public const int PRODUCT_DESCRIPTION_MAX_LENGTH = 1024;
+    public const int UPC_CODE_MAX_LENGTH = 24;
+    public const int SUPPLIER_CODE_MAX_LENGTH = 24;
+    public const int IMAGE_FILE_NAME_MAX_LENGTH = 128;
 
     #region Propriétés de données
 
@@ -24,14 +24,14 @@ public class Produit {
     [MaxLength(PRODUCT_DESCRIPTION_MAX_LENGTH)]
     public string ProductDescription { get; set; } = null!;
 
-    [Required, StringLength(UPC_CODE_LENGTH)]
+    [Required, StringLength(UPC_CODE_MAX_LENGTH)]
     public string UpcCode { get; set; } = null!;
 
     [MaxLength(IMAGE_FILE_NAME_MAX_LENGTH)]
     public string? ImageFileName { get; set; }
 
     [Required]
-    public int ClientId { get; set; }
+    public int OwnerClientId { get; set; }
 
     public virtual Client Client { get; set; } = null!;
 
@@ -41,20 +41,23 @@ public class Produit {
     [MaxLength(SUPPLIER_CODE_MAX_LENGTH)]
     public string SupplierCode { get; set; } = null!;
 
-    [Required]
-    public int StockQuantity { get; set; }
 
     [Required]
-    public int TargetStockQuantity { get; set; }
+    public double WeightKg { get; set; }
 
-    [Required]
-    public decimal WeightKg { get; set; }
+    public int InStockQty { get; set; }
+    public int DesiredQty { get; set; }
 
     public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
     public DateTime? DateModified { get; set; }
 
     public DateTime? DateDeleted { get; set; }
+
+    public Client OwnerClient { get; set; }
+
+    public List<PurchaseOrder> PurchaseOrder { get; set; }
+    public List<ShippingOrderProduct> ShippingOrderProduct { get; set; }
 
     [Timestamp]
     public byte[] RowVersion { get; set; } = Array.Empty<byte>();
@@ -66,7 +69,7 @@ public class Produit {
     [Required]
     public int EntrepotId { get; set; }
 
-    public virtual Entrepot Entrepot { get; set; } = null!;
+    public virtual Warehouse Entrepot { get; set; } = null!;
     public object Nom { get; internal set; }
     public object Description { get; internal set; }
     public object Prix { get; internal set; }
@@ -74,24 +77,25 @@ public class Produit {
     public object DateCreation { get; internal set; }
     public object DateModification { get; internal set; }
     public object DateSuppression { get; internal set; }
+   
 
     #endregion
 
     #region Constructeurs
 
-    public Produit() {
+    public Product() {
         // Default constructor for EF
     }
 
-    public Produit(string productName,
+    public Product(string productName,
                    string productDescription,
                    string upcCode,
                    string? imageFileName,
                    int clientId,
-                   string supplierName,
+                   string supplierid,
                    string supplierCode,
-                   int stockQuantity,
-                   int targetStockQuantity,
+                   int desiredqty,
+                   int instockqty,
                    decimal weightKg,
                    int entrepotId) {
        
@@ -99,16 +103,16 @@ public class Produit {
         this.ProductDescription = productDescription;
         this.UpcCode = upcCode;
         this.ImageFileName = imageFileName;
-        this.ClientId = clientId;
-        this.SupplierName = supplierName;
+        this.OwnerClientId = clientId;
+        this.SupplierName = supplierid;
         this.SupplierCode = supplierCode;
-        this.StockQuantity = stockQuantity;
-        this.TargetStockQuantity = targetStockQuantity;
-        this.WeightKg = weightKg;
+        this.DesiredQty = desiredqty;
+        this.InStockQty = instockqty;
+        this.WeightKg = (double) weightKg;
         this.EntrepotId = entrepotId;
     }
 
-    protected Produit(int id,
+    protected Product(int id,
                       string productName,
                       string productDescription,
                       string upcCode,
@@ -116,14 +120,14 @@ public class Produit {
                       int clientId,
                       string supplierName,
                       string supplierCode,
-                      int stockQuantity,
-                      int targetStockQuantity,
+                      int desiredqty,
+                      int instockqty,
                       decimal weightKg,
                       int entrepotId,
                       DateTime dateCreated,
                       DateTime? dateModified,
                       DateTime? dateDeleted,
-                      byte[] rowVersion) : this(productName, productDescription, upcCode, imageFileName, clientId, supplierName, supplierCode, stockQuantity, targetStockQuantity, weightKg, entrepotId) {
+                      byte[] rowVersion) : this(productName, productDescription, upcCode, imageFileName, clientId, supplierName, supplierCode, desiredqty, instockqty, weightKg, entrepotId) {
         
         this.Id = id;
         this.DateCreated = dateCreated;
@@ -135,10 +139,40 @@ public class Produit {
     #endregion
 
     #region Méthodes
+    //Partie pour valider les méthodes
+    public bool ValidateUpcCode(string upcCode) {
+        return !string.IsNullOrWhiteSpace(upcCode) && upcCode.Length <= UPC_CODE_MAX_LENGTH;
+    }
 
+    public bool ValidateProductName(string name) {
+        return !string.IsNullOrWhiteSpace(name) && name.Length <= PRODUCT_NAME_MAX_LENGTH;
+    }
+
+    public bool ValidateProductDescription(string description) {
+        return !string.IsNullOrWhiteSpace(description) && description.Length <= PRODUCT_DESCRIPTION_MAX_LENGTH;
+    }
+
+    public bool ValidateImageFileName(string fileName) {
+        return !string.IsNullOrWhiteSpace(fileName) && fileName.Length <= IMAGE_FILE_NAME_MAX_LENGTH;
+    }
+
+    public bool ValidateSupplierCode(string supplierCode) {
+        return !string.IsNullOrWhiteSpace(supplierCode) && supplierCode.Length <= SUPPLIER_CODE_MAX_LENGTH;
+    }
+
+    public bool ValidateWeightInKg(double weight) {
+        return weight >= 0; // Ensure weight is not negative
+    }
+
+    public bool IsDueForRestocking() {
+        return InStockQty < DesiredQty;
+    }
     public override string ToString() {
-        return $"{this.ProductName} (UPC: {this.UpcCode}) - Stock: {this.StockQuantity}/{this.TargetStockQuantity}, Poids: {this.WeightKg}kg, Entrepôt: {this.EntrepotId}";
+        return $"{this.ProductName} (UPC: {this.UpcCode}) - Stock: {this.DesiredQty}/{this.InStockQty}, Weight: {this.WeightKg}kg, Warehouse: {this.Entrepot.Id}";
     }
 
     #endregion
+}
+
+public class ShippingOrderProduct {
 }
