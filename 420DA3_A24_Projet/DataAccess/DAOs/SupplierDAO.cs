@@ -1,6 +1,5 @@
 ﻿using _420DA3_A24_Projet.Business.Domain;
 using _420DA3_A24_Projet.DataAccess.Contexts;
-using Microsoft.EntityFrameworkCore;
 
 namespace _420DA3_A24_Projet.DataAccess.DAOs;
 
@@ -78,7 +77,7 @@ internal class SupplierDAO {
     /// <param name="supplier">Fournisseur à supprimer.</param>
     /// <param name="softDeletes">Indique si la suppression est logique (soft delete).</param>
     /// <returns>Fournisseur supprimé.</returns>
-    public Supplier Delete(Supplier supplier, bool softDeletes = true) {
+    public void Delete(Supplier supplier, bool softDeletes = true) {
         if (softDeletes) {
             supplier.DateDeleted = DateTime.Now;
             _ = this.context.Suppliers.Update(supplier);
@@ -86,6 +85,5 @@ internal class SupplierDAO {
             _ = this.context.Suppliers.Remove(supplier);
         }
         _ = this.context.SaveChanges();
-        return supplier;
     }
 }

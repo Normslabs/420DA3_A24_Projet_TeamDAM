@@ -11,6 +11,10 @@ using System.Windows.Forms;
 namespace _420DA3_A24_Projet.Presentation.Views;
 public partial class ClientView : Form {
     public ClientView() {
-        InitializeComponent();
+        this.InitializeComponent();
+    }
+
+    private void panel6_Paint(object sender, PaintEventArgs e) {
+
     }
 }

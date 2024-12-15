@@ -11,8 +11,8 @@ internal class WsysDbContext : DbContext {
     public DbSet<Adresse> Adresses { get; set; }
     public DbSet<Supplier> Suppliers { get; set; }
     public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
-
-
+    public DbSet<Product> Produits { get; set; }
+    public DbSet<Warehouse> Entrepots { get; set; }
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
@@ -357,11 +357,11 @@ internal class WsysDbContext : DbContext {
         #region SUPPLIER
 
         _ = modelBuilder.Entity<Supplier>()
-            .ToTable(nameof(this.Suppliers)) // Nom de la table
-            .HasKey(supplier => supplier.Id); // Clé primaire
+            .ToTable(nameof(this.Suppliers))
+            .HasKey(supplier => supplier.Id);
 
         _ = modelBuilder.Entity<Supplier>()
-            .HasIndex(supplier => supplier.Name) // Index unique sur le nom
+            .HasIndex(supplier => supplier.Name)
             .IsUnique();
 
         _ = modelBuilder.Entity<Supplier>()
@@ -383,32 +383,32 @@ internal class WsysDbContext : DbContext {
             .Property(supplier => supplier.ContactFirstName)
             .HasColumnName("ContactFirstName")
             .HasColumnOrder(2)
-            .HasColumnType($"nvarchar({Supplier.CONTACT_INFO_MAX_LENGTH})")
-            .HasMaxLength(Supplier.CONTACT_INFO_MAX_LENGTH)
+            .HasColumnType($"nvarchar({Supplier.CONTACT_FIRST_NAME_MAX_LENGTH})")
+            .HasMaxLength(Supplier.CONTACT_FIRST_NAME_MAX_LENGTH)
             .IsRequired(true);
 
         _ = modelBuilder.Entity<Supplier>()
             .Property(supplier => supplier.ContactLastName)
             .HasColumnName("ContactLastName")
             .HasColumnOrder(3)
-            .HasColumnType($"nvarchar({Supplier.CONTACT_INFO_MAX_LENGTH})")
-            .HasMaxLength(Supplier.CONTACT_INFO_MAX_LENGTH)
+            .HasColumnType($"nvarchar({Supplier.CONTACT_LAST_NAME_MAX_LENGTH})")
+            .HasMaxLength(Supplier.CONTACT_LAST_NAME_MAX_LENGTH)
             .IsRequired(true);
 
         _ = modelBuilder.Entity<Supplier>()
             .Property(supplier => supplier.ContactEmail)
             .HasColumnName("ContactEmail")
             .HasColumnOrder(4)
-            .HasColumnType($"nvarchar({Supplier.CONTACT_INFO_MAX_LENGTH})")
-            .HasMaxLength(Supplier.CONTACT_INFO_MAX_LENGTH)
+            .HasColumnType($"nvarchar({Supplier.CONTACT_EMAIL_MAX_LENGTH})")
+            .HasMaxLength(Supplier.CONTACT_EMAIL_MAX_LENGTH)
             .IsRequired(true);
 
         _ = modelBuilder.Entity<Supplier>()
             .Property(supplier => supplier.ContactPhone)
             .HasColumnName("ContactPhone")
             .HasColumnOrder(5)
-            .HasColumnType($"nvarchar({Supplier.CONTACT_INFO_MAX_LENGTH})")
-            .HasMaxLength(Supplier.CONTACT_INFO_MAX_LENGTH)
+            .HasColumnType($"nvarchar({Supplier.CONTACT_TELEPHONE_MAX_LENGTH})")
+            .HasMaxLength(Supplier.CONTACT_TELEPHONE_MAX_LENGTH)
             .IsRequired(true);
 
         _ = modelBuilder.Entity<Supplier>()
@@ -527,14 +527,14 @@ internal class WsysDbContext : DbContext {
         // Configuration des relations
         _ = modelBuilder.Entity<PurchaseOrder>()
             .HasOne(order => order.Product)
-            .WithMany(product => product.PurchaseOrders)
+            .WithMany(product => product.PurchaseOrder)
             .HasForeignKey(order => order.ProductId)
             .OnDelete(DeleteBehavior.Restrict)
             .IsRequired();
 
         _ = modelBuilder.Entity<PurchaseOrder>()
             .HasOne(order => order.Warehouse)
-            .WithMany(warehouse => warehouse.PurchaseOrders)
+            .WithMany(warehouse => warehouse.RestockOrders)
             .HasForeignKey(order => order.WarehouseId)
             .OnDelete(DeleteBehavior.Restrict)
             .IsRequired();
@@ -555,45 +555,113 @@ internal class WsysDbContext : DbContext {
 
 
 
+        #region Product
 
+        _ = modelBuilder.Entity<Product>()
+            .ToTable(nameof(this.Produits))
+            .HasKey(product => product.Id);
 
-
-        #region Entrepot
-
-        _ = modelBuilder.Entity<Entrepot>()
-    .ToTable(nameof(this.Entrepots))
-    .HasKey(entrepot => entrepot.Id);
-
-        _ = modelBuilder.Entity<Entrepot>()
-            .Property(entrepot => entrepot.Id)
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.Id)
             .HasColumnName("Id")
             .HasColumnOrder(0)
             .HasColumnType("int")
             .UseIdentityColumn(1, 1);
 
-        _ = modelBuilder.Entity<Entrepot>()
-            .Property(entrepot => entrepot.Nom)
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.Nom)
             .HasColumnName("Nom")
             .HasColumnOrder(1)
             .HasColumnType("nvarchar(100)")
             .IsRequired(true);
 
-        _ = modelBuilder.Entity<Entrepot>()
-            .Property(entrepot => entrepot.Adresse)
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.Description)
+            .HasColumnName("Description")
+            .HasColumnOrder(2)
+            .HasColumnType("nvarchar(255)")
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.Prix)
+            .HasColumnName("Prix")
+            .HasColumnOrder(3)
+            .HasColumnType("decimal(18,2)")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.Stock)
+            .HasColumnName("Stock")
+            .HasColumnOrder(4)
+            .HasColumnType("int")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.DateCreation)
+            .HasColumnName("DateCreation")
+            .HasColumnOrder(5)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .HasDefaultValueSql("GETDATE()")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.DateModification)
+            .HasColumnName("DateModification")
+            .HasColumnOrder(6)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .IsRequired(false);
+
+        _ = modelBuilder.Entity<Product>()
+            .Property(product => product.DateSuppression)
+            .HasColumnName("DateSuppression")
+            .HasColumnOrder(7)
+            .HasColumnType("datetime2")
+            .HasPrecision(7)
+            .IsRequired(false);
+
+        #endregion
+
+
+
+        #region Warehouse
+
+        _ = modelBuilder.Entity<Warehouse>()
+    .ToTable(nameof(this.Entrepots))
+    .HasKey(warehouse => warehouse.Id);
+
+        _ = modelBuilder.Entity<Warehouse>()
+            .Property(warehouse => warehouse.Id)
+            .HasColumnName("Id")
+            .HasColumnOrder(0)
+            .HasColumnType("int")
+            .UseIdentityColumn(1, 1);
+
+        _ = modelBuilder.Entity<Warehouse>()
+            .Property(warehouse => warehouse.WarehouseName)
+            .Property(entrepot => entrepot.WarehouseName)
+            .HasColumnName("Nom")
+            .HasColumnOrder(1)
+            .HasColumnType("nvarchar(100)")
+            .IsRequired(true);
+
+        _ = modelBuilder.Entity<Warehouse>()
+            .Property(warehouse => warehouse.Adresse)
             .HasColumnName("Adresse")
             .HasColumnOrder(2)
             .HasColumnType("nvarchar(255)")
             .IsRequired(true);
 
-        _ = modelBuilder.Entity<Entrepot>()
-            .Property(entrepot => entrepot.Capacite)
+        _ = modelBuilder.Entity<Warehouse>()
+            .Property(warehouse => warehouse.Capacite)
             .HasColumnName("Capacite")
             .HasColumnOrder(3)
             .HasColumnType("int")
             .IsRequired(true);
 
-        _ = modelBuilder.Entity<Entrepot>()
-            .Property(entrepot => entrepot.DateCreation)
+        _ = modelBuilder.Entity<Warehouse>()
+            .Property(warehouse => warehouse.DateCreation)
             .HasColumnName("DateCreation")
             .HasColumnOrder(4)
             .HasColumnType("datetime2")
@@ -601,16 +669,16 @@ internal class WsysDbContext : DbContext {
             .HasDefaultValueSql("GETDATE()")
             .IsRequired(true);
 
-        _ = modelBuilder.Entity<Entrepot>()
-            .Property(entrepot => entrepot.DateModification)
+        _ = modelBuilder.Entity<Warehouse>()
+            .Property(warehouse => warehouse.DateModification)
             .HasColumnName("DateModification")
             .HasColumnOrder(5)
             .HasColumnType("datetime2")
             .HasPrecision(7)
             .IsRequired(false);
 
-        _ = modelBuilder.Entity<Entrepot>()
-            .Property(entrepot => entrepot.DateSuppression)
+        _ = modelBuilder.Entity<Warehouse>()
+            .Property(warehouse => warehouse.DateSuppression)
             .HasColumnName("DateSuppression")
             .HasColumnOrder(6)
             .HasColumnType("datetime2")
@@ -684,9 +752,5 @@ internal class WsysDbContext : DbContext {
 
 
 
-    }
-
-    private object Entrepots() {
-        throw new NotImplementedException();
     }
 }

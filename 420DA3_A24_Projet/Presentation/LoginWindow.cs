@@ -29,7 +29,7 @@ internal partial class LoginWindow : Form {
             this.DialogResult = DialogResult.OK;
 
         } catch (Exception ex) {
-            this.parentApp.HandleException(ex);
+            WsysApplication.HandleException(ex);
         }
     }
 }
