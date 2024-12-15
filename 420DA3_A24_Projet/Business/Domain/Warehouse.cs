@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using Microsoft.VisualBasic;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace _420DA3_A24_Projet.Business.Domain;
 
@@ -11,7 +8,7 @@ namespace _420DA3_A24_Projet.Business.Domain;
 public class Warehouse {
 
     public const int WarehouseNameMaxLength = 128;
-    
+
     // Attributs de la classe Warehouse
     public int Id { get; set; }
 
@@ -31,7 +28,7 @@ public class Warehouse {
     public DateTime DateCreation { get; set; } = DateTime.Now;
     public DateTime? DateModification { get; set; }
     public DateTime? DateSuppression { get; set; }
-    public byte[] RowVersion { get; set; } = null;
+    public byte[]? RowVersion { get; set; } = null;
 
     // Propriété de navigation pour l'adresse (avec modificateur 'virtual')
     public virtual Adresse Adresse { get; set; }
@@ -61,7 +58,7 @@ public class Warehouse {
         this.DateModification = dateModification;
         this.DateSuppression = dateSuppression;
         this.RowVersion = rowVersion ?? Array.Empty<byte>();
-       
+
     }
     public static bool ValidateWarehouseName(string name) {
         return !string.IsNullOrWhiteSpace(name) && name.Length <= WarehouseNameMaxLength;

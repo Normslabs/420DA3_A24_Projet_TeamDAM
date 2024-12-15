@@ -3,7 +3,7 @@
 namespace _420DA3_A24_Projet.Presentation;
 internal partial class WhEmpMainMenu : Form {
 
-    private WsysApplication parentApp;
+    private readonly WsysApplication parentApp;
 
     public WhEmpMainMenu(WsysApplication application) {
         this.parentApp = application;

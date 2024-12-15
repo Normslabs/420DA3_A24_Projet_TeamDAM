@@ -1,6 +1,5 @@
 ﻿using _420DA3_A24_Projet.Business.Domain;
 using _420DA3_A24_Projet.DataAccess.Contexts;
-using Microsoft.EntityFrameworkCore;
 
 namespace _420DA3_A24_Projet.DataAccess.DAOs;
 

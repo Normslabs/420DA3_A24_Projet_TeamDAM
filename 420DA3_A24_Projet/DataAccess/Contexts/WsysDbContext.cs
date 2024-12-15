@@ -13,7 +13,7 @@ internal class WsysDbContext : DbContext {
     public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
     public DbSet<Product> Produits { get; set; }
     public DbSet<Warehouse> Entrepots { get; set; }
-    
+
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
         base.OnConfiguring(optionsBuilder);

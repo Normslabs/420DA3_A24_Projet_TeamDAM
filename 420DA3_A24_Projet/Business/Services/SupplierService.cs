@@ -76,7 +76,7 @@ internal class SupplierService {
     }
 
     public Supplier? OpenSupplierWindowForDeletion(Supplier supplier) {
-        DialogResult result = this.supplierWindow .OpenForDeletion(supplier);
+        DialogResult result = this.supplierWindow.OpenForDeletion(supplier);
         return result == DialogResult.OK ? supplier : null;
     }
 

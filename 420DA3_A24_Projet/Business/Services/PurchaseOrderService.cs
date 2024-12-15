@@ -18,7 +18,7 @@ internal class PurchaseOrderService {
         this.view = new PurchaseOrderView(parentApp);
     }
 
-    public PurchaseOrder? OpenViewFor(ViewActionsEnum viewAction, PurchaseOrder purchaseOrder = null) {
+    public PurchaseOrder? OpenViewFor(ViewActionsEnum viewAction, PurchaseOrder? purchaseOrder = null) {
         try {
             switch (viewAction) {
                 case ViewActionsEnum.Creation:
@@ -32,7 +32,7 @@ internal class PurchaseOrderService {
                     }
                     DialogResult editResult = this.view.OpenForEdition(purchaseOrder);
                     if (editResult == DialogResult.OK) {
-                       
+
                         _ = this.OpenViewFor(ViewActionsEnum.Visualization, purchaseOrder);
                         return purchaseOrder;
                     }

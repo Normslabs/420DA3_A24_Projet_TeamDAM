@@ -1,56 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using _420DA3_A24_Projet.Business.Domain;
 using Microsoft.EntityFrameworkCore;
-using _420DA3_A24_Projet.Business.Domain;
 
 namespace _420DA3_A24_Projet.DataAccess.DAOs;
 /// <summary>
 /// DAO for managing Warehouse entities.
 /// </summary>
 public class WarehouseDAO {
-        private readonly DbContext context;
+    private readonly DbContext context;
 
-        public WarehouseDAO(DbContext context) {
-            this.context = context;
-        }
+    public WarehouseDAO(DbContext context) {
+        this.context = context;
+    }
 
-        // Créer
-        public async Task<Warehouse> AddEntrepotAsync(Warehouse warehouse) {
-            this.context.Set<Warehouse>()
-                        .Add(warehouse);
-            await this.context.SaveChangesAsync();
-            return warehouse;
-        }
+    // Créer
+    public async Task<Warehouse> AddEntrepotAsync(Warehouse warehouse) {
+        _ = this.context.Set<Warehouse>()
+                    .Add(warehouse);
+        _ = await this.context.SaveChangesAsync();
+        return warehouse;
+    }
 
-        // Lire - Get by ID
-        public async Task<Warehouse?> GetEntrepotByIdAsync(int id) {
-            return await context.Set<Warehouse>()
-                .Include(e => e.Adresse)
-                .Include(e => e.Clients)
-                .Include(e => e.OrdreRestockage)
-                .Include(e => e.WarehouseEmployes)
-                .FirstOrDefaultAsync(e => e.Id == id);
-        }
+    // Lire - Get by ID
+    public async Task<Warehouse?> GetEntrepotByIdAsync(int id) {
+        return await this.context.Set<Warehouse>()
+            .Include(e => e.Adresse)
+            .Include(e => e.Clients)
+            .Include(e => e.OrdreRestockage)
+            .Include(e => e.WarehouseEmployes)
+            .FirstOrDefaultAsync(e => e.Id == id);
+    }
 
-        // Lire - Get All
-        public async Task<List<Warehouse>> GetAllEntrepotsAsync() {
-            return await context.Set<Warehouse>()
-                .Include(e => e.Adresse)
-                .Include(e => e.Clients)
-                .Include(e => e.OrdreRestockage)
-                .Include(e => e.WarehouseEmployes)
-                .ToListAsync();
-        }
+    // Lire - Get All
+    public async Task<List<Warehouse>> GetAllEntrepotsAsync() {
+        return await this.context.Set<Warehouse>()
+            .Include(e => e.Adresse)
+            .Include(e => e.Clients)
+            .Include(e => e.OrdreRestockage)
+            .Include(e => e.WarehouseEmployes)
+            .ToListAsync();
+    }
 
-        // Update
-        public async Task<bool> UpdateEntrepotAsync(Warehouse warehouse) {
-            this.context.Set<Warehouse>()
-            .Update(warehouse);
-            return await context.SaveChangesAsync() > 0;
-        }
+    // Update
+    public async Task<bool> UpdateEntrepotAsync(Warehouse warehouse) {
+        _ = this.context.Set<Warehouse>()
+        .Update(warehouse);
+        return await this.context.SaveChangesAsync() > 0;
+    }
 
     // Supprimer
     public async Task<bool> DeleteEntrepotAsync(int id) {
@@ -63,11 +58,11 @@ public class WarehouseDAO {
         }
 
         // Supprime l'entrepôt trouvé du context
-        context.Set<Warehouse>()
+        _ = this.context.Set<Warehouse>()
                .Remove(warehouse);
 
 
-        return await context.SaveChangesAsync() > 0;
+        return await this.context.SaveChangesAsync() > 0;
     }
 
     internal bool CreateEntrepot(Warehouse warehouse) {

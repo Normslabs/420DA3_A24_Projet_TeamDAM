@@ -1,10 +1,5 @@
 ﻿using _420DA3_A24_Projet.Business.Domain;
 using _420DA3_A24_Projet.DataAccess.DAOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.Business.Services;
 public class ProductService {
@@ -16,17 +11,17 @@ public class ProductService {
 
     // Méthode pour récupérer tous les produits
     public async Task<IEnumerable<Product>> GetAllProduitsAsync() {
-        return await produitsDao.GetAllProduitsAsync();
+        return await this.produitsDao.GetAllProduitsAsync();
     }
 
     // Méthode pour récupérer un produit par son ID
     public async Task<Product?> GetProduitByIdAsync(int id) {
-        return await produitsDao.GetProduitByIdAsync(id);
+        return await this.produitsDao.GetProduitByIdAsync(id);
     }
 
     // Méthode pour créer un nouveau produit
     public bool CreateProduit(Product produit) {
-        return produitsDao.CreateProduit(produit);
+        return this.produitsDao.CreateProduit(produit);
     }
 
     // Méthode pour mettre à jour un produit
@@ -36,6 +31,6 @@ public class ProductService {
 
     // Méthode pour supprimer un produit
     public async Task<bool> DeleteProduitAsync(int id) {
-        return await produitsDao.DeleteProduitAsync(id);
+        return await this.produitsDao.DeleteProduitAsync(id);
     }
 }

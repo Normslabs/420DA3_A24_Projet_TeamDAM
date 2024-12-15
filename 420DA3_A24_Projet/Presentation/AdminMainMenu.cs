@@ -6,7 +6,7 @@ using Project_Utilities.Presentation;
 namespace _420DA3_A24_Projet.Presentation;
 internal partial class AdminMainMenu : Form {
 
-    private WsysApplication parentApp;
+    private readonly WsysApplication parentApp;
 
     public AdminMainMenu(WsysApplication application) {
         this.parentApp = application;
@@ -65,7 +65,7 @@ internal partial class AdminMainMenu : Form {
 
     private void UserViewButton_Click(object sender, EventArgs e) {
         try {
-            User? selectedUser = this.userSearchResults.SelectedItem as User 
+            User? selectedUser = this.userSearchResults.SelectedItem as User
                 ?? throw new ValidationException("Veuillez sélectionner un utilisateur.");
             _ = this.parentApp.UserService.OpenManagementWindowForVisualization(selectedUser);
 
@@ -79,7 +79,7 @@ internal partial class AdminMainMenu : Form {
 
     private void UserModifyButton_Click(object sender, EventArgs e) {
         try {
-            User? selectedUser = this.userSearchResults.SelectedItem as User 
+            User? selectedUser = this.userSearchResults.SelectedItem as User
                 ?? throw new ValidationException("Veuillez sélectionner un utilisateur.");
             bool wasModified = this.parentApp.UserService.OpenManagementWindowForEdition(selectedUser);
             if (wasModified) {
@@ -96,7 +96,7 @@ internal partial class AdminMainMenu : Form {
 
     private void UserDeleteButton_Click(object sender, EventArgs e) {
         try {
-            User? selectedUser = this.userSearchResults.SelectedItem as User 
+            User? selectedUser = this.userSearchResults.SelectedItem as User
                 ?? throw new ValidationException("Veuillez sélectionner un utilisateur.");
             bool wasDeleted = this.parentApp.UserService.OpenManagementWindowForDeletion(selectedUser);
             if (wasDeleted) {
@@ -178,7 +178,7 @@ internal partial class AdminMainMenu : Form {
 
     private void RoleModifyButton_Click(object sender, EventArgs e) {
         try {
-            Role? selectedRole = this.roleSearchResults.SelectedItem as Role 
+            Role? selectedRole = this.roleSearchResults.SelectedItem as Role
                 ?? throw new ValidationException("Veuillez sélectionner un rôle.");
             bool wasModified = this.parentApp.RoleService.OpenManagementWindowForEdition(selectedRole);
             if (wasModified) {
@@ -196,7 +196,7 @@ internal partial class AdminMainMenu : Form {
 
     private void RoleDeleteButton_Click(object sender, EventArgs e) {
         try {
-            Role? selectedRole = this.roleSearchResults.SelectedItem as Role 
+            Role? selectedRole = this.roleSearchResults.SelectedItem as Role
                 ?? throw new ValidationException("Veuillez sélectionner un rôle.");
             bool wasDeleted = this.parentApp.RoleService.OpenManagementWindowForDeletion(selectedRole);
             if (wasDeleted) {
