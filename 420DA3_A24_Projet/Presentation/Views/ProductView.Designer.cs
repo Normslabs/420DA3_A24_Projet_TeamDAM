@@ -1,6 +1,6 @@
 ﻿namespace _420DA3_A24_Projet.Presentation.Views;
 
-partial class ProduitsView {
+partial class ProductView {
     /// <summary>
     /// Required designer variable.
     /// </summary>
@@ -98,7 +98,7 @@ partial class ProduitsView {
         this.label9.Text = "Supplier  ";
         // 
         // label6
-        // 
+        //
         this.label6.AutoSize = true;
         this.label6.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         this.label6.Location = new Point(47, 220);
@@ -106,7 +106,7 @@ partial class ProduitsView {
         this.label6.Size = new Size(82, 17);
         this.label6.TabIndex = 19;
         this.label6.Text = "UPC Code  : ";
-        this.label6.Click += this.label6_Click;
+        
         // 
         // txtUpcCode
         // 
@@ -133,7 +133,7 @@ partial class ProduitsView {
         this.btnApply.TabIndex = 16;
         this.btnApply.Text = "Apply";
         this.btnApply.UseVisualStyleBackColor = true;
-        this.btnApply.Click += this.button1_Click;
+       
         // 
         // txtNom
         // 
@@ -258,15 +258,15 @@ partial class ProduitsView {
         this.titreID.TabIndex = 0;
         this.titreID.Text = "ID : ";
         // 
-        // ProduitsView
+        // ProductView
         // 
         this.AutoScaleDimensions = new SizeF(7F, 15F);
         this.AutoScaleMode = AutoScaleMode.Font;
         this.ClientSize = new Size(800, 450);
         this.Controls.Add(this.panel1);
-        this.Name = "ProduitsView";
-        this.Text = "ProduitsView";
-        this.Load += this.ProduitsView_Load;
+        this.Name = "ProductView";
+        this.Text = "ProductView";
+
         this.panel1.ResumeLayout(false);
         this.panel1.PerformLayout();
         ((System.ComponentModel.ISupportInitialize) this.numericUpDownWeight).EndInit();

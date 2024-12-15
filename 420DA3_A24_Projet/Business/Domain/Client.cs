@@ -100,7 +100,7 @@ public class Client {
     /// <summary>
     /// Entrepôt attitré au client.
     /// </summary>
-    public virtual Entrepot? EntrepotAttitre { get; set; }
+    public virtual Warehouse? EntrepotAttitre { get; set; }
 
     #endregion
 

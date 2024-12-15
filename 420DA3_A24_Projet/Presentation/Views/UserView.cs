@@ -115,7 +115,7 @@ internal partial class UserView : Form {
 
     /// <summary>
     /// Fills the roles and warehouse selectors of the <see cref="UserView"/> window with all
-    /// the existing <see cref="Role"/> and <see cref="Entrepot"/> values respectively.
+    /// the existing <see cref="Role"/> and <see cref="Warehouse"/> values respectively.
     /// </summary>
     private void ReloadSelectors() {
         try {
@@ -128,8 +128,8 @@ internal partial class UserView : Form {
             this.whEmpWarehouseValue.Items.Clear();
             _ = this.whEmpWarehouseValue.Items.Add("None");
             // TODO @PROF: fix this quand le service entrepot sera créé
-            List<Entrepot> entrepots = this.parentApp.EntrepotService.GetAllEntrepots();
-            foreach (Entrepot entrepot in entrepots) {
+            List<Warehouse> entrepots = this.parentApp.EntrepotService.GetAllEntrepots();
+            foreach (Warehouse entrepot in entrepots) {
                 _ = this.whEmpWarehouseValue.Items.Add(entrepot);
             }
 
@@ -170,7 +170,7 @@ internal partial class UserView : Form {
     private User SaveDataFromControls(User user) {
         user.Username = this.usernameValue.Text;
         user.PasswordHash = this.parentApp.PasswordService.HashPassword(this.passwordValue.Text);
-        user.EmployeeWarehouse = this.whEmpWarehouseValue.SelectedItem as Entrepot;
+        user.EmployeeWarehouse = this.whEmpWarehouseValue.SelectedItem as Warehouse;
         user.Roles.Clear();
         foreach (Role role in this.userRolesValues.SelectedItems) {
             user.Roles.Add(role);

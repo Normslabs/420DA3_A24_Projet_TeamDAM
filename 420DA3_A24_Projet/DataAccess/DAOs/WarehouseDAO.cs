@@ -8,69 +8,69 @@ using _420DA3_A24_Projet.Business.Domain;
 
 namespace _420DA3_A24_Projet.DataAccess.DAOs;
 /// <summary>
-/// DAO for managing Entrepot entities.
+/// DAO for managing Warehouse entities.
 /// </summary>
-public class EntrepotDAO {
+public class WarehouseDAO {
         private readonly DbContext context;
 
-        public EntrepotDAO(DbContext context) {
+        public WarehouseDAO(DbContext context) {
             this.context = context;
         }
 
         // Créer
-        public async Task<Entrepot> AddEntrepotAsync(Entrepot entrepot) {
-            this.context.Set<Entrepot>()
-                        .Add(entrepot);
+        public async Task<Warehouse> AddEntrepotAsync(Warehouse warehouse) {
+            this.context.Set<Warehouse>()
+                        .Add(warehouse);
             await this.context.SaveChangesAsync();
-            return entrepot;
+            return warehouse;
         }
 
         // Lire - Get by ID
-        public async Task<Entrepot?> GetEntrepotByIdAsync(int id) {
-            return await context.Set<Entrepot>()
+        public async Task<Warehouse?> GetEntrepotByIdAsync(int id) {
+            return await context.Set<Warehouse>()
                 .Include(e => e.Adresse)
                 .Include(e => e.Clients)
                 .Include(e => e.OrdreRestockage)
-                .Include(e => e.EmployesEntrepot)
+                .Include(e => e.WarehouseEmployes)
                 .FirstOrDefaultAsync(e => e.Id == id);
         }
 
         // Lire - Get All
-        public async Task<List<Entrepot>> GetAllEntrepotsAsync() {
-            return await context.Set<Entrepot>()
+        public async Task<List<Warehouse>> GetAllEntrepotsAsync() {
+            return await context.Set<Warehouse>()
                 .Include(e => e.Adresse)
                 .Include(e => e.Clients)
                 .Include(e => e.OrdreRestockage)
-                .Include(e => e.EmployesEntrepot)
+                .Include(e => e.WarehouseEmployes)
                 .ToListAsync();
         }
 
         // Update
-        public async Task<bool> UpdateEntrepotAsync(Entrepot entrepot) {
-            this.context.Set<Entrepot>()
-            .Update(entrepot);
+        public async Task<bool> UpdateEntrepotAsync(Warehouse warehouse) {
+            this.context.Set<Warehouse>()
+            .Update(warehouse);
             return await context.SaveChangesAsync() > 0;
         }
 
     // Supprimer
     public async Task<bool> DeleteEntrepotAsync(int id) {
         // S'assure que la méthode GetEntrepotByIdAsync fonctionne correctement et ne retourne pas une valeur nulle de manière inattendue.
-        Entrepot? entrepot = await this.GetEntrepotByIdAsync(id);
+        Warehouse? warehouse = await this.GetEntrepotByIdAsync(id);
 
 
-        if (entrepot == null) {
+        if (warehouse == null) {
             return false;
         }
 
         // Supprime l'entrepôt trouvé du context
-        context.Set<Entrepot>()
-               .Remove(entrepot);
+        context.Set<Warehouse>()
+               .Remove(warehouse);
 
 
         return await context.SaveChangesAsync() > 0;
     }
 
-    internal bool CreateEntrepot(Entrepot entrepot) {
+    internal bool CreateEntrepot(Warehouse warehouse) {
         throw new NotImplementedException();
     }
 }

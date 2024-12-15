@@ -10,67 +10,74 @@ namespace _420DA3_A24_Projet.DataAccess.DAOs;
     /// <summary>
     /// DAO for managing Produits entities.
     /// </summary>
-    public class ProduitDAO {
+    public class ProductDAO {
         private readonly DbContext context;
 
-        public ProduitDAO(DbContext context) {
+        public ProductDAO(DbContext context) {
             this.context = context;
         }
 
         // Create
-        public async Task<Produit> AddProduitAsync(Produit produit) {
-            this.context.Set<Produit>()
-                        .Add(produit);
+        public async Task<Product> AddProduitAsync(Product product) {
+            this.context.Set<Product>()
+                        .Add(product);
             await this.context.SaveChangesAsync();
-            return produit;
+            return product;
         }
 
         // Lire- Get by ID
-        public async Task<Produit?> GetProduitByIdAsync(int id) {
-            return await context.Set<Produit>()
+        public async Task<Product?> GetProduitByIdAsync(int id) {
+            return await context.Set<Product>()
                 .Include(p => p.Client)
                 .Include(p => p.Entrepot)
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
+        // Get by Client 
+    public async Task<Product?> GetProduitByFournisseurs(int id) {
+        return await context.Set<Product>()
+            .Include(p => p.Client)
+            .Include(p => p.Entrepot)
+            .FirstOrDefaultAsync(p => p.Id == id);
+    }
 
-        // Lire - Get All
-        public async Task<List<Produit>> GetAllProduitsAsync() {
-            return await context.Set<Produit>()
+    // Lire - Get All
+    public async Task<List<Product>> GetAllProduitsAsync() {
+            return await context.Set<Product>()
                 .Include(p => p.Client)
                 .Include(p => p.Entrepot)
                 .ToListAsync();
         }
 
         // Update
-        public async Task<bool> UpdateProduit(Produit produit) {
-            this.context.Set<Produit>()
-                        .Update(produit);
+        public async Task<bool> UpdateProduit(Product product) {
+            this.context.Set<Product>()
+                        .Update(product);
             return await this.context.SaveChangesAsync() > 0;
         }
 
     // Supprimer
     public async Task<bool> DeleteProduitAsync(int id) {
         // Récupérer le produit à partir de son ID
-        Produit produit = await this.GetProduitByIdAsync(id); 
+        Product product = await this.GetProduitByIdAsync(id); 
 
         // Vérifier si le produit existe
-        if (produit == null)
+        if (product == null)
             return false;
 
         // Supprimer le produit du contexte
-        this.context.Set<Produit>()
-                    .Remove(produit);
+        this.context.Set<Product>()
+                    .Remove(product);
 
         
         return await context.SaveChangesAsync() > 0;
     }
 
 
-    internal bool CreateProduit(Produit produit) {
+    internal bool CreateProduit(Product product) {
         throw new NotImplementedException();
     }
 
-    internal bool UpdateProduitAsync(Produit produit) {
+    internal bool UpdateProduitAsync(Product product) {
         throw new NotImplementedException();
     }
 }
