@@ -1,19 +1,13 @@
 ﻿namespace _420DA3_A24_Projet.Business.Domain;
 
-/// <summary>
-/// Classe représentant un fournisseur.
-/// </summary>
+
 public class Supplier {
-    /// <summary>
-    /// Longueur maximum du nom du fournisseur, en caractères
-    /// </summary>
+
     public const int NAME_MAX_LENGTH = 128;
-    /// <summary>
-    /// Longueur maximum des champs de texte pour les contacts, en caractères
-    /// </summary>
+
     public const int CONTACT_INFO_MAX_LENGTH = 128;
 
-    // Backing fields
+
     private int id;
     private string name = null!;
     private string contactFirstName = null!;
@@ -92,14 +86,12 @@ public class Supplier {
 
     #region Constructeurs
 
-    /// <summary>
-    /// Constructeur orienté création de fournisseur
-    /// </summary>
-    /// <param name="name">Nom du fournisseur</param>
-    /// <param name="contactFirstName">Prénom de la personne-contact</param>
-    /// <param name="contactLastName">Nom de la personne-contact</param>
-    /// <param name="contactEmail">Courriel de la personne-contact</param>
-    /// <param name="contactPhone">Téléphone de la personne-contact</param>
+
+    /// <param name="name"
+    /// <param name="contactFirstName"
+    /// <param name="contactLastName"
+    /// <param name="contactEmail"
+    /// <param name="contactPhone"
     public Supplier(string name, string contactFirstName, string contactLastName, string contactEmail, string contactPhone) {
         this.Name = name;
         this.ContactFirstName = contactFirstName;
@@ -108,9 +100,7 @@ public class Supplier {
         this.ContactPhone = contactPhone;
     }
 
-    /// <summary>
-    /// Constructeur orienté Entity Framework
-    /// </summary>
+
     protected Supplier(int id, string name, string contactFirstName, string contactLastName, string contactEmail, string contactPhone, DateTime dateCreated, DateTime? dateModified, DateTime? dateDeleted, byte[] rowVersion)
         : this(name, contactFirstName, contactLastName, contactEmail, contactPhone) {
 
@@ -125,14 +115,11 @@ public class Supplier {
 
     #region Méthodes
 
-    /// <summary>
-    /// Méthode de validation d'ID
-    /// </summary>
     public static bool ValidateId(int id) {
         return id >= 0;
     }
 
-    /// <summary>
+
     /// Override de <see cref="object.ToString"/> pour l'affichage dans des ListBox ou ComboBox.
     /// </summary>
     public override string ToString() {
