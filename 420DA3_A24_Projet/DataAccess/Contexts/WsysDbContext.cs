@@ -527,7 +527,7 @@ internal class WsysDbContext : DbContext {
         // Configuration des relations
         _ = modelBuilder.Entity<PurchaseOrder>()
             .HasOne(order => order.Product)
-            .WithMany(product => product.PurchaseOrders)
+            .WithMany(produit => produit.)
             .HasForeignKey(order => order.ProductId)
             .OnDelete(DeleteBehavior.Restrict)
             .IsRequired();

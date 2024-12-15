@@ -114,6 +114,17 @@ public class PurchaseOrder {
         return id >= 0;
     }
 
+    /// <summary>
+    /// Marque la commande comme complétée.
+    /// </summary>
+    public void Complete() {
+        if (this.Status == OrderStatus.Completed) {
+            throw new Exception("The order is already completed.");
+        }
+        this.Status = OrderStatus.Completed;
+        this.DateCompleted = DateTime.Now;
+    }
+
     /// Override de <see cref="object.ToString"/> pour affichage dans une ListBox ou ComboBox.
     public override string ToString() {
         return $"RestockOrder #{this.Id} - Product: {this.ProductId}, Warehouse: {this.WarehouseId}, Quantity: {this.Quantity}, Status: {this.Status}";
