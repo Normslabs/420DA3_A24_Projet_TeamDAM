@@ -46,11 +46,11 @@ internal class WsysApplication {
             } else if (this.LoginService.LoggedInUserRole?.Id == Role.OFFICE_EMPLOYEE_ROLE_ID) {
                 _ = this.officeEmployeeMainMenu.ShowDialog();
 
-            } else if (this.LoginService.LoggedInUserRole?.Id == Role.WAREHOUSE_EMPLOYEE_ROLE_ID) {
-                _ = this.warehouseEmployeeMainMenu.ShowDialog();
-
             } else {
-                throw new Exception("Impossible de démarrer l'application: rôle non implémenté.");
+                _ = this.LoginService.LoggedInUserRole?.Id == Role.WAREHOUSE_EMPLOYEE_ROLE_ID
+                    ? this.warehouseEmployeeMainMenu.ShowDialog()
+                    : throw new Exception("Impossible de démarrer l'application: rôle non implémenté.");
+
             }
         }
     }
@@ -63,7 +63,7 @@ internal class WsysApplication {
     /// Affiche les détails de l'exception dans la console, dans la fenêtre de débogage et dans une boîte de dialogue.
     /// </remarks>
     /// <param name="ex">L'exception à gérer.</param>
-    public void HandleException(Exception ex) {
+    public static void HandleException(Exception ex) {
         string? stack = ex.StackTrace;
         StringBuilder messageBuilder = new StringBuilder();
         Console.Error.WriteLine(ex.Message);

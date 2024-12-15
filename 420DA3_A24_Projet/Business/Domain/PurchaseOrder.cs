@@ -72,9 +72,13 @@ public class PurchaseOrder {
 
     #region Propriétés de navigation
 
-
-    public virtual Produits orderedProduct { get; set; } = null!;
-
+    /// <summary>
+    /// Produit à restocker.
+    /// </summary>
+    public virtual Product Product { get; set; } = null!;
+    /// <summary>
+    /// Entrepôt où les produits sont stockés.
+    /// </summary>
     public virtual Entrepot Warehouse { get; set; } = null!;
 
     #endregion

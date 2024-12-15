@@ -8,35 +8,34 @@ using System.Threading.Tasks;
 
 namespace _420DA3_A24_Projet.Business.Services;
 public class ProduitsService {
-    private readonly ProduitsDAO _produitsDao;
+    private readonly ProduitDAO produitsDao;
 
-    // Inject DAO through constructor
-    public ProduitsService(ProduitsDAO produitsDao) {
-        _produitsDao = produitsDao;
+    public ProduitsService(ProduitDAO produitsDao) {
+        this.produitsDao = produitsDao;
     }
 
     // Méthode pour récupérer tous les produits
-    public async Task<IEnumerable<Produits>> GetAllProduitsAsync() {
-        return await _produitsDao.GetAllProduitsAsync();
+    public async Task<IEnumerable<Produit>> GetAllProduitsAsync() {
+        return await produitsDao.GetAllProduitsAsync();
     }
 
     // Méthode pour récupérer un produit par son ID
-    public async Task<Produits?> GetProduitByIdAsync(int id) {
-        return await _produitsDao.GetProduitByIdAsync(id);
+    public async Task<Produit?> GetProduitByIdAsync(int id) {
+        return await produitsDao.GetProduitByIdAsync(id);
     }
 
     // Méthode pour créer un nouveau produit
-    public async Task<bool> CreateProduitAsync(Produits produit) {
-        return await _produitsDao.CreateProduitAsync(produit);
+    public bool CreateProduit(Produit produit) {
+        return produitsDao.CreateProduit(produit);
     }
 
     // Méthode pour mettre à jour un produit
-    public async Task<bool> UpdateProduitAsync(Produits produit) {
-        return await _produitsDao.UpdateProduitAsync(produit);
+    public bool UpdateProduit(Produit produit) {
+        return this.produitsDao.UpdateProduitAsync(produit);
     }
 
     // Méthode pour supprimer un produit
     public async Task<bool> DeleteProduitAsync(int id) {
-        return await _produitsDao.DeleteProduitAsync(id);
+        return await produitsDao.DeleteProduitAsync(id);
     }
 }

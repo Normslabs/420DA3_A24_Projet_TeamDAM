@@ -30,7 +30,7 @@ internal partial class AdminMainMenu : Form {
             }
 
         } catch (Exception ex) {
-            this.parentApp.HandleException(ex);
+            WsysApplication.HandleException(ex);
         }
     }
 
@@ -46,7 +46,7 @@ internal partial class AdminMainMenu : Form {
             }
 
         } catch (Exception ex) {
-            this.parentApp.HandleException(ex);
+            WsysApplication.HandleException(ex);
         }
     }
 
@@ -73,7 +73,7 @@ internal partial class AdminMainMenu : Form {
             _ = MessageBox.Show(ex.Message);
 
         } catch (Exception ex) {
-            this.parentApp.HandleException(ex);
+            WsysApplication.HandleException(ex);
         }
     }
 
@@ -90,7 +90,7 @@ internal partial class AdminMainMenu : Form {
             _ = MessageBox.Show(ex.Message);
 
         } catch (Exception ex) {
-            this.parentApp.HandleException(ex);
+            WsysApplication.HandleException(ex);
         }
     }
 
@@ -109,7 +109,7 @@ internal partial class AdminMainMenu : Form {
             _ = MessageBox.Show(ex.Message);
 
         } catch (Exception ex) {
-            this.parentApp.HandleException(ex);
+            WsysApplication.HandleException(ex);
         }
 
     }
@@ -128,7 +128,7 @@ internal partial class AdminMainMenu : Form {
             }
 
         } catch (Exception ex) {
-            this.parentApp.HandleException(ex);
+            WsysApplication.HandleException(ex);
         }
     }
 
@@ -144,7 +144,7 @@ internal partial class AdminMainMenu : Form {
             }
 
         } catch (Exception ex) {
-            this.parentApp.HandleException(ex);
+            WsysApplication.HandleException(ex);
         }
     }
 
@@ -171,7 +171,7 @@ internal partial class AdminMainMenu : Form {
             _ = MessageBox.Show(ex.Message);
 
         } catch (Exception ex) {
-            this.parentApp.HandleException(ex);
+            WsysApplication.HandleException(ex);
         }
 
     }
@@ -189,7 +189,7 @@ internal partial class AdminMainMenu : Form {
             _ = MessageBox.Show(ex.Message);
 
         } catch (Exception ex) {
-            this.parentApp.HandleException(ex);
+            WsysApplication.HandleException(ex);
         }
 
     }
@@ -209,7 +209,7 @@ internal partial class AdminMainMenu : Form {
             _ = MessageBox.Show(ex.Message);
 
         } catch (Exception ex) {
-            this.parentApp.HandleException(ex);
+            WsysApplication.HandleException(ex);
         }
     }
 

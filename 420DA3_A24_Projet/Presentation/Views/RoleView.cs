@@ -168,12 +168,16 @@ internal partial class RoleView : Form {
             }
             this.DialogResult = DialogResult.OK;
 
-        } catch (Exception ex) { 
-            this.parentApp.HandleException(ex);
+        } catch (Exception ex) {
+            WsysApplication.HandleException(ex);
         }
     }
 
     private void CancelButton_Click(object sender, EventArgs e) {
         this.DialogResult = DialogResult.Cancel;
+    }
+
+    private void nameValue_TextChanged(object sender, EventArgs e) {
+
     }
 }

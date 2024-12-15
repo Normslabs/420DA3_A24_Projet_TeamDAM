@@ -226,6 +226,7 @@ partial class RoleView {
         this.nameValue.PlaceholderText = "Role name";
         this.nameValue.Size = new Size(262, 23);
         this.nameValue.TabIndex = 3;
+        this.nameValue.TextChanged += this.nameValue_TextChanged;
         // 
         // nameLabel
         // 
