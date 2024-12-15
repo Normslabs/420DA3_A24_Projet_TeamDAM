@@ -38,7 +38,7 @@ public class Warehouse {
 
 
     public virtual List<Client> Clients { get; set; } = new List<Client>();
-    public virtual List<OrdreRestockage> OrdreRestockage { get; set; } = new List<OrdreRestockage>();
+    public virtual List<PurchaseOrder> RestockOrders { get; set; } = new List<PurchaseOrder>();
     public virtual List<User> WarehouseEmployes { get; set; } = new List<User>();
     public object Capacite { get; internal set; }
 
