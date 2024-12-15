@@ -72,7 +72,6 @@ public class PurchaseOrder {
 
     #region Propriétés de navigation
 
-<<<<<<< HEAD
     /// <summary>
     /// Produit à restocker.
     /// </summary>
@@ -80,11 +79,6 @@ public class PurchaseOrder {
     /// <summary>
     /// Entrepôt où les produits sont stockés.
     /// </summary>
-=======
-
-    public virtual Produits Product { get; set; } = null!;
-
->>>>>>> 3a88bb95e4470c138a9cb63a67acd79abc353182
     public virtual Entrepot Warehouse { get; set; } = null!;
 
     #endregion
