@@ -28,27 +28,9 @@ internal class PurchaseOrderDAO {
     public PurchaseOrder? GetById(int id, bool includeDeleted = false) {
         return this.context.PurchaseOrders
             .Where(po => po.Id == id && (includeDeleted || po.DateDeleted == null))
-            .Include(po => po.Product)
+            .Include(po => po.ProductId)
             .Include(po => po.Warehouse)
             .SingleOrDefault();
-    }
-
-    /// <summary>
-    /// Recherche des ordres de restockage selon un critère.
-    /// </summary>
-    /// <param name="criterion">Critère de recherche.</param>
-    /// <param name="includeDeleted">Inclure ou non les ordres supprimés.</param>
-    /// <returns>Liste des ordres correspondant au critère.</returns>
-    public List<PurchaseOrder> Search(string criterion, bool includeDeleted = false) {
-        return this.context.PurchaseOrders
-            .Where(po => (
-                po.Id.ToString().Contains(criterion)
-                || po.ProductId.ToString().Contains(criterion)
-                || po.WarehouseId.ToString().Contains(criterion)
-            ) && (includeDeleted || po.DateDeleted == null))
-            .Include(po => po.Product)
-            .Include(po => po.Warehouse)
-            .ToList();
     }
 
     /// <summary>
@@ -80,7 +62,7 @@ internal class PurchaseOrderDAO {
     /// <param name="purchaseOrder">Ordre à supprimer.</param>
     /// <param name="softDeletes">Indique si la suppression est logique (soft delete).</param>
     /// <returns>Ordre supprimé.</returns>
-    public PurchaseOrder Delete(PurchaseOrder purchaseOrder, bool softDeletes = true) {
+    public void Delete(PurchaseOrder purchaseOrder, bool softDeletes = true) {
         if (softDeletes) {
             purchaseOrder.DateDeleted = DateTime.Now;
             _ = this.context.PurchaseOrders.Update(purchaseOrder);
@@ -88,20 +70,32 @@ internal class PurchaseOrderDAO {
             _ = this.context.PurchaseOrders.Remove(purchaseOrder);
         }
         _ = this.context.SaveChanges();
-        return purchaseOrder;
     }
-
     /// <summary>
-    /// Récupère tous les ordres avec un statut spécifique.
+    /// Récupère les ordres par entrepôt et statut (optionnel).
     /// </summary>
-    /// <param name="status">Statut de l'ordre.</param>
-    /// <param name="includeDeleted">Inclure ou non les ordres supprimés.</param>
-    /// <returns>Liste des ordres avec le statut spécifié.</returns>
-    public List<PurchaseOrder> GetByStatus(PurchaseOrder.OrderStatus status, bool includeDeleted = false) {
+    /// <param name="warehouse">Entrepôt cible.</param>
+    /// <param name="status">Statut de commande (optionnel).</param>
+    /// <returns>Liste des ordres correspondant aux critères.</returns>
+    public List<PurchaseOrder> GetByWarehouse(Entrepot warehouse, PurchaseOrder.OrderStatus? status = null) {
         return this.context.PurchaseOrders
-            .Where(po => po.Status == status && (includeDeleted || po.DateDeleted == null))
-            .Include(po => po.Product)
-            .Include(po => po.Warehouse)
+            .Where(po => po.WarehouseId == warehouse.Id && (status == null || po.Status == status))
+            .Include(po => po.ProductId)
+            .Include(po => po.WarehouseId)
             .ToList();
     }
+    /// <summary>
+    /// Récupère les ordres par produit et statut (optionnel).
+    /// </summary>
+    /// <param name="product">Produit cible.</param>
+    /// <param name="status">Statut de commande (optionnel).</param>
+    /// <returns>Liste des ordres correspondant aux critères.</returns>
+    public List<PurchaseOrder> GetByProduct(Produits product, PurchaseOrder.OrderStatus? status = null) {
+        return this.context.PurchaseOrders
+            .Where(po => po.ProductId == product.Id && (status == null || po.Status == status))
+            .Include(po => po.ProductId)
+            .Include(po => po.WarehouseId)
+            .ToList();
+    }
+
 }
