@@ -640,7 +640,6 @@ internal class WsysDbContext : DbContext {
 
         _ = modelBuilder.Entity<Warehouse>()
             .Property(warehouse => warehouse.WarehouseName)
-            .Property(entrepot => entrepot.WarehouseName)
             .HasColumnName("Nom")
             .HasColumnOrder(1)
             .HasColumnType("nvarchar(100)")
