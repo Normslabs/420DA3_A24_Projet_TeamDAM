@@ -71,7 +71,7 @@ internal partial class SupplierView : Form {
         return this.ShowDialog();
     }
     /// <summary>
-    /// Performs pre-opening initialization, clean-up and preparation for the <see cref="UserView"/> window.
+    /// Performs pre-opening initialization, clean-up and preparation for the <see cref="SupplierView"/> window.
     /// </summary>
     /// <param name="instance"></param>
     /// <param name="action"></param>
@@ -190,7 +190,7 @@ internal partial class SupplierView : Form {
     private void ReloadSelectors() {
         try {
             this.supplierproductsValues.Items.Clear();
-            List<Product> products = this.parentApp.ProductService.GetAllProduits();
+            List<Product> products = this.parentApp.ProductService.G;
             foreach (Product product in products) {
                 _ = this.supplierproductsValues.Items.Add(product);
             }

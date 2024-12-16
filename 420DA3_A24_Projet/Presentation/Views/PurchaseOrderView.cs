@@ -69,7 +69,7 @@ internal partial class PurchaseOrderView : Form {
     }
 
     /// <summary>
-    /// Performs pre-opening initialization, clean-up and preparation for the <see cref="RoleView"/> window.
+    /// Performs pre-opening initialization, clean-up and preparation for the <see cref="PurchaseOrderView"/> window.
     /// </summary>
     /// <param name="instance"></param>
     /// <param name="action"></param>
