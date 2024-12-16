@@ -53,7 +53,7 @@ internal partial class PurchaseOrderView : Form {
     /// </summary>
     /// <param name="instance"></param>
     /// <returns></returns>
-    public DialogResult OpenForModification(PurchaseOrder instance) {
+    public DialogResult OpenForEdition(PurchaseOrder instance) {
         this.PreOpenSetup(instance, ViewActionsEnum.Edition, "Modifier", "Enregistrer");
         return this.ShowDialog();
     }
