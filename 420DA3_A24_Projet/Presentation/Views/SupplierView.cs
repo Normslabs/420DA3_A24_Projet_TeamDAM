@@ -100,6 +100,21 @@ internal partial class SupplierView : Form {
         }
     }
 
+    private Supplier LoadDataInControls(Supplier supplier) {
+        this.idValue.Value = supplier.Id;
+        this.suppliernameValue.Text = supplier.Name;
+        this.contactfirstnameLabel.Text = supplier.ContactFirstName;
+        this.contactlastnameLabel.Text = supplier.ContactLastName;
+        this.dateCreatedValue.Value = supplier.DateCreated;
+        this.dateModifiedValue.Value = supplier.DateModified ?? DateTime.Now;
+        this.dateDeletedValue.Value = supplier.DateDeleted ?? DateTime.Now;
+        this.supplierproductsValues.SelectedItems.Clear();
+        //foreach (Product product in ) {
+        //    this.supplierproductsValues.SelectedItems.Add(product);
+        //}
+        return supplier;
+    }
+
     /// <summary>
     /// Enables the <see cref="SupplierView"/> window's controls for creation and edition modes.
     /// </summary>
@@ -132,8 +147,16 @@ internal partial class SupplierView : Form {
             this.isInitialized = true;
         }
     }
-
-
+    private Supplier SaveDataFromControls(Supplier supplier) {
+        supplier.ContactFirstName = this.contactfirstnameValue.Text;
+        supplier.ContactLastName = this.contactlastnameValue.Text;
+        supplier.ContactEmail = this.contactemailValue.Text;
+        supplier.ContactPhone = this.contactphoneValue.Text;
+        foreach (Product product in this.supplierproductsValues.SelectedItems) {
+            supplier.Products.Add(product);
+        }
+        return supplier;
+    }
 
     private void actionBtn_Click(object sender, EventArgs e) {
         try {
@@ -148,7 +171,7 @@ internal partial class SupplierView : Form {
                     this.CurrentEntityInstance = this.parentApp.SupplierService.UpdateSupplier(this.CurrentEntityInstance);
                     break;
                 case ViewActionsEnum.Deletion:
-                    this.CurrentEntityInstance = this.parentApp.SupplierService. (this.CurrentEntityInstance);
+                    this.CurrentEntityInstance = this.parentApp.SupplierService.DeleteSupplier(this.CurrentEntityInstance);
                     break;
                 case ViewActionsEnum.Visualization:
                     break;
@@ -167,14 +190,16 @@ internal partial class SupplierView : Form {
     private void ReloadSelectors() {
         try {
             this.supplierproductsValues.Items.Clear();
-            List<Product> products = this.parentApp.ProductService.GetAllProduitsAsync();
-            foreach (Role product in products) {
+            List<Product> products = this.parentApp.ProductService.GetAllProduits();
+            foreach (Product product in products) {
                 _ = this.supplierproductsValues.Items.Add(product);
             }
         } catch (Exception ex) {
             throw new Exception($"{this.GetType().ShortDisplayName}: Failed to load data in selectors.", ex);
         }
     }
+
+
 
 
 
