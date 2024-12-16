@@ -43,6 +43,14 @@ public class ProductDAO {
             .ToListAsync();
     }
 
+    // Lire - Get All
+    public List<Product> GetAllProduits() {
+        return this.context.Set<Product>()
+            .Include(p => p.Client)
+            .Include(p => p.Entrepot)
+            .ToList();
+    }
+
     // Update
     public async Task<bool> UpdateProduit(Product product) {
         _ = this.context.Set<Product>()
