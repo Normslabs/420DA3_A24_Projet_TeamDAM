@@ -5,7 +5,7 @@ using Microsoft.VisualBasic.ApplicationServices;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace _420DA3_A24_Projet.Presentation.Views;
-public partial class PurchaseOrderView : Form {
+internal partial class PurchaseOrderView : Form {
     private readonly WsysApplication parentApp;
 
     /// <summary>
