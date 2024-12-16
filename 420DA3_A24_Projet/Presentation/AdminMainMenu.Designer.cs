@@ -58,11 +58,11 @@ partial class AdminMainMenu {
         this.button2 = new Button();
         this.button3 = new Button();
         this.button4 = new Button();
-        this.produitSearchResults = new ListBox();
+        this.productSearchResults = new ListBox();
         this.textBox1 = new TextBox();
         this.tableLayoutPanel4 = new TableLayoutPanel();
         this.panel4 = new Panel();
-        this.button1 = new Button();
+        this.productCreateButton = new Button();
         this.productPanelHeader = new Label();
         this.roleManagementPanel = new Panel();
         this.roleSearchResults = new ListBox();
@@ -420,7 +420,7 @@ partial class AdminMainMenu {
         // productManagementPanel
         // 
         this.productManagementPanel.Controls.Add(this.tableLayoutPanel5);
-        this.productManagementPanel.Controls.Add(this.produitSearchResults);
+        this.productManagementPanel.Controls.Add(this.productSearchResults);
         this.productManagementPanel.Controls.Add(this.textBox1);
         this.productManagementPanel.Controls.Add(this.tableLayoutPanel4);
         this.productManagementPanel.Controls.Add(this.productPanelHeader);
@@ -486,15 +486,15 @@ partial class AdminMainMenu {
         this.button4.Text = "Voir les détails";
         this.button4.UseVisualStyleBackColor = true;
         // 
-        // produitSearchResults
+        // productSearchResults
         // 
-        this.produitSearchResults.Dock = DockStyle.Fill;
-        this.produitSearchResults.FormattingEnabled = true;
-        this.produitSearchResults.ItemHeight = 15;
-        this.produitSearchResults.Location = new Point(0, 86);
-        this.produitSearchResults.Name = "produitSearchResults";
-        this.produitSearchResults.Size = new Size(216, 186);
-        this.produitSearchResults.TabIndex = 9;
+        this.productSearchResults.Dock = DockStyle.Fill;
+        this.productSearchResults.FormattingEnabled = true;
+        this.productSearchResults.ItemHeight = 15;
+        this.productSearchResults.Location = new Point(0, 86);
+        this.productSearchResults.Name = "productSearchResults";
+        this.productSearchResults.Size = new Size(216, 186);
+        this.productSearchResults.TabIndex = 9;
         // 
         // textBox1
         // 
@@ -522,21 +522,22 @@ partial class AdminMainMenu {
         // 
         // panel4
         // 
-        this.panel4.Controls.Add(this.button1);
+        this.panel4.Controls.Add(this.productCreateButton);
         this.panel4.Dock = DockStyle.Fill;
         this.panel4.Location = new Point(21, 3);
         this.panel4.Name = "panel4";
         this.panel4.Size = new Size(174, 34);
         this.panel4.TabIndex = 0;
         // 
-        // button1
+        // productCreateButton
         // 
-        this.button1.Location = new Point(3, 3);
-        this.button1.Name = "button1";
-        this.button1.Size = new Size(168, 23);
-        this.button1.TabIndex = 0;
-        this.button1.Text = "Créer un produit";
-        this.button1.UseVisualStyleBackColor = true;
+        this.productCreateButton.Location = new Point(3, 3);
+        this.productCreateButton.Name = "productCreateButton";
+        this.productCreateButton.Size = new Size(168, 23);
+        this.productCreateButton.TabIndex = 0;
+        this.productCreateButton.Text = "Créer un produit";
+        this.productCreateButton.UseVisualStyleBackColor = true;
+        this.productCreateButton.Click += this.ProductCreateButton_Click;
         // 
         // productPanelHeader
         // 
@@ -918,7 +919,7 @@ partial class AdminMainMenu {
     private Button roleCreationButton;
     private TableLayoutPanel tableLayoutPanel4;
     private Panel panel4;
-    private Button button1;
+    private Button productCreateButton;
     private TableLayoutPanel tableLayoutPanel7;
     private Panel panel7;
     private Button button6;
@@ -934,6 +935,6 @@ partial class AdminMainMenu {
     private Button button2;
     private Button button3;
     private Button button4;
-    private ListBox produitSearchResults;
+    private ListBox productSearchResults;
     private TextBox textBox1;
 }

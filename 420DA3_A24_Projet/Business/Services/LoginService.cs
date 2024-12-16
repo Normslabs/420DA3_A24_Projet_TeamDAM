@@ -30,7 +30,7 @@ internal class LoginService {
     }
 
     public void TryLogin(string username, string password) {
-        User? user = this.parentApp.UserService.GetByUsername(username);
+        User? user = this.parentApp.UserService.GetUserByUsername(username);
         if (user is null) {
             throw new UserNotFoundException($"L'utilisateur [{username}] n'existe pas.");
         }

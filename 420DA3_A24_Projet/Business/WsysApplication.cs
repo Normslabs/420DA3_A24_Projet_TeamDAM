@@ -21,6 +21,10 @@ internal class WsysApplication {
     public SupplierService SupplierService { get; private set; }
     public PurchaseOrderService PurchaseOrderService { get; private set; }
 
+    public ProductService ProductService { get; private set; }
+
+
+    public WareHouseService WareHouseService { get; private set; }
     public WsysApplication() {
         this.context = new WsysDbContext();
         this.adminMainMenu = new AdminMainMenu(this);
@@ -34,6 +38,8 @@ internal class WsysApplication {
         this.SupplierService = new SupplierService(this, this.context);
         this.PurchaseOrderService = new PurchaseOrderService(this, this.context);
         this.LoginService = new LoginService(this);
+        this.WareHouseService = new WareHouseService(this, this.context);
+        this.ProductService = new ProductService(this, this.context);
     }
 
 

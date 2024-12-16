@@ -77,7 +77,7 @@ internal class PurchaseOrderDAO {
     /// <param name="warehouse">Entrepôt cible.</param>
     /// <param name="status">Statut de commande (optionnel).</param>
     /// <returns>Liste des ordres correspondant aux critères.</returns>
-    public List<PurchaseOrder> GetByWarehouse(Entrepot warehouse, PurchaseOrder.OrderStatus? status = null) {
+    public List<PurchaseOrder> GetByWarehouse(Warehouse warehouse, PurchaseOrder.OrderStatus? status = null) {
         return this.context.PurchaseOrders
             .Where(po => po.WarehouseId == warehouse.Id && (status == null || po.Status == status))
             .Include(po => po.ProductId)
@@ -90,9 +90,9 @@ internal class PurchaseOrderDAO {
     /// <param name="product">Produit cible.</param>
     /// <param name="status">Statut de commande (optionnel).</param>
     /// <returns>Liste des ordres correspondant aux critères.</returns>
-    public List<PurchaseOrder> GetByProduct(Produit product, PurchaseOrder.OrderStatus? status = null) {
+    public List<PurchaseOrder> GetByProduct(Product product, PurchaseOrder.OrderStatus? status = null) {
         return this.context.PurchaseOrders
-            .Where(po => po.ProductId == product.Id && (status == null || po.Status == status))
+            .Where(po => po.ProductId == product.ProductId && (status == null || po.Status == status))
             .Include(po => po.ProductId)
             .Include(po => po.WarehouseId)
             .ToList();

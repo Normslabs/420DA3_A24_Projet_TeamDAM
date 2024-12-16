@@ -128,7 +128,7 @@ internal partial class UserView : Form {
             this.whEmpWarehouseValue.Items.Clear();
             _ = this.whEmpWarehouseValue.Items.Add("None");
             // TODO @PROF: fix this quand le service entrepot sera créé
-            List<Warehouse> entrepots = this.parentApp.EntrepotService.GetAllEntrepots();
+            List<Warehouse> entrepots = this.parentApp.WareHouseService.GetAllEntrepots();
             foreach (Warehouse entrepot in entrepots) {
                 _ = this.whEmpWarehouseValue.Items.Add(entrepot);
             }

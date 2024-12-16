@@ -1,7 +1,9 @@
 ﻿using _420DA3_A24_Projet.Business;
 using _420DA3_A24_Projet.Business.Domain;
+using _420DA3_A24_Projet.Business.Services;
 using Project_Utilities.Exceptions;
 using Project_Utilities.Presentation;
+using System.Diagnostics;
 
 namespace _420DA3_A24_Projet.Presentation;
 internal partial class AdminMainMenu : Form {
@@ -116,7 +118,178 @@ internal partial class AdminMainMenu : Form {
 
     #endregion
 
+    #region GESTION DES PRODUCTS
+    private void ProductCreateButton_Click(object sender, EventArgs e) {
+        Debug.WriteLine("wjienbgiowebhuiwuighbw");
+        try {
+            Product? createdProduct = this.parentApp.ProductService.OpenManagementWindowForCreation();
+            if (createdProduct is not null) {
+                _ = this.productSearchResults.Items.Add(createdProduct);
+                this.productSearchResults.SelectedItem = createdProduct;
+            }
+        } catch (Exception ex) {
+            WsysApplication.HandleException(ex);
+        }
+    }
 
+    //private void ProductSearchTextBox_TextChanged(object sender, EventArgs e) {
+    //    try {
+    //        string criterion = this.productSearchTextBox.Text.Trim();
+    //        List<Product> results = this.parentApp.ProductService.SearchProducts(criterion);
+    //        this.productSearchResults.Items.Clear();
+    //        this.productSearchResults.SelectedItem = null;
+    //        this.productSearchResults.SelectedIndex = -1;
+    //        foreach (Product product in results) {
+    //            _ = this.productSearchResults.Items.Add(product);
+    //        }
+    //    } catch (Exception ex) {
+    //        WsysApplication.HandleException(ex);
+    //    }
+    //}
+
+    //private void ProductSearchResults_SelectedIndexChanged(object sender, EventArgs e) {
+    //    Product? selectedProduct = this.productSearchResults.SelectedItem as Product;
+    //    if (selectedProduct is not null) {
+    //        this.productViewButton.Enabled = true;
+    //        this.productModifyButton.Enabled = true;
+    //        this.productDeleteButton.Enabled = true;
+    //    } else {
+    //        this.productViewButton.Enabled = false;
+    //        this.productModifyButton.Enabled = false;
+    //        this.productDeleteButton.Enabled = false;
+    //    }
+    //}
+
+    //private void ProductViewButton_Click(object sender, EventArgs e) {
+    //    try {
+    //        Product? selectedProduct = this.productSearchResults.SelectedItem as Product
+    //            ?? throw new ValidationException("Veuillez sélectionner un produit.");
+    //        _ = this.parentApp.ProductService.OpenManagementWindowForVisualization(selectedProduct);
+    //    } catch (ValidationException ex) {
+    //        _ = MessageBox.Show(ex.Message);
+    //    } catch (Exception ex) {
+    //        WsysApplication.HandleException(ex);
+    //    }
+    //}
+
+    //private void ProductModifyButton_Click(object sender, EventArgs e) {
+    //    try {
+    //        Product? selectedProduct = this.productSearchResults.SelectedItem as Product
+    //            ?? throw new ValidationException("Veuillez sélectionner un produit.");
+    //        bool wasModified = this.parentApp.ProductService.OpenManagementWindowForEdition(selectedProduct);
+    //        if (wasModified) {
+    //            this.productSearchResults.RefreshDisplay();
+    //        }
+    //    } catch (ValidationException ex) {
+    //        _ = MessageBox.Show(ex.Message);
+    //    } catch (Exception ex) {
+    //        WsysApplication.HandleException(ex);
+    //    }
+    //}
+
+    //private void ProductDeleteButton_Click(object sender, EventArgs e) {
+    //    try {
+    //        Product? selectedProduct = this.productSearchResults.SelectedItem as Product
+    //            ?? throw new ValidationException("Veuillez sélectionner un produit.");
+    //        bool wasDeleted = this.parentApp.ProductService.OpenManagementWindowForDeletion(selectedProduct);
+    //        if (wasDeleted) {
+    //            this.productSearchResults.Items.Remove(selectedProduct);
+    //            this.productSearchResults.SelectedItem = null;
+    //            this.productSearchResults.SelectedIndex = -1;
+    //        }
+    //    } catch (ValidationException ex) {
+    //        _ = MessageBox.Show(ex.Message);
+    //    } catch (Exception ex) {
+    //        WsysApplication.HandleException(ex);
+    //    }
+    //}
+
+    #endregion
+    #region GESTION DES WAREHOUSES
+    //private void WarehouseCreateButton_Click(object sender, EventArgs e) {
+    //    try {
+    //        Warehouse? createdWarehouse = this.parentApp.WarehouseService.OpenManagementWindowForCreation();
+    //        if (createdWarehouse is not null) {
+    //            _ = this.warehouseSearchResults.Items.Add(createdWarehouse);
+    //            this.warehouseSearchResults.SelectedItem = createdWarehouse;
+    //        }
+    //    } catch (Exception ex) {
+    //        WsysApplication.HandleException(ex);
+    //    }
+    //}
+
+    //private void WarehouseSearchTextBox_TextChanged(object sender, EventArgs e) {
+    //    try {
+    //        string criterion = this.warehouseSearchTextBox.Text.Trim();
+    //        List<Warehouse> results = this.parentApp.WarehouseService.SearchWarehouses(criterion);
+    //        this.warehouseSearchResults.Items.Clear();
+    //        this.warehouseSearchResults.SelectedItem = null;
+    //        this.warehouseSearchResults.SelectedIndex = -1;
+    //        foreach (Warehouse warehouse in results) {
+    //            _ = this.warehouseSearchResults.Items.Add(warehouse);
+    //        }
+    //    } catch (Exception ex) {
+    //        WsysApplication.HandleException(ex);
+    //    }
+    //}
+
+    //private void WarehouseSearchResults_SelectedIndexChanged(object sender, EventArgs e) {
+    //    Warehouse? selectedWarehouse = this.warehouseSearchResults.SelectedItem as Warehouse;
+    //    if (selectedWarehouse is not null) {
+    //        this.warehouseViewButton.Enabled = true;
+    //        this.warehouseModifyButton.Enabled = true;
+    //        this.warehouseDeleteButton.Enabled = true;
+    //    } else {
+    //        this.warehouseViewButton.Enabled = false;
+    //        this.warehouseModifyButton.Enabled = false;
+    //        this.warehouseDeleteButton.Enabled = false;
+    //    }
+    //}
+
+    //private void WarehouseViewButton_Click(object sender, EventArgs e) {
+    //    try {
+    //        Warehouse? selectedWarehouse = this.warehouseSearchResults.SelectedItem as Warehouse
+    //            ?? throw new ValidationException("Veuillez sélectionner un entrepôt.");
+    //        _ = this.parentApp.WarehouseService.OpenManagementWindowForVisualization(selectedWarehouse);
+    //    } catch (ValidationException ex) {
+    //        _ = MessageBox.Show(ex.Message);
+    //    } catch (Exception ex) {
+    //        WsysApplication.HandleException(ex);
+    //    }
+    //}
+
+    //private void WarehouseModifyButton_Click(object sender, EventArgs e) {
+    //    try {
+    //        Warehouse? selectedWarehouse = this.warehouseSearchResults.SelectedItem as Warehouse
+    //            ?? throw new ValidationException("Veuillez sélectionner un entrepôt.");
+    //        bool wasModified = this.parentApp.WarehouseService.OpenManagementWindowForEdition(selectedWarehouse);
+    //        if (wasModified) {
+    //            this.warehouseSearchResults.RefreshDisplay();
+    //        }
+    //    } catch (ValidationException ex) {
+    //        _ = MessageBox.Show(ex.Message);
+    //    } catch (Exception ex) {
+    //        WsysApplication.HandleException(ex);
+    //    }
+    //}
+
+    //private void WarehouseDeleteButton_Click(object sender, EventArgs e) {
+    //    try {
+    //        Warehouse? selectedWarehouse = this.warehouseSearchResults.SelectedItem as Warehouse
+    //            ?? throw new ValidationException("Veuillez sélectionner un entrepôt.");
+    //        bool wasDeleted = this.parentApp.WarehouseService.OpenManagementWindowForDeletion(selectedWarehouse);
+    //        if (wasDeleted) {
+    //            this.warehouseSearchResults.Items.Remove(selectedWarehouse);
+    //            this.warehouseSearchResults.SelectedItem = null;
+    //            this.warehouseSearchResults.SelectedIndex = -1;
+    //        }
+    //    } catch (ValidationException ex) {
+    //        _ = MessageBox.Show(ex.Message);
+    //    } catch (Exception ex) {
+    //        WsysApplication.HandleException(ex);
+    //    }
+    //}
+    #endregion
     #region GESTION DES RÔLES
 
     private void RoleCreationButton_Click(object sender, EventArgs e) {
@@ -214,8 +387,4 @@ internal partial class AdminMainMenu : Form {
     }
 
     #endregion
-
-
-
-
 }

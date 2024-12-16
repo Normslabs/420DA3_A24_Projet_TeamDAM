@@ -38,8 +38,14 @@ public class Warehouse {
     public virtual List<PurchaseOrder> RestockOrders { get; set; } = new List<PurchaseOrder>();
     public virtual List<User> WarehouseEmployes { get; set; } = new List<User>();
     public object Capacite { get; internal set; }
+    public object OrdreRestockage { get; internal set; }
+    public object WareHouseName { get; private set; }
 
 
+    public Warehouse(string wareHouseName, int adressId) {
+        this.WareHouseName = wareHouseName;
+        this.AdresseId = adressId;
+    }
     // Constructeur par défaut
     public Warehouse() {
         // La DateCreation doit être définie par la base de données via GETDATE()
@@ -59,6 +65,9 @@ public class Warehouse {
         this.DateSuppression = dateSuppression;
         this.RowVersion = rowVersion ?? Array.Empty<byte>();
 
+    }
+    public override string ToString() {
+        return $"#{this.Id} - {this.WareHouseName}";
     }
     public static bool ValidateWarehouseName(string name) {
         return !string.IsNullOrWhiteSpace(name) && name.Length <= WarehouseNameMaxLength;

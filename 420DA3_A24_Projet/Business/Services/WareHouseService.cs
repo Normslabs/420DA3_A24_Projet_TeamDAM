@@ -1,14 +1,17 @@
 ﻿using _420DA3_A24_Projet.Business.Domain;
+using _420DA3_A24_Projet.DataAccess.Contexts;
 using _420DA3_A24_Projet.DataAccess.DAOs;
+using _420DA3_A24_Projet.Presentation.Views;
 
 namespace _420DA3_A24_Projet.Business.Services;
-public class WareHouseService {
+internal class WareHouseService {
     private readonly WarehouseDAO warehouseDAO;
+    private readonly WsysApplication parentApp;
 
-    public WareHouseService(WarehouseDAO warehouse) {
-        this.warehouseDAO = warehouse;
+    public WareHouseService(WsysApplication parentApp, WsysDbContext context) {
+        this.parentApp = parentApp;
+        this.warehouseDAO = new WarehouseDAO(context);
     }
-
     // Méthode pour récupérer tous les entrepôts
     public async Task<IEnumerable<Warehouse>> GetAllEntrepotsAsync() {
         return await this.warehouseDAO.GetAllEntrepotsAsync();
@@ -32,5 +35,9 @@ public class WareHouseService {
     // Méthode pour supprimer un entrepôt
     public async Task<bool> DeleteEntrepotAsync(int id) {
         return await this.warehouseDAO.DeleteEntrepotAsync(id);
+    }
+
+    internal List<Warehouse> GetAllEntrepots() {
+        throw new NotImplementedException();
     }
 }
