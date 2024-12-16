@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-namespace _420DA3_A24_Projet.Business.Domain;
+﻿namespace _420DA3_A24_Projet.Business.Domain;
 
 /// <summary>
 /// Classe représentant un client.
@@ -100,7 +94,7 @@ public class Client {
     /// <summary>
     /// Entrepôt attitré au client.
     /// </summary>
-    public virtual Entrepot? EntrepotAttitre { get; set; }
+    public virtual Warehouse? EntrepotAttitre { get; set; }
 
     #endregion
 

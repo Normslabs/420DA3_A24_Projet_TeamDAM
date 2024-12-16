@@ -1,12 +1,8 @@
 ﻿namespace _420DA3_A24_Projet.Business.Domain;
 
-/// <summary>
-/// Classe représentant un ordre de restockage.
-/// </summary>
+
 public class PurchaseOrder {
-    /// <summary>
-    /// Statuts possibles pour un ordre de restockage.
-    /// </summary>
+
     public enum OrderStatus {
         New,
         Completed
@@ -14,7 +10,6 @@ public class PurchaseOrder {
 
     // Backing fields
     private int id;
-    private OrderStatus status;
     private int productId;
     private int warehouseId;
     private int quantity;
@@ -31,10 +26,7 @@ public class PurchaseOrder {
         }
     }
 
-    public OrderStatus Status {
-        get { return this.status; }
-        set { this.status = value; }
-    }
+    public OrderStatus Status { get; set; }
 
     public int ProductId {
         get { return this.productId; }
@@ -77,7 +69,7 @@ public class PurchaseOrder {
     #region Propriétés de navigation
 
     /// <summary>
-    /// Produit à restocker.
+    /// Product à restocker.
     /// </summary>
     public virtual Product Product { get; set; } = null!;
     /// <summary>
@@ -89,9 +81,6 @@ public class PurchaseOrder {
 
     #region Constructeurs
 
-    /// <summary>
-    /// Constructeur orienté création d'ordre de restockage.
-    /// </summary>
     /// <param name="productId">Identifiant du produit à restocker.</param>
     /// <param name="warehouseId">Identifiant de l'entrepôt où le produit est stocké.</param>
     /// <param name="quantity">Quantité à commander.</param>
@@ -102,9 +91,6 @@ public class PurchaseOrder {
         this.Status = OrderStatus.New;
     }
 
-    /// <summary>
-    /// Constructeur orienté Entity Framework.
-    /// </summary>
     protected PurchaseOrder(int id, OrderStatus status, int productId, int warehouseId, int quantity, DateTime? dateCompleted, DateTime dateCreated, DateTime? dateModified, DateTime? dateDeleted, byte[] rowVersion)
         : this(productId, warehouseId, quantity) {
         this.Id = id;
@@ -120,16 +106,22 @@ public class PurchaseOrder {
 
     #region Méthodes
 
-    /// <summary>
-    /// Méthode de validation d'ID.
-    /// </summary>
     public static bool ValidateId(int id) {
         return id >= 0;
     }
 
     /// <summary>
-    /// Override de <see cref="object.ToString"/> pour affichage dans une ListBox ou ComboBox.
+    /// Marque la commande comme complétée.
     /// </summary>
+    public void Complete() {
+        if (this.Status == OrderStatus.Completed) {
+            throw new Exception("The order is already completed.");
+        }
+        this.Status = OrderStatus.Completed;
+        this.DateCompleted = DateTime.Now;
+    }
+
+    /// Override de <see cref="object.ToString"/> pour affichage dans une ListBox ou ComboBox.
     public override string ToString() {
         return $"RestockOrder #{this.Id} - Product: {this.ProductId}, Warehouse: {this.WarehouseId}, Quantity: {this.Quantity}, Status: {this.Status}";
     }

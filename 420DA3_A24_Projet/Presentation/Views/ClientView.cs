@@ -9,8 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace _420DA3_A24_Projet.Presentation.Views;
-public partial class ProduitsView : Form {
-    public ProduitsView() {
-        InitializeComponent();
+public partial class ClientView : Form {
+    public ClientView() {
+        this.InitializeComponent();
+    }
+
+    private void panel6_Paint(object sender, PaintEventArgs e) {
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace _420DA3_A24_Projet.Presentation.Views;
 
-partial class EntrepotView {
+partial class WarehouseView {
     /// <summary>
     /// Required designer variable.
     /// </summary>
@@ -24,10 +24,17 @@ partial class EntrepotView {
     /// the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent() {
-        this.components = new System.ComponentModel.Container();
-        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        this.ClientSize = new System.Drawing.Size(800, 450);
-        this.Text = "EntrepotView";
+        this.SuspendLayout();
+        // 
+        // WarehouseView
+        // 
+        this.AutoScaleDimensions = new SizeF(7F, 15F);
+        this.AutoScaleMode = AutoScaleMode.Font;
+        this.ClientSize = new Size(800, 450);
+        this.Name = "WarehouseView";
+        this.Text = "WarehouseView";
+        this.Load += this.EntrepotView_Load;
+        this.ResumeLayout(false);
     }
 
     #endregion

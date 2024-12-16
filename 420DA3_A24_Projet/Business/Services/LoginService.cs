@@ -25,11 +25,7 @@ internal class LoginService {
             return true;
         } else {
             DialogResult result = this.OpenLoginWindow();
-            if (result == DialogResult.OK) {
-                return true;
-            } else {
-                return false;
-            }
+            return result == DialogResult.OK;
         }
     }
 
@@ -41,16 +37,11 @@ internal class LoginService {
         if (!this.parentApp.PasswordService.ValidatePassword(password, user.PasswordHash)) {
             throw new InvalidPasswordException("Le mot de passe est invalide.");
         }
-        Role roleSelectionne;
-        if (user.Roles.Count > 1) {
-            roleSelectionne = this.roleSelectionWindow.OpenRoleSelectionWindowForUser(user);
-
-        } else if (user.Roles.Count == 1) {
-            roleSelectionne = user.Roles[0];
-
-        } else {
-            throw new Exception("Impossible de poursuivre la connexion: l'utilisateur n'a aucun rôle assigné.");
-        }
+        Role roleSelectionne = user.Roles.Count > 1
+            ? this.roleSelectionWindow.OpenRoleSelectionWindowForUser(user)
+            : user.Roles.Count == 1
+                ? user.Roles[0]
+                : throw new Exception("Impossible de poursuivre la connexion: l'utilisateur n'a aucun rôle assigné.");
         this.LoggedInUser = user;
         this.LoggedInUserRole = roleSelectionne;
         this.IsUserLoggedIn = true;
