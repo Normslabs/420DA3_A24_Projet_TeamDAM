@@ -94,7 +94,7 @@ internal class PurchaseOrderDAO {
     /// <returns>Liste des ordres correspondant aux critères.</returns>
     public List<PurchaseOrder> GetByProduct(Product product, PurchaseOrder.OrderStatus? status = null) {
         return this.context.PurchaseOrders
-            .Where(po => po.ProductId == product.Id && (status == null || po.Status == status))
+            .Where(po => po.ProductId == product.ProductId && (status == null || po.Status == status))
             .Include(po => po.ProductId)
             .Include(po => po.WarehouseId)
             .ToList();

@@ -527,7 +527,7 @@ internal class WsysDbContext : DbContext {
         // Configuration des relations
         _ = modelBuilder.Entity<PurchaseOrder>()
             .HasOne(order => order.Product)
-            .WithMany(product => product.PurchaseOrder)
+            .WithMany(product => product.PurchaseOrders)
             .HasForeignKey(order => order.ProductId)
             .OnDelete(DeleteBehavior.Restrict)
             .IsRequired();
@@ -559,45 +559,39 @@ internal class WsysDbContext : DbContext {
 
         _ = modelBuilder.Entity<Product>()
             .ToTable(nameof(this.Produits))
-            .HasKey(product => product.Id);
+            .HasKey(product => product.ProductId);
 
         _ = modelBuilder.Entity<Product>()
-            .Property(product => product.Id)
+            .Property(product => product.ProductId)
             .HasColumnName("Id")
             .HasColumnOrder(0)
             .HasColumnType("int")
             .UseIdentityColumn(1, 1);
 
         _ = modelBuilder.Entity<Product>()
-            .Property(product => product.Nom)
+            .Property(product => product.ProductName)
             .HasColumnName("Nom")
             .HasColumnOrder(1)
             .HasColumnType("nvarchar(100)")
             .IsRequired(true);
 
         _ = modelBuilder.Entity<Product>()
-            .Property(product => product.Description)
+            .Property(product => product.ProductDescription)
             .HasColumnName("Description")
             .HasColumnOrder(2)
             .HasColumnType("nvarchar(255)")
             .IsRequired(false);
 
+      
         _ = modelBuilder.Entity<Product>()
-            .Property(product => product.Prix)
-            .HasColumnName("Prix")
-            .HasColumnOrder(3)
-            .HasColumnType("decimal(18,2)")
-            .IsRequired(true);
-
-        _ = modelBuilder.Entity<Product>()
-            .Property(product => product.Stock)
+            .Property(product => product.InStockQty)
             .HasColumnName("Stock")
             .HasColumnOrder(4)
             .HasColumnType("int")
             .IsRequired(true);
 
         _ = modelBuilder.Entity<Product>()
-            .Property(product => product.DateCreation)
+            .Property(product => product.DateCreated)
             .HasColumnName("DateCreation")
             .HasColumnOrder(5)
             .HasColumnType("datetime2")
@@ -606,7 +600,7 @@ internal class WsysDbContext : DbContext {
             .IsRequired(true);
 
         _ = modelBuilder.Entity<Product>()
-            .Property(product => product.DateModification)
+            .Property(product => product.DateModified)
             .HasColumnName("DateModification")
             .HasColumnOrder(6)
             .HasColumnType("datetime2")
@@ -614,7 +608,7 @@ internal class WsysDbContext : DbContext {
             .IsRequired(false);
 
         _ = modelBuilder.Entity<Product>()
-            .Property(product => product.DateSuppression)
+            .Property(product => product.DateDeleted)
             .HasColumnName("DateSuppression")
             .HasColumnOrder(7)
             .HasColumnType("datetime2")

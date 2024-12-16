@@ -2,177 +2,176 @@
 
 namespace _420DA3_A24_Projet.Business.Domain;
 
-/// <summary>
-/// Classe représentant un produit stocké dans les entrepôts.
-/// </summary>
-public class Product {
-    // Constantes pour les limites de validation
+public class Product
+{
+    // Constants 
     public const int PRODUCT_NAME_MAX_LENGTH = 255;
     public const int PRODUCT_DESCRIPTION_MAX_LENGTH = 1024;
     public const int UPC_CODE_MAX_LENGTH = 24;
-    public const int SUPPLIER_CODE_MAX_LENGTH = 24;
     public const int IMAGE_FILE_NAME_MAX_LENGTH = 128;
+    public const int SUPPLIER_CODE_MAX_LENGTH = 24;
 
-    #region Propriétés de données
+    // Private properties 
+    private string productName = null!;
+    private string desc = null!;
+    private string codeUPC = null!;
+    private string pictureName = null!;
+    private string supplierCode = null!;
 
-    [Key]
-    public int Id { get; set; }
+    public int ProductId { get; set; }
+    public string ProductName
+    {
+        get
+        {
+            return this.productName;
+        }
+        set
+        {
+            this.productName = !ValidateProductName(value)
+                ? throw new ArgumentOutOfRangeException($"Product Name must be under {PRODUCT_NAME_MAX_LENGTH} character!")
+                : value;
+        }
+    }
+    public string ProductDescription
+    {
+        get
+        {
+            return this.desc;
+        }
+        set
+        {
+            this.desc = !ValidateProductDesc(value)
+                ? throw new ArgumentOutOfRangeException($"Product Description must be under {PRODUCT_DESCRIPTION_MAX_LENGTH} characters!")
+                : value;
+        }
+    }
+    public string UpcCode
+    {
+        get
+        {
+            return this.UpcCode;
+        }
+        set
+        {
+            this.UpcCode = !ValidateCodeUPC(value)
+                ? throw new ArgumentOutOfRangeException($"Product UPC code must be exactly {UPC_CODE_MAX_LENGTH} characters!")
+                : value;
+        }
+    }
+    public String? ImageFileName
+    {
+        get
+        {
+            return this.pictureName;
+        }
+        set
+        {
+            this.pictureName = !ValidatePictureName(value)
+                ? throw new ArgumentOutOfRangeException($"Product Picture Name must be under {IMAGE_FILE_NAME_MAX_LENGTH} characters!")
+                : value;
+        }
+    }
 
-    [Required, MaxLength(PRODUCT_NAME_MAX_LENGTH)]
-    public string ProductName { get; set; } = null!;
-
-    [MaxLength(PRODUCT_DESCRIPTION_MAX_LENGTH)]
-    public string ProductDescription { get; set; } = null!;
-
-    [Required, StringLength(UPC_CODE_MAX_LENGTH)]
-    public string UpcCode { get; set; } = null!;
-
-    [MaxLength(IMAGE_FILE_NAME_MAX_LENGTH)]
-    public string? ImageFileName { get; set; }
-
-    [Required]
-    public int OwnerClientId { get; set; }
-
-    public virtual Client Client { get; set; } = null!;
-
-    [Required, MaxLength(SUPPLIER_CODE_MAX_LENGTH)]
-    public string SupplierName { get; set; } = null!;
-
-    [MaxLength(SUPPLIER_CODE_MAX_LENGTH)]
-    public string SupplierCode { get; set; } = null!;
-
-
-    [Required]
-    public double WeightKg { get; set; }
-
+    public int ClientId { get; set; }
+    public int SupplierId { get; set; }
+    public string SupplierCode
+    {
+        get
+        {
+            return this.supplierCode;
+        }
+        set
+        {
+            this.supplierCode = !ValidateSupplierCode(value)
+                ? throw new ArgumentOutOfRangeException($"Product Supplier Code must be under {SUPPLIER_CODE_MAX_LENGTH} characters!")
+                : value;
+        }
+    }
     public int InStockQty { get; set; }
     public int DesiredQty { get; set; }
-
-    public DateTime DateCreated { get; set; } = DateTime.UtcNow;
-
+    public double WeightKg { get; set; }
+    public DateTime DateCreated { get; set; }
     public DateTime? DateModified { get; set; }
 
     public DateTime? DateDeleted { get; set; }
+    public byte[] RowVersion { get; set; } = null!;
 
-    public Client OwnerClient { get; set; }
+    
+    // Propriété de navigation 
+    public virtual Supplier Supplier { get; set; } = null!;
+    public virtual Client Client { get; set; } = null!;
 
-    public List<PurchaseOrder> PurchaseOrder { get; set; }
-    public List<ShippingOrderProduct> ShippingOrderProduct { get; set; }
+    public virtual Warehouse Warehouse { get; set; } = null!;
 
-    [Timestamp]
-    public byte[] RowVersion { get; set; } = Array.Empty<byte>();
+    public virtual List<PurchaseOrder> PurchaseOrders { get; set; } = null!;
+    public virtual List<orderExpedetion> OrderExpedetion { get; set; } = null!;
 
-    #endregion
-
-    #region Propriétés de navigation
-
-    [Required]
-    public int EntrepotId { get; set; }
-
-    public virtual Warehouse Entrepot { get; set; } = null!;
-    public object Nom { get; internal set; }
-    public object Description { get; internal set; }
-    public object Prix { get; internal set; }
-    public object Stock { get; internal set; }
-    public object DateCreation { get; internal set; }
-    public object DateModification { get; internal set; }
-    public object DateSuppression { get; internal set; }
-
-
-    #endregion
-
-    #region Constructeurs
-
-    public Product() {
-        // Default constructor for EF
-    }
-
-    public Product(string productName,
-                   string productDescription,
-                   string upcCode,
-                   string? imageFileName,
-                   int clientId,
-                   string supplierid,
-                   string supplierCode,
-                   int desiredqty,
-                   int instockqty,
-                   decimal weightKg,
-                   int entrepotId) {
-
+    // Constructeur
+    public Product(string productName, string desc, string UpcCode, int clientId, int supplierId, string supplierCode, int quantity,
+        int aimQuantity, double weight, string? pictureName = null)
+    {
         this.ProductName = productName;
-        this.ProductDescription = productDescription;
-        this.UpcCode = upcCode;
-        this.ImageFileName = imageFileName;
-        this.OwnerClientId = clientId;
-        this.SupplierName = supplierid;
+        this.ProductDescription = desc;
+        this.UpcCode = UpcCode;
+        this.ClientId = clientId;
+        this.SupplierId = supplierId;
         this.SupplierCode = supplierCode;
-        this.DesiredQty = desiredqty;
-        this.InStockQty = instockqty;
-        this.WeightKg = (double) weightKg;
-        this.EntrepotId = entrepotId;
+        this.InStockQty = quantity;
+        this.DesiredQty = aimQuantity;
+        this.WeightKg = weight;
+        this.ImageFileName = pictureName;
     }
 
-    protected Product(int id,
-                      string productName,
-                      string productDescription,
-                      string upcCode,
-                      string? imageFileName,
-                      int clientId,
-                      string supplierName,
-                      string supplierCode,
-                      int desiredqty,
-                      int instockqty,
-                      decimal weightKg,
-                      int entrepotId,
-                      DateTime dateCreated,
-                      DateTime? dateModified,
-                      DateTime? dateDeleted,
-                      byte[] rowVersion) : this(productName, productDescription, upcCode, imageFileName, clientId, supplierName, supplierCode, desiredqty, instockqty, weightKg, entrepotId) {
-
-        this.Id = id;
+    // Constructeur DB
+    private Product(int productId, string productName, string desc, string UpcCode, int clientId, int supplierId, string supplierCode, int quantity,
+        int aimQuantity, double weight, DateTime dateCreated, DateTime? dateModified, DateTime? dateDeleted, byte[] rowVersion, string? pictureName = null)
+        : this(productName, desc, UpcCode, clientId, supplierId, supplierCode, quantity, aimQuantity, weight, pictureName)
+    {
+        this.ProductId = productId;
         this.DateCreated = dateCreated;
         this.DateModified = dateModified;
         this.DateDeleted = dateDeleted;
         this.RowVersion = rowVersion;
     }
 
-    #endregion
+    // Constructeur vide
+    public Product() { }
 
-    #region Méthodes
-    //Partie pour valider les méthodes
-    public bool ValidateUpcCode(string upcCode) {
-        return !string.IsNullOrWhiteSpace(upcCode) && upcCode.Length <= UPC_CODE_MAX_LENGTH;
+    #region METHODES DE VERIFICATION
+    static private bool ValidateProductName(string value)
+    {
+        return value.Length <= PRODUCT_NAME_MAX_LENGTH;
     }
 
-    public bool ValidateProductName(string name) {
-        return !string.IsNullOrWhiteSpace(name) && name.Length <= PRODUCT_NAME_MAX_LENGTH;
+    static private bool ValidateProductDesc(string value)
+    {
+        return value.Length <= PRODUCT_DESCRIPTION_MAX_LENGTH;
     }
 
-    public bool ValidateProductDescription(string description) {
-        return !string.IsNullOrWhiteSpace(description) && description.Length <= PRODUCT_DESCRIPTION_MAX_LENGTH;
+    static private bool ValidateCodeUPC(string value)
+    {
+        return value.Length == UPC_CODE_MAX_LENGTH;
     }
 
-    public bool ValidateImageFileName(string fileName) {
-        return !string.IsNullOrWhiteSpace(fileName) && fileName.Length <= IMAGE_FILE_NAME_MAX_LENGTH;
+    static private bool ValidatePictureName(string value)
+    {
+        return value.Length <= IMAGE_FILE_NAME_MAX_LENGTH || value == null;
     }
 
-    public bool ValidateSupplierCode(string supplierCode) {
-        return !string.IsNullOrWhiteSpace(supplierCode) && supplierCode.Length <= SUPPLIER_CODE_MAX_LENGTH;
-    }
-
-    public bool ValidateWeightInKg(double weight) {
-        return weight >= 0; // Ensure weight is not negative
-    }
-
-    public bool IsDueForRestocking() {
-        return this.InStockQty < this.DesiredQty;
-    }
-    public override string ToString() {
-        return $"{this.ProductName} (UPC: {this.UpcCode}) - Stock: {this.DesiredQty}/{this.InStockQty}, Weight: {this.WeightKg}kg, Warehouse: {this.Entrepot.Id}";
+    static private bool ValidateSupplierCode(string value)
+    {
+        return value.Length <= SUPPLIER_CODE_MAX_LENGTH;
     }
 
     #endregion
+
+    #region METHODES
+
+    public override string ToString()
+    {
+        return $"#{this.ProductId} - {this.productName} | {this.InStockQty}";
+    }
+    #endregion
+
 }
 
-public class ShippingOrderProduct {
-}

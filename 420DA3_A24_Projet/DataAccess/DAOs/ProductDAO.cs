@@ -1,15 +1,27 @@
 ﻿using _420DA3_A24_Projet.Business.Domain;
+using _420DA3_A24_Projet.DataAccess.Contexts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace _420DA3_A24_Projet.DataAccess.DAOs;
 /// <summary>
 /// DAO for managing Produits entities.
 /// </summary>
-public class ProductDAO {
-    private readonly DbContext context;
+internal class ProductDAO {
+    private readonly WsysDbContext context;
 
-    public ProductDAO(DbContext context) {
+    public ProductDAO(WsysDbContext context) {
         this.context = context;
+    }
+    public Product Create(Product product) {
+        try {
+            _ = this.context.Produits.Add(product);
+            _ = this.context.SaveChanges();
+            return product;
+
+        } catch (Exception ex) {
+            throw new Exception($"{this.GetType().ShortDisplayName}: Failed to insert product in database.", ex);
+        }
     }
 
     // Create
@@ -24,22 +36,22 @@ public class ProductDAO {
     public async Task<Product?> GetProduitByIdAsync(int id) {
         return await this.context.Set<Product>()
             .Include(p => p.Client)
-            .Include(p => p.Entrepot)
-            .FirstOrDefaultAsync(p => p.Id == id);
+            .Include(p => p.Warehouse)
+            .FirstOrDefaultAsync(p => p.ProductId == id);
     }
     // Get by Client 
     public async Task<Product?> GetProduitByFournisseurs(int id) {
         return await this.context.Set<Product>()
             .Include(p => p.Client)
-            .Include(p => p.Entrepot)
-            .FirstOrDefaultAsync(p => p.Id == id);
+            .Include(p => p.Warehouse)
+            .FirstOrDefaultAsync(p => p.ProductId == id);
     }
 
     // Lire - Get All
     public async Task<List<Product>> GetAllProduitsAsync() {
         return await this.context.Set<Product>()
             .Include(p => p.Client)
-            .Include(p => p.Entrepot)
+            .Include(p => p.Warehouse)
             .ToListAsync();
     }
 

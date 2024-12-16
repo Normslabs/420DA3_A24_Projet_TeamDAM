@@ -77,11 +77,11 @@ public class User {
     /// <summary>
     /// Liste des ordres d'expédition créés par l'utilisateur (pour employés de bureau et administrateurs).
     /// </summary>
-    public virtual List<ShippingOrder> CreatedShippingOrders { get; set; } = new List<ShippingOrder>();
+    //public virtual List<orderExpedetion> CreatedShippingOrders { get; set; } = new List<orderExpedetion>();
     /// <summary>
     /// Liste des ordres d'expédition complétés par l'utilisateur (pour employés d'entrepôt).
     /// </summary>
-    public virtual List<ShippingOrder> FulfilledShippingOrders { get; set; } = new List<ShippingOrder>();
+    //public virtual List<orderExpedetion> FulfilledShippingOrders { get; set; } = new List<orderExpedetion>();
     /// <summary>
     /// L'entrepôt de travail de l'employé d'entrepôt ou <see langword="null"/> pour les autres utilisateurs.
     /// </summary>

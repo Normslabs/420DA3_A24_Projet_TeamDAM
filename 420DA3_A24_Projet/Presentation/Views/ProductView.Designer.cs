@@ -31,7 +31,7 @@ partial class ProductView {
         this.txtUpcCode = new TextBox();
         this.btnCancel = new Button();
         this.btnApply = new Button();
-        this.txtNom = new TextBox();
+        this.productName = new TextBox();
         this.txtPrix = new TextBox();
         this.txtId = new TextBox();
         this.txtDescription = new TextBox();
@@ -58,7 +58,7 @@ partial class ProductView {
         this.panel1.Controls.Add(this.txtUpcCode);
         this.panel1.Controls.Add(this.btnCancel);
         this.panel1.Controls.Add(this.btnApply);
-        this.panel1.Controls.Add(this.txtNom);
+        this.panel1.Controls.Add(this.productName);
         this.panel1.Controls.Add(this.txtPrix);
         this.panel1.Controls.Add(this.txtId);
         this.panel1.Controls.Add(this.txtDescription);
@@ -98,7 +98,7 @@ partial class ProductView {
         this.label9.Text = "Supplier  ";
         // 
         // label6
-        //
+        // 
         this.label6.AutoSize = true;
         this.label6.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
         this.label6.Location = new Point(47, 220);
@@ -106,7 +106,6 @@ partial class ProductView {
         this.label6.Size = new Size(82, 17);
         this.label6.TabIndex = 19;
         this.label6.Text = "UPC Code  : ";
-        
         // 
         // txtUpcCode
         // 
@@ -131,17 +130,17 @@ partial class ProductView {
         this.btnApply.Name = "btnApply";
         this.btnApply.Size = new Size(169, 38);
         this.btnApply.TabIndex = 16;
-        this.btnApply.Text = "Apply";
+        this.btnApply.Text = "Action";
         this.btnApply.UseVisualStyleBackColor = true;
-       
+        this.btnApply.Click += this.btnApply_Click;
         // 
-        // txtNom
+        // productName
         // 
-        this.txtNom.Location = new Point(134, 102);
-        this.txtNom.Name = "txtNom";
-        this.txtNom.PlaceholderText = "Nom du produit";
-        this.txtNom.Size = new Size(305, 23);
-        this.txtNom.TabIndex = 15;
+        this.productName.Location = new Point(134, 102);
+        this.productName.Name = "productName";
+        this.productName.PlaceholderText = "Nom du produit";
+        this.productName.Size = new Size(305, 23);
+        this.productName.TabIndex = 15;
         // 
         // txtPrix
         // 
@@ -266,7 +265,6 @@ partial class ProductView {
         this.Controls.Add(this.panel1);
         this.Name = "ProductView";
         this.Text = "ProductView";
-
         this.panel1.ResumeLayout(false);
         this.panel1.PerformLayout();
         ((System.ComponentModel.ISupportInitialize) this.numericUpDownWeight).EndInit();
@@ -285,7 +283,7 @@ partial class ProductView {
     private Label titreID;
     private NumericUpDown numericUpDownWeight;
     private NumericUpDown numericUpDownStock;
-    private TextBox txtNom;
+    private TextBox productName;
     private TextBox txtPrix;
     private TextBox txtId;
     private TextBox txtDescription;
