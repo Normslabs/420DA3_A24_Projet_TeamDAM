@@ -28,41 +28,44 @@ partial class ClientView {
         this.panel2 = new Panel();
         this.tableLayoutPanel1 = new TableLayoutPanel();
         this.panel3 = new Panel();
-        this.idlabel = new Label();
-        this.label1 = new Label();
-        this.label2 = new Label();
-        this.label3 = new Label();
         this.panel4 = new Panel();
-        this.label4 = new Label();
-        this.label5 = new Label();
-        this.label6 = new Label();
-        this.label7 = new Label();
         this.panel5 = new Panel();
-        this.label8 = new Label();
-        this.label9 = new Label();
-        this.label10 = new Label();
-        this.label11 = new Label();
         this.panel6 = new Panel();
+        this.dateTimePicker3 = new DateTimePicker();
+        this.dateTimePicker2 = new DateTimePicker();
+        this.dateTimePicker1 = new DateTimePicker();
+        this.textBox6 = new TextBox();
+        this.textBox5 = new TextBox();
+        this.textBox4 = new TextBox();
+        this.textBox3 = new TextBox();
+        this.textBox2 = new TextBox();
+        this.textBox1 = new TextBox();
+        this.numericUpDown1 = new NumericUpDown();
+        this.label21 = new Label();
+        this.label20 = new Label();
+        this.label19 = new Label();
+        this.label18 = new Label();
+        this.label17 = new Label();
+        this.label16 = new Label();
         this.label12 = new Label();
         this.label13 = new Label();
         this.label14 = new Label();
         this.label15 = new Label();
-        this.label16 = new Label();
-        this.label17 = new Label();
-        this.label18 = new Label();
-        this.label19 = new Label();
-        this.label20 = new Label();
-        this.label21 = new Label();
-        this.numericUpDown1 = new NumericUpDown();
-        this.textBox1 = new TextBox();
-        this.textBox2 = new TextBox();
-        this.textBox3 = new TextBox();
-        this.textBox4 = new TextBox();
-        this.textBox5 = new TextBox();
-        this.textBox6 = new TextBox();
-        this.dateTimePicker1 = new DateTimePicker();
-        this.dateTimePicker2 = new DateTimePicker();
-        this.dateTimePicker3 = new DateTimePicker();
+        this.label8 = new Label();
+        this.label9 = new Label();
+        this.label10 = new Label();
+        this.label11 = new Label();
+        this.label4 = new Label();
+        this.label5 = new Label();
+        this.label6 = new Label();
+        this.label7 = new Label();
+        this.label3 = new Label();
+        this.label2 = new Label();
+        this.label1 = new Label();
+        this.idlabel = new Label();
+        this.cancelbtn = new Button();
+        this.applybtn = new Button();
+        this.panel2.SuspendLayout();
         this.tableLayoutPanel1.SuspendLayout();
         this.panel3.SuspendLayout();
         this.panel4.SuspendLayout();
@@ -81,6 +84,8 @@ partial class ClientView {
         // 
         // panel2
         // 
+        this.panel2.Controls.Add(this.applybtn);
+        this.panel2.Controls.Add(this.cancelbtn);
         this.panel2.Dock = DockStyle.Bottom;
         this.panel2.Location = new Point(0, 400);
         this.panel2.Name = "panel2";
@@ -116,42 +121,6 @@ partial class ClientView {
         this.panel3.Size = new Size(542, 344);
         this.panel3.TabIndex = 0;
         // 
-        // idlabel
-        // 
-        this.idlabel.AutoSize = true;
-        this.idlabel.Location = new Point(237, 22);
-        this.idlabel.Name = "idlabel";
-        this.idlabel.Size = new Size(27, 20);
-        this.idlabel.TabIndex = 0;
-        this.idlabel.Text = "ID:";
-        // 
-        // label1
-        // 
-        this.label1.AutoSize = true;
-        this.label1.Location = new Point(237, 57);
-        this.label1.Name = "label1";
-        this.label1.Size = new Size(149, 20);
-        this.label1.TabIndex = 1;
-        this.label1.Text = "Nom De Compagnie:";
-        // 
-        // label2
-        // 
-        this.label2.AutoSize = true;
-        this.label2.Location = new Point(237, 93);
-        this.label2.Name = "label2";
-        this.label2.Size = new Size(110, 20);
-        this.label2.TabIndex = 2;
-        this.label2.Text = "Warehouse Attiré:";
-        // 
-        // label3
-        // 
-        this.label3.AutoSize = true;
-        this.label3.Location = new Point(237, 132);
-        this.label3.Name = "label3";
-        this.label3.Size = new Size(186, 20);
-        this.label3.TabIndex = 3;
-        this.label3.Text = "Nom de Personne-Contact:";
-        // 
         // panel4
         // 
         this.panel4.Controls.Add(this.panel5);
@@ -165,42 +134,6 @@ partial class ClientView {
         this.panel4.Size = new Size(542, 344);
         this.panel4.TabIndex = 4;
         // 
-        // label4
-        // 
-        this.label4.AutoSize = true;
-        this.label4.Location = new Point(237, 132);
-        this.label4.Name = "label4";
-        this.label4.Size = new Size(186, 20);
-        this.label4.TabIndex = 3;
-        this.label4.Text = "Nom de Personne-Contact:";
-        // 
-        // label5
-        // 
-        this.label5.AutoSize = true;
-        this.label5.Location = new Point(237, 93);
-        this.label5.Name = "label5";
-        this.label5.Size = new Size(110, 20);
-        this.label5.TabIndex = 2;
-        this.label5.Text = "Warehouse Attiré:";
-        // 
-        // label6
-        // 
-        this.label6.AutoSize = true;
-        this.label6.Location = new Point(237, 57);
-        this.label6.Name = "label6";
-        this.label6.Size = new Size(149, 20);
-        this.label6.TabIndex = 1;
-        this.label6.Text = "Nom De Compagnie:";
-        // 
-        // label7
-        // 
-        this.label7.AutoSize = true;
-        this.label7.Location = new Point(237, 22);
-        this.label7.Name = "label7";
-        this.label7.Size = new Size(27, 20);
-        this.label7.TabIndex = 0;
-        this.label7.Text = "ID:";
-        // 
         // panel5
         // 
         this.panel5.Controls.Add(this.panel6);
@@ -213,42 +146,6 @@ partial class ClientView {
         this.panel5.Name = "panel5";
         this.panel5.Size = new Size(542, 344);
         this.panel5.TabIndex = 4;
-        // 
-        // label8
-        // 
-        this.label8.AutoSize = true;
-        this.label8.Location = new Point(237, 132);
-        this.label8.Name = "label8";
-        this.label8.Size = new Size(186, 20);
-        this.label8.TabIndex = 3;
-        this.label8.Text = "Nom de Personne-Contact:";
-        // 
-        // label9
-        // 
-        this.label9.AutoSize = true;
-        this.label9.Location = new Point(237, 93);
-        this.label9.Name = "label9";
-        this.label9.Size = new Size(110, 20);
-        this.label9.TabIndex = 2;
-        this.label9.Text = "Warehouse Attiré:";
-        // 
-        // label10
-        // 
-        this.label10.AutoSize = true;
-        this.label10.Location = new Point(237, 57);
-        this.label10.Name = "label10";
-        this.label10.Size = new Size(149, 20);
-        this.label10.TabIndex = 1;
-        this.label10.Text = "Nom De Compagnie:";
-        // 
-        // label11
-        // 
-        this.label11.AutoSize = true;
-        this.label11.Location = new Point(237, 22);
-        this.label11.Name = "label11";
-        this.label11.Size = new Size(27, 20);
-        this.label11.TabIndex = 0;
-        this.label11.Text = "ID:";
         // 
         // panel6
         // 
@@ -279,6 +176,130 @@ partial class ClientView {
         this.panel6.TabIndex = 4;
         this.panel6.Paint += this.panel6_Paint;
         // 
+        // dateTimePicker3
+        // 
+        this.dateTimePicker3.Location = new Point(226, 314);
+        this.dateTimePicker3.Name = "dateTimePicker3";
+        this.dateTimePicker3.Size = new Size(294, 27);
+        this.dateTimePicker3.TabIndex = 19;
+        // 
+        // dateTimePicker2
+        // 
+        this.dateTimePicker2.Location = new Point(226, 283);
+        this.dateTimePicker2.Name = "dateTimePicker2";
+        this.dateTimePicker2.Size = new Size(294, 27);
+        this.dateTimePicker2.TabIndex = 18;
+        // 
+        // dateTimePicker1
+        // 
+        this.dateTimePicker1.Location = new Point(226, 253);
+        this.dateTimePicker1.Name = "dateTimePicker1";
+        this.dateTimePicker1.Size = new Size(294, 27);
+        this.dateTimePicker1.TabIndex = 17;
+        // 
+        // textBox6
+        // 
+        this.textBox6.Location = new Point(226, 220);
+        this.textBox6.Name = "textBox6";
+        this.textBox6.Size = new Size(294, 27);
+        this.textBox6.TabIndex = 16;
+        // 
+        // textBox5
+        // 
+        this.textBox5.Location = new Point(226, 186);
+        this.textBox5.Name = "textBox5";
+        this.textBox5.Size = new Size(294, 27);
+        this.textBox5.TabIndex = 15;
+        // 
+        // textBox4
+        // 
+        this.textBox4.Location = new Point(226, 149);
+        this.textBox4.Name = "textBox4";
+        this.textBox4.Size = new Size(294, 27);
+        this.textBox4.TabIndex = 14;
+        // 
+        // textBox3
+        // 
+        this.textBox3.Location = new Point(226, 110);
+        this.textBox3.Name = "textBox3";
+        this.textBox3.Size = new Size(294, 27);
+        this.textBox3.TabIndex = 13;
+        // 
+        // textBox2
+        // 
+        this.textBox2.Location = new Point(226, 73);
+        this.textBox2.Name = "textBox2";
+        this.textBox2.Size = new Size(294, 27);
+        this.textBox2.TabIndex = 12;
+        // 
+        // textBox1
+        // 
+        this.textBox1.Location = new Point(226, 41);
+        this.textBox1.Name = "textBox1";
+        this.textBox1.Size = new Size(294, 27);
+        this.textBox1.TabIndex = 11;
+        // 
+        // numericUpDown1
+        // 
+        this.numericUpDown1.Location = new Point(226, 8);
+        this.numericUpDown1.Name = "numericUpDown1";
+        this.numericUpDown1.Size = new Size(294, 27);
+        this.numericUpDown1.TabIndex = 10;
+        // 
+        // label21
+        // 
+        this.label21.AutoSize = true;
+        this.label21.Location = new Point(17, 319);
+        this.label21.Name = "label21";
+        this.label21.Size = new Size(149, 20);
+        this.label21.TabIndex = 9;
+        this.label21.Text = "Date de Suppression:";
+        // 
+        // label20
+        // 
+        this.label20.AutoSize = true;
+        this.label20.Location = new Point(17, 288);
+        this.label20.Name = "label20";
+        this.label20.Size = new Size(154, 20);
+        this.label20.TabIndex = 8;
+        this.label20.Text = "Date de Modification:";
+        // 
+        // label19
+        // 
+        this.label19.AutoSize = true;
+        this.label19.Location = new Point(17, 254);
+        this.label19.Name = "label19";
+        this.label19.Size = new Size(125, 20);
+        this.label19.TabIndex = 7;
+        this.label19.Text = "Date de Création:";
+        // 
+        // label18
+        // 
+        this.label18.AutoSize = true;
+        this.label18.Location = new Point(17, 220);
+        this.label18.Name = "label18";
+        this.label18.Size = new Size(172, 20);
+        this.label18.TabIndex = 6;
+        this.label18.Text = "Tél de Personne-Contact:";
+        // 
+        // label17
+        // 
+        this.label17.AutoSize = true;
+        this.label17.Location = new Point(15, 186);
+        this.label17.Name = "label17";
+        this.label17.Size = new Size(205, 20);
+        this.label17.TabIndex = 5;
+        this.label17.Text = "Courriel de Personne-Contact:";
+        // 
+        // label16
+        // 
+        this.label16.AutoSize = true;
+        this.label16.Location = new Point(15, 152);
+        this.label16.Name = "label16";
+        this.label16.Size = new Size(204, 20);
+        this.label16.TabIndex = 4;
+        this.label16.Text = "Prenom de Personne-Contact:";
+        // 
         // label12
         // 
         this.label12.AutoSize = true;
@@ -293,7 +314,7 @@ partial class ClientView {
         this.label13.AutoSize = true;
         this.label13.Location = new Point(15, 73);
         this.label13.Name = "label13";
-        this.label13.Size = new Size(110, 20);
+        this.label13.Size = new Size(126, 20);
         this.label13.TabIndex = 2;
         this.label13.Text = "Warehouse Attiré:";
         // 
@@ -315,129 +336,133 @@ partial class ClientView {
         this.label15.TabIndex = 0;
         this.label15.Text = "ID:";
         // 
-        // label16
+        // label8
         // 
-        this.label16.AutoSize = true;
-        this.label16.Location = new Point(15, 152);
-        this.label16.Name = "label16";
-        this.label16.Size = new Size(204, 20);
-        this.label16.TabIndex = 4;
-        this.label16.Text = "Prenom de Personne-Contact:";
+        this.label8.AutoSize = true;
+        this.label8.Location = new Point(237, 132);
+        this.label8.Name = "label8";
+        this.label8.Size = new Size(186, 20);
+        this.label8.TabIndex = 3;
+        this.label8.Text = "Nom de Personne-Contact:";
         // 
-        // label17
+        // label9
         // 
-        this.label17.AutoSize = true;
-        this.label17.Location = new Point(15, 186);
-        this.label17.Name = "label17";
-        this.label17.Size = new Size(205, 20);
-        this.label17.TabIndex = 5;
-        this.label17.Text = "Courriel de Personne-Contact:";
+        this.label9.AutoSize = true;
+        this.label9.Location = new Point(237, 93);
+        this.label9.Name = "label9";
+        this.label9.Size = new Size(126, 20);
+        this.label9.TabIndex = 2;
+        this.label9.Text = "Warehouse Attiré:";
         // 
-        // label18
+        // label10
         // 
-        this.label18.AutoSize = true;
-        this.label18.Location = new Point(17, 220);
-        this.label18.Name = "label18";
-        this.label18.Size = new Size(172, 20);
-        this.label18.TabIndex = 6;
-        this.label18.Text = "Tél de Personne-Contact:";
+        this.label10.AutoSize = true;
+        this.label10.Location = new Point(237, 57);
+        this.label10.Name = "label10";
+        this.label10.Size = new Size(149, 20);
+        this.label10.TabIndex = 1;
+        this.label10.Text = "Nom De Compagnie:";
         // 
-        // label19
+        // label11
         // 
-        this.label19.AutoSize = true;
-        this.label19.Location = new Point(17, 254);
-        this.label19.Name = "label19";
-        this.label19.Size = new Size(125, 20);
-        this.label19.TabIndex = 7;
-        this.label19.Text = "Date de Création:";
+        this.label11.AutoSize = true;
+        this.label11.Location = new Point(237, 22);
+        this.label11.Name = "label11";
+        this.label11.Size = new Size(27, 20);
+        this.label11.TabIndex = 0;
+        this.label11.Text = "ID:";
         // 
-        // label20
+        // label4
         // 
-        this.label20.AutoSize = true;
-        this.label20.Location = new Point(17, 288);
-        this.label20.Name = "label20";
-        this.label20.Size = new Size(154, 20);
-        this.label20.TabIndex = 8;
-        this.label20.Text = "Date de Modification:";
+        this.label4.AutoSize = true;
+        this.label4.Location = new Point(237, 132);
+        this.label4.Name = "label4";
+        this.label4.Size = new Size(186, 20);
+        this.label4.TabIndex = 3;
+        this.label4.Text = "Nom de Personne-Contact:";
         // 
-        // label21
+        // label5
         // 
-        this.label21.AutoSize = true;
-        this.label21.Location = new Point(17, 319);
-        this.label21.Name = "label21";
-        this.label21.Size = new Size(149, 20);
-        this.label21.TabIndex = 9;
-        this.label21.Text = "Date de Suppression:";
+        this.label5.AutoSize = true;
+        this.label5.Location = new Point(237, 93);
+        this.label5.Name = "label5";
+        this.label5.Size = new Size(126, 20);
+        this.label5.TabIndex = 2;
+        this.label5.Text = "Warehouse Attiré:";
         // 
-        // numericUpDown1
+        // label6
         // 
-        this.numericUpDown1.Location = new Point(226, 8);
-        this.numericUpDown1.Name = "numericUpDown1";
-        this.numericUpDown1.Size = new Size(294, 27);
-        this.numericUpDown1.TabIndex = 10;
+        this.label6.AutoSize = true;
+        this.label6.Location = new Point(237, 57);
+        this.label6.Name = "label6";
+        this.label6.Size = new Size(149, 20);
+        this.label6.TabIndex = 1;
+        this.label6.Text = "Nom De Compagnie:";
         // 
-        // textBox1
+        // label7
         // 
-        this.textBox1.Location = new Point(226, 41);
-        this.textBox1.Name = "textBox1";
-        this.textBox1.Size = new Size(294, 27);
-        this.textBox1.TabIndex = 11;
+        this.label7.AutoSize = true;
+        this.label7.Location = new Point(237, 22);
+        this.label7.Name = "label7";
+        this.label7.Size = new Size(27, 20);
+        this.label7.TabIndex = 0;
+        this.label7.Text = "ID:";
         // 
-        // textBox2
+        // label3
         // 
-        this.textBox2.Location = new Point(226, 73);
-        this.textBox2.Name = "textBox2";
-        this.textBox2.Size = new Size(294, 27);
-        this.textBox2.TabIndex = 12;
+        this.label3.AutoSize = true;
+        this.label3.Location = new Point(237, 132);
+        this.label3.Name = "label3";
+        this.label3.Size = new Size(186, 20);
+        this.label3.TabIndex = 3;
+        this.label3.Text = "Nom de Personne-Contact:";
         // 
-        // textBox3
+        // label2
         // 
-        this.textBox3.Location = new Point(226, 110);
-        this.textBox3.Name = "textBox3";
-        this.textBox3.Size = new Size(294, 27);
-        this.textBox3.TabIndex = 13;
+        this.label2.AutoSize = true;
+        this.label2.Location = new Point(237, 93);
+        this.label2.Name = "label2";
+        this.label2.Size = new Size(126, 20);
+        this.label2.TabIndex = 2;
+        this.label2.Text = "Warehouse Attiré:";
         // 
-        // textBox4
+        // label1
         // 
-        this.textBox4.Location = new Point(226, 149);
-        this.textBox4.Name = "textBox4";
-        this.textBox4.Size = new Size(294, 27);
-        this.textBox4.TabIndex = 14;
+        this.label1.AutoSize = true;
+        this.label1.Location = new Point(237, 57);
+        this.label1.Name = "label1";
+        this.label1.Size = new Size(149, 20);
+        this.label1.TabIndex = 1;
+        this.label1.Text = "Nom De Compagnie:";
         // 
-        // textBox5
+        // idlabel
         // 
-        this.textBox5.Location = new Point(226, 186);
-        this.textBox5.Name = "textBox5";
-        this.textBox5.Size = new Size(294, 27);
-        this.textBox5.TabIndex = 15;
+        this.idlabel.AutoSize = true;
+        this.idlabel.Location = new Point(237, 22);
+        this.idlabel.Name = "idlabel";
+        this.idlabel.Size = new Size(27, 20);
+        this.idlabel.TabIndex = 0;
+        this.idlabel.Text = "ID:";
         // 
-        // textBox6
+        // cancelbtn
         // 
-        this.textBox6.Location = new Point(226, 220);
-        this.textBox6.Name = "textBox6";
-        this.textBox6.Size = new Size(294, 27);
-        this.textBox6.TabIndex = 16;
+        this.cancelbtn.BackColor = SystemColors.ControlLightLight;
+        this.cancelbtn.Location = new Point(662, 9);
+        this.cancelbtn.Name = "cancelbtn";
+        this.cancelbtn.Size = new Size(94, 29);
+        this.cancelbtn.TabIndex = 0;
+        this.cancelbtn.Text = "Cancel";
+        this.cancelbtn.UseVisualStyleBackColor = false;
         // 
-        // dateTimePicker1
+        // applybtn
         // 
-        this.dateTimePicker1.Location = new Point(226, 253);
-        this.dateTimePicker1.Name = "dateTimePicker1";
-        this.dateTimePicker1.Size = new Size(294, 27);
-        this.dateTimePicker1.TabIndex = 17;
-        // 
-        // dateTimePicker2
-        // 
-        this.dateTimePicker2.Location = new Point(226, 283);
-        this.dateTimePicker2.Name = "dateTimePicker2";
-        this.dateTimePicker2.Size = new Size(294, 27);
-        this.dateTimePicker2.TabIndex = 18;
-        // 
-        // dateTimePicker3
-        // 
-        this.dateTimePicker3.Location = new Point(226, 314);
-        this.dateTimePicker3.Name = "dateTimePicker3";
-        this.dateTimePicker3.Size = new Size(294, 27);
-        this.dateTimePicker3.TabIndex = 19;
+        this.applybtn.BackColor = SystemColors.ControlLightLight;
+        this.applybtn.Location = new Point(530, 9);
+        this.applybtn.Name = "applybtn";
+        this.applybtn.Size = new Size(94, 29);
+        this.applybtn.TabIndex = 1;
+        this.applybtn.Text = "Apply";
+        this.applybtn.UseVisualStyleBackColor = false;
         // 
         // ClientView
         // 
@@ -449,6 +474,7 @@ partial class ClientView {
         this.Controls.Add(this.panel1);
         this.Name = "ClientView";
         this.Text = "ClientView";
+        this.panel2.ResumeLayout(false);
         this.tableLayoutPanel1.ResumeLayout(false);
         this.panel3.ResumeLayout(false);
         this.panel3.PerformLayout();
@@ -503,4 +529,6 @@ partial class ClientView {
     private TextBox textBox2;
     private TextBox textBox1;
     private NumericUpDown numericUpDown1;
+    private Button applybtn;
+    private Button cancelbtn;
 }

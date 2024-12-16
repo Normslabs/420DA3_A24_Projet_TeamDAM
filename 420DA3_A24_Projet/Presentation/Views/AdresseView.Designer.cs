@@ -27,6 +27,8 @@ partial class AdresseView {
         this.panel1 = new Panel();
         this.panel2 = new Panel();
         this.panel3 = new Panel();
+        this.applybtn = new Button();
+        this.cancelbtn = new Button();
         this.tableLayoutPanel1 = new TableLayoutPanel();
         this.panel4 = new Panel();
         this.dateTimePicker3 = new DateTimePicker();
@@ -50,6 +52,7 @@ partial class AdresseView {
         this.label14 = new Label();
         this.label15 = new Label();
         this.panel1.SuspendLayout();
+        this.panel3.SuspendLayout();
         this.tableLayoutPanel1.SuspendLayout();
         this.panel4.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize) this.numericUpDown1).BeginInit();
@@ -74,11 +77,35 @@ partial class AdresseView {
         // 
         // panel3
         // 
+        this.panel3.Controls.Add(this.applybtn);
+        this.panel3.Controls.Add(this.cancelbtn);
         this.panel3.Dock = DockStyle.Bottom;
         this.panel3.Location = new Point(0, 390);
         this.panel3.Name = "panel3";
         this.panel3.Size = new Size(800, 60);
         this.panel3.TabIndex = 2;
+        // 
+        // applybtn
+        // 
+        this.applybtn.BackColor = SystemColors.ControlLightLight;
+        this.applybtn.Location = new Point(541, 19);
+        this.applybtn.Name = "applybtn";
+        this.applybtn.Size = new Size(94, 29);
+        this.applybtn.TabIndex = 3;
+        this.applybtn.Text = "Apply";
+        this.applybtn.UseVisualStyleBackColor = false;
+        this.applybtn.Click += this.applybtn_Click;
+        // 
+        // cancelbtn
+        // 
+        this.cancelbtn.BackColor = SystemColors.ControlLightLight;
+        this.cancelbtn.Location = new Point(673, 19);
+        this.cancelbtn.Name = "cancelbtn";
+        this.cancelbtn.Size = new Size(94, 29);
+        this.cancelbtn.TabIndex = 2;
+        this.cancelbtn.Text = "Cancel";
+        this.cancelbtn.UseVisualStyleBackColor = false;
+        this.cancelbtn.Click += this.cancelbtn_Click;
         // 
         // tableLayoutPanel1
         // 
@@ -301,6 +328,7 @@ partial class AdresseView {
         this.Name = "AdresseView";
         this.Text = "AdresseView";
         this.panel1.ResumeLayout(false);
+        this.panel3.ResumeLayout(false);
         this.tableLayoutPanel1.ResumeLayout(false);
         this.panel4.ResumeLayout(false);
         this.panel4.PerformLayout();
@@ -335,4 +363,6 @@ partial class AdresseView {
     private Label label13;
     private Label label14;
     private Label label15;
+    private Button applybtn;
+    private Button cancelbtn;
 }
