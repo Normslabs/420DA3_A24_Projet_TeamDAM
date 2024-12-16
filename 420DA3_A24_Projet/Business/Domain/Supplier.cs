@@ -86,6 +86,8 @@ public class Supplier {
     public DateTime? DateDeleted { get; set; }
     public byte[] RowVersion { get; set; } = null!;
 
+    public virtual List<Product> Products { get; set; } = new List<Product>();
+
     #endregion
 
     #region Constructeurs
