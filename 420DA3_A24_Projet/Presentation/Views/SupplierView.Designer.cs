@@ -379,6 +379,7 @@ partial class SupplierView {
         this.actionBtn.TabIndex = 2;
         this.actionBtn.Text = "ACTION";
         this.actionBtn.UseVisualStyleBackColor = true;
+        this.actionBtn.Click += this.actionBtn_Click;
         // 
         // cancelBtn
         // 
@@ -390,6 +391,7 @@ partial class SupplierView {
         this.cancelBtn.TabIndex = 3;
         this.cancelBtn.Text = "Annuler";
         this.cancelBtn.UseVisualStyleBackColor = true;
+        this.cancelBtn.Click += this.cancelBtn_Click;
         // 
         // SupplierView
         // 

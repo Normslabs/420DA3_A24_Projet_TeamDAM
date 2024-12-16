@@ -36,7 +36,7 @@ internal class SupplierService {
                     if (supplier == null) {
                         throw new ArgumentNullException(nameof(supplier), "Supplier must be provided for editing.");
                     }
-                    DialogResult editResult = this.supplierWindow.OpenForEdition(supplier);
+                    DialogResult editResult = this.supplierWindow.OpenForModification(supplier);
                     if (editResult == DialogResult.OK) {
                         // Ouvre la vue en mode visualisation après modification
                         _ = this.OpenViewFor(ViewActionsEnum.Visualization, supplier);
@@ -71,7 +71,7 @@ internal class SupplierService {
     }
 
     public Supplier? OpenSupplierWindowForEdition(Supplier supplier) {
-        DialogResult result = this.supplierWindow.OpenForEdition(supplier);
+        DialogResult result = this.supplierWindow.OpenForModification(supplier);
         return result == DialogResult.OK ? supplier : null;
     }
 
@@ -125,9 +125,9 @@ internal class SupplierService {
     /// </summary>
     /// <param name="supplier"></param>
     /// <returns></returns>
-    public void DeleteSupplier(Supplier supplier, bool softDeletes = true) {
+    public Supplier DeleteSupplier(Supplier supplier) {
         try {
-            this.supplierDAO.Delete(supplier, softDeletes);
+            return this.supplierDAO.Delete(supplier);
         } catch (Exception ex) {
             throw new Exception($"{this.GetType().ShortDisplayName}: Failed to delete supplier with ID [{supplier.Id}].", ex);
         }
