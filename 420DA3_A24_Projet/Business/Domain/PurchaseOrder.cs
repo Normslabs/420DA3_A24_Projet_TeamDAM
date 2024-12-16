@@ -64,14 +64,16 @@ public class PurchaseOrder {
     public DateTime? DateDeleted { get; set; }
     public byte[] RowVersion { get; set; } = null!;
 
+
+
     #endregion
 
     #region Propriétés de navigation
 
-    /// <summary>
-    /// Product à restocker.
-    /// </summary>
-    public virtual Product Product { get; set; } = null!;
+   /// <summary>
+   /// Product à restocker.
+   /// </summary>
+   public virtual Product Product { get; set; } = null!;
     /// <summary>
     /// Entrepôt où les produits sont stockés.
     /// </summary>

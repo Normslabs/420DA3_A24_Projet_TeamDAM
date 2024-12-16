@@ -116,9 +116,9 @@ internal class PurchaseOrderService {
     /// </summary>
     /// <param name="order">The <see cref="PurchaseOrder"/> to delete.</param>
     /// <param name="softDeletes">Indicates whether to perform a soft delete (default is true).</param>
-    public void DeletePurchaseOrder(PurchaseOrder order, bool softDeletes = true) {
+    public PurchaseOrder DeletePurchaseOrder(PurchaseOrder order, bool softDeletes = true) {
         try {
-            this.dao.Delete(order, softDeletes);
+           return this.dao.Delete(order);
         } catch (Exception ex) {
             throw new Exception($"{this.GetType().ShortDisplayName}: Failed to delete purchase order with ID [{order.Id}].", ex);
         }

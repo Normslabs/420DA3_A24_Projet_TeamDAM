@@ -62,13 +62,15 @@ internal class PurchaseOrderDAO {
     /// <param name="purchaseOrder">Ordre à supprimer.</param>
     /// <param name="softDeletes">Indique si la suppression est logique (soft delete).</param>
     /// <returns>Ordre supprimé.</returns>
-    public void Delete(PurchaseOrder purchaseOrder, bool softDeletes = true) {
+    public PurchaseOrder Delete(PurchaseOrder purchaseOrder, bool softDeletes = true) {
         if (softDeletes) {
             purchaseOrder.DateDeleted = DateTime.Now;
             _ = this.context.PurchaseOrders.Update(purchaseOrder);
+         
         } else {
             _ = this.context.PurchaseOrders.Remove(purchaseOrder);
         }
+        return purchaseOrder;
         _ = this.context.SaveChanges();
     }
     /// <summary>
@@ -77,7 +79,7 @@ internal class PurchaseOrderDAO {
     /// <param name="warehouse">Entrepôt cible.</param>
     /// <param name="status">Statut de commande (optionnel).</param>
     /// <returns>Liste des ordres correspondant aux critères.</returns>
-    public List<PurchaseOrder> GetByWarehouse(Entrepot warehouse, PurchaseOrder.OrderStatus? status = null) {
+    public List<PurchaseOrder> GetByWarehouse(Warehouse warehouse, PurchaseOrder.OrderStatus? status = null) {
         return this.context.PurchaseOrders
             .Where(po => po.WarehouseId == warehouse.Id && (status == null || po.Status == status))
             .Include(po => po.ProductId)
@@ -90,7 +92,7 @@ internal class PurchaseOrderDAO {
     /// <param name="product">Produit cible.</param>
     /// <param name="status">Statut de commande (optionnel).</param>
     /// <returns>Liste des ordres correspondant aux critères.</returns>
-    public List<PurchaseOrder> GetByProduct(Produit product, PurchaseOrder.OrderStatus? status = null) {
+    public List<PurchaseOrder> GetByProduct(Product product, PurchaseOrder.OrderStatus? status = null) {
         return this.context.PurchaseOrders
             .Where(po => po.ProductId == product.Id && (status == null || po.Status == status))
             .Include(po => po.ProductId)
